@@ -2,15 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useAdminStore, BrochureItem, PackageItem } from "@/lib/admin-store";
 
-export const Route = createFileRoute("/admin")({
-  head: () => ({
-    meta: [
-      { title: "Admin Console | प्रीतम ज्येष्ठ नागरिक आनंदशाळा" },
-      { name: "description", content: "आनंदशाळा आणि स्पोर्ट्स क्लब कंटेंट मॅनेजमेंट सिस्टीम." },
-    ],
-  }),
-  component: AdminPage,
-});
+
 
 type TabKey =
   | "dashboard"

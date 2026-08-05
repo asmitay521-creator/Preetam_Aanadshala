@@ -12,18 +12,6 @@ import SportsSection from "@/components/SportsSection";
 import JourneySection from "@/components/journey/JourneySection";
 
 
-export const Route = createFileRoute("/")(({
-  head: () => ({
-    meta: [
-      { title: "प्रीतम आनंदशाळा & स्पोर्ट्स क्लब | सांगली" },
-      {
-        name: "description",
-        content: "सांगलीतील प्रीतम ज्येष्ठ नागरिक आनंदशाळा व प्रीतम स्पोर्ट्स अँड फिटनेस क्लब.",
-      },
-    ],
-  }),
-  component: IndexComponent,
-}));
 
 const publicImages = [
   "/images/Screenshot 2026-07-31 103107.png",

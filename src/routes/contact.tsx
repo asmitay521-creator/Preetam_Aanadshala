@@ -6,21 +6,7 @@ import { site, sportsClub } from "@/lib/site-info";
 import { useAdminStore } from "@/lib/admin-store";
 import { useLanguage } from "@/lib/use-language";
 
-export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "संपर्क | प्रीतम ज्येष्ठ नागरिक आनंदशाळा, सांगली" },
-      {
-        name: "description",
-        content:
-          "प्रवेश व अधिक माहितीसाठी संपर्क : 9370237633, 9423258859. पत्ता : माधवनगर – धनंजय गार्डन रोड, सांगली.",
-      },
-      { property: "og:title", content: "संपर्क | प्रीतम ज्येष्ठ नागरिक आनंदशाळा" },
-      { property: "og:description", content: "आनंदशाळेत प्रवेशासाठी आजच संपर्क साधा." },
-    ],
-  }),
-  component: Contact,
-});
+
 
 function Contact() {
   const { addInquiry } = useAdminStore();

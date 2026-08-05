@@ -5,21 +5,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { useLanguage } from "@/lib/use-language";
 import { brochurePdfUrl } from "@/lib/brochure-pages";
 
-export const Route = createFileRoute("/brochure")({
-  head: () => ({
-    meta: [
-      { title: "माहिती पत्रक | प्रीतम ज्येष्ठ नागरिक आनंदशाळा" },
-      {
-        name: "description",
-        content:
-          "प्रीतम ज्येष्ठ नागरिक आनंदशाळेचे संपूर्ण माहिती पत्रक — सुविधा, प्रवेश शुल्क व प्रकल्पाची माहिती.",
-      },
-      { property: "og:title", content: "माहिती पत्रक | प्रीतम ज्येष्ठ नागरिक आनंदशाळा" },
-      { property: "og:description", content: "आनंदशाळेचे संपूर्ण माहिती पत्रक ऑनलाइन पहा व डाउनलोड करा." },
-    ],
-  }),
-  component: Brochure,
-});
+
 
 const brochureList = [
   { id: 1, url: "/images/Screenshot 2026-07-31 103107.png", titleMr: "आनंदशाळा माहिती पत्रक व प्रवेश माहिती", captionEn: "Anandshala Brochure & Admission Details", categoryMr: "प्रवेश व नियम" },
