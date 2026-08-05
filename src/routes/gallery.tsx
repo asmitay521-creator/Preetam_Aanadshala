@@ -1,6 +1,26 @@
+import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+
+export const Route = createFileRoute("/gallery")({
+  head: () => ({
+    meta: [
+      { title: "गॅलरी | प्रीतम ज्येष्ठ नागरिक आनंदशाळा" },
+      {
+        name: "description",
+        content:
+          "आनंदशाळेचे प्रकल्प दृश्य, राधाकृष्ण मंदिर, फूड कोर्ट, स्पोर्ट्स कॉम्प्लेक्स, आनंद मेळावा व पुरस्कार सोहळ्यांची श्रेणीनुसार छायाचित्रे.",
+      },
+      { property: "og:title", content: "गॅलरी | प्रीतम ज्येष्ठ नागरिक आनंदशाळा" },
+      {
+        property: "og:description",
+        content: "प्रकल्पाची व कार्यक्रमांची श्रेणीनुसार छायाचित्रे एका ठिकाणी.",
+      },
+    ],
+  }),
+  component: Gallery,
+});
 
 // ===== Gallery Data =====
 const galleryImages = [
@@ -251,5 +271,3 @@ function Gallery() {
     </div>
   );
 }
-
-export default Gallery;

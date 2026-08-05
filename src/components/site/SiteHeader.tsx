@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { navLinks, site } from "@/lib/site-info";
 import { useLanguage } from "@/lib/use-language";
@@ -6,8 +6,7 @@ import { useLanguage } from "@/lib/use-language";
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const location = useLocation();
-  const pathname = location.pathname;
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
   const { lang, isMr, toggleLanguage } = useLanguage();
 
   useEffect(() => {

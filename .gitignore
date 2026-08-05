@@ -15,8 +15,6 @@ dist-ssr
 .tanstack/**
 .nitro
 *.local
-*.zip
-package-lock.zip
 
 # Wrangler / Cloudflare
 .wrangler/

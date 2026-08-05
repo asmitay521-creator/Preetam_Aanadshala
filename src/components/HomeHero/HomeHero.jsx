@@ -1,5 +1,50 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./HomeHero.css";
+
+const slides = [
+  {
+    image: "/images/aandshala_img.png",
+    badge: "1 / 6",
+    titleSub: "भव्य व सुसज्ज",
+    titleMain: "११ विशेष उपक्रम",
+    titleEnd: "तुमच्यासाठी...",
+  },
+  {
+    image: "/images/aandmelav 10.jpeg",
+    badge: "2 / 6",
+    titleSub: "आनंदी वातावरण",
+    titleMain: "सांस्कृतिक सोहळे",
+    titleEnd: "व सण-उत्सव...",
+  },
+  {
+    image: "/images/Screenshot 2026-07-31 103517.png",
+    badge: "3 / 6",
+    titleSub: "अत्याधुनिक",
+    titleMain: "क्रीडा व जिम हॉल्स",
+    titleEnd: "सर्व सुविधांसह...",
+  },
+  {
+    image: "/images/aandshala sahal 1.jpeg",
+    badge: "4 / 6",
+    titleSub: "मनसोक्त आनंद",
+    titleMain: "पर्यटन व सहली",
+    titleEnd: "आनंददायी उपक्रम...",
+  },
+  {
+    image: "/images/Screenshot 2026-07-31 103659.png",
+    badge: "5 / 6",
+    titleSub: "आरोग्य व अध्यात्म",
+    titleMain: "ध्यान व प्रार्थना",
+    titleEnd: "सकारात्मक ऊर्जा...",
+  },
+  {
+    image: "/images/Screenshot 2026-07-31 103842.png",
+    badge: "6 / 6",
+    titleSub: "स्वाभिमानी जीवन",
+    titleMain: "आपलेपणाचे नाते",
+    titleEnd: "आनंदशाळा परिवार...",
+  },
+];
 
 const featurePills = [
   {
@@ -22,7 +67,7 @@ const featurePills = [
     icon: "⏰",
     num: "11 ते सायं. 5",
     label: "भेट देण्याची वेळ",
-    desc: "(सकाळी 11 ते सायं 5 वाजेपर्यंत)",
+    desc: "सकाळी 11 ते सायं 5 वाजेपर्यंत",
     color: "#EA580C",
     bg: "#FFEDD5",
   },
@@ -30,7 +75,7 @@ const featurePills = [
     icon: "🛡️",
     num: "सुरक्षित व आरोग्याची",
     label: "काळजी व २४×७ सुरक्षा",
-    desc: "स्वच्छ परिसर, वैद्यकीय सेवा व २४×७ सुरक्षा",
+    desc: "वैद्यकीय सेवा व ॲम्बुलन्स सुविधा",
     color: "#16A34A",
     bg: "#DCFCE7",
   },
@@ -117,7 +162,15 @@ const activityHalls = [
 ];
 
 const HomeHero = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
   const scrollRef = useRef(null);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 4200);
+    return () => clearInterval(timer);
+  }, []);
 
   const handleScrollLeft = () => {
     if (scrollRef.current) {
@@ -134,7 +187,7 @@ const HomeHero = () => {
   return (
     <div className="home-page-unique">
       {/* ══════════════════════════════════════════════════════════════
-          HERO BANNER — EXACT MATCH TO REFERENCE IMAGE (media__1785936450624)
+          HERO BANNER — EXACT MATCH DESIGN (V5)
          ══════════════════════════════════════════════════════════════ */}
       <section className="unique-hero-sec">
         <div className="unique-container">
@@ -207,41 +260,59 @@ const HomeHero = () => {
               </div>
             </div>
 
-            {/* RIGHT MAIN SHOWCASE CARD (MATCHES REFERENCE IMAGE EXACTLY) */}
+            {/* RIGHT HERO SLIDER SHOWCASE */}
             <div className="unique-card-right">
               <div className="unique-slider-container">
                 
-                {/* ANANDSHALA BUILDING IMAGE */}
-                <div className="unique-slide-box active">
-                  <img src="/images/aandshala_img.png" alt="प्रीतम ज्येष्ठ नागरिक आनंदशाळा" />
-                  <div className="slide-top-gradient" />
-                  <div className="slide-bottom-gradient" />
+                {/* SLIDE IMAGES */}
+                {slides.map((slide, index) => (
+                  <div
+                    key={index}
+                    className={`unique-slide-box ${
+                      index === currentSlide ? "active" : ""
+                    }`}
+                  >
+                    <img src={slide.image} alt={slide.titleMain} />
+                    <div className="slide-top-gradient" />
+                    <div className="slide-bottom-gradient" />
 
-                  {/* OVERLAY HEADER TEXT WITH 1 / 6 BADGE */}
-                  <div className="slide-header-overlay">
-                    <span className="slide-badge-counter">1 / 6</span>
-                    <div className="slide-headline-text">
-                      <p className="sub-line">भव्य व सुसज्ज</p>
-                      <h3 className="main-line">११ विशेष उपक्रम</h3>
-                      <p className="end-line">तुमच्यासाठी...</p>
-                      <div className="headline-ornament">
-                        <span className="line-left"></span>
-                        <span className="diamond">❖</span>
-                        <span className="line-right"></span>
+                    {/* TOP LEFT OVERLAY TEXT & COUNTER */}
+                    <div className="slide-header-overlay">
+                      <span className="slide-badge-counter">{slide.badge}</span>
+                      <div className="slide-headline-text">
+                        <p className="sub-line">{slide.titleSub}</p>
+                        <h3 className="main-line">{slide.titleMain}</h3>
+                        <p className="end-line">{slide.titleEnd}</p>
+                        <div className="headline-underline" />
                       </div>
                     </div>
                   </div>
-                </div>
+                ))}
 
-                {/* SIDE NAVIGATION ARROWS (PRESENT IN REFERENCE IMAGE) */}
-                <button className="slider-nav-btn prev" title="मागील">
+                {/* CIRCULAR NAVIGATION ARROWS */}
+                <button
+                  className="slider-nav-btn prev"
+                  onClick={() =>
+                    setCurrentSlide((prev) =>
+                      prev === 0 ? slides.length - 1 : prev - 1
+                    )
+                  }
+                  title="मागील"
+                >
                   ←
                 </button>
-                <button className="slider-nav-btn next" title="पुढील">
+
+                <button
+                  className="slider-nav-btn next"
+                  onClick={() =>
+                    setCurrentSlide((prev) => (prev + 1) % slides.length)
+                  }
+                  title="पुढील"
+                >
                   →
                 </button>
 
-                {/* BOTTOM DARK NAVY BAR OVERLAY (4 HIGHLIGHTS WITH ICONS) */}
+                {/* BOTTOM DARK NAVY BAR OVERLAY (4 HIGHLIGHTS) */}
                 <div className="slider-bottom-bar">
                   <div className="bottom-bar-grid">
                     <div className="bar-item">
@@ -273,15 +344,9 @@ const HomeHero = () => {
              ══════════════════════════════════════════════════════════════ */}
           <div className="unique-halls-banner">
             
-            {/* HEADER WITH ORNAMENTAL LINES */}
+            {/* HEADER */}
             <div className="halls-header">
-              <div className="halls-title-badge-wrapper">
-                <span className="halls-line-decor"></span>
-                <span className="halls-dot-decor">o</span>
-                <span className="halls-title-badge">११ विशेष उपक्रम हॉल्स</span>
-                <span className="halls-dot-decor">o</span>
-                <span className="halls-line-decor"></span>
-              </div>
+              <span className="halls-title-badge">✦ ११ विशेष उपक्रम हॉल्स ✦</span>
               <p className="halls-sub-text">
                 मन, बुद्धी आणि शरीराच्या सर्वांगीण विकासासाठी आमचे खास उपक्रम
               </p>

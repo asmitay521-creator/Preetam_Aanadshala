@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800;900&family=Poppins:wght@400;600;700;800;900&display=swap");
 
 /* ══════════════════════════════════════════════════════════════
-   PREETAM ANANDSHALA — EXACT REFERENCE MATCH HERO (V6)
-   Theme: Vibrant Pink #E60067 | Royal Navy #1F2B8D | Clean White
+   PREETAM ANANDSHALA — EXACT MATCH LUXURY HERO & SHOWCASE (V5)
+   Theme: Vibrant Pink #E60067 | Royal Indigo #1A05A2 | Clean White
    ══════════════════════════════════════════════════════════════ */
 
 .home-page-unique {
@@ -34,7 +34,7 @@
 }
 
 /* ══════════════════════════════════════════════════════════════
-   LEFT WHITE CARD (EXACT REFERENCE MATCH)
+   LEFT WHITE CARD
    ══════════════════════════════════════════════════════════════ */
 .unique-card-left {
   background: #FFFFFF;
@@ -77,7 +77,7 @@
 .title-navy {
   font-size: clamp(36px, 4.2vw, 56px);
   font-weight: 900;
-  color: #1F2B8D;
+  color: #1A05A2;
   font-family: "Mukta", sans-serif;
 }
 
@@ -221,8 +221,8 @@
   align-items: center;
   gap: 8px;
   background: #FFFFFF;
-  color: #1F2B8D;
-  border: 2.5px solid #1F2B8D;
+  color: #1A05A2;
+  border: 2.5px solid #1A05A2;
   font-size: 17px;
   font-weight: 800;
   padding: 15px 30px;
@@ -232,7 +232,7 @@
 }
 
 .btn-white-outline:hover {
-  background: #1F2B8D;
+  background: #1A05A2;
   color: #FFFFFF;
 }
 
@@ -242,7 +242,7 @@
 }
 
 /* ══════════════════════════════════════════════════════════════
-   RIGHT STATIC SHOWCASE CARD (EXACT REFERENCE MATCH)
+   RIGHT SHOWCASE SLIDER CARD
    ══════════════════════════════════════════════════════════════ */
 .unique-card-right {
   position: relative;
@@ -264,6 +264,14 @@
 .unique-slide-box {
   position: absolute;
   inset: 0;
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: scale(1.03);
+}
+
+.unique-slide-box.active {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .unique-slide-box img {
@@ -275,8 +283,8 @@
 .slide-top-gradient {
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 200px;
-  background: linear-gradient(to bottom, rgba(15,23,42,0.7) 0%, transparent 100%);
+  height: 180px;
+  background: linear-gradient(to bottom, rgba(15,23,42,0.85) 0%, transparent 100%);
   pointer-events: none;
 }
 
@@ -284,7 +292,7 @@
   position: absolute;
   bottom: 0; left: 0; right: 0;
   height: 220px;
-  background: linear-gradient(to top, rgba(15,23,42,0.92) 0%, transparent 100%);
+  background: linear-gradient(to top, rgba(15,23,42,0.95) 0%, transparent 100%);
   pointer-events: none;
 }
 
@@ -300,14 +308,14 @@
 }
 
 .slide-badge-counter {
-  background: #4F46E5;
+  background: #6366F1;
   color: #FFFFFF;
   font-size: 13px;
   font-weight: 900;
   padding: 6px 16px;
-  border-radius: 8px;
+  border-radius: 9999px;
   letter-spacing: 0.05em;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
 .slide-headline-text {
@@ -323,49 +331,67 @@
 }
 
 .slide-headline-text .main-line {
-  font-size: 34px;
+  font-size: 32px;
   font-weight: 900;
-  color: #E60067;
+  color: #FF3B82;
   margin: 2px 0;
   font-family: "Poppins", sans-serif;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .slide-headline-text .end-line {
   font-size: 16px;
   font-weight: 600;
   margin: 0;
-  color: #FFFFFF;
-  opacity: 0.95;
+  opacity: 0.9;
 }
 
-.headline-ornament {
+.headline-underline {
+  width: 60px;
+  height: 3px;
+  background: #FF3B82;
+  border-radius: 9999px;
+  margin-top: 4px;
+}
+
+/* CIRCULAR NAV BUTTONS */
+.slider-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 15;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  color: #1A05A2;
+  border: none;
+  font-size: 22px;
+  font-weight: 900;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-top: 6px;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
 }
 
-.headline-ornament .line-left,
-.headline-ornament .line-right {
-  width: 40px;
-  height: 1px;
+.slider-nav-btn:hover {
   background: #E60067;
+  color: #FFFFFF;
+  transform: translateY(-50%) scale(1.1);
 }
 
-.headline-ornament .diamond {
-  color: #E60067;
-  font-size: 10px;
-}
+.slider-nav-btn.prev { left: 16px; }
+.slider-nav-btn.next { right: 16px; }
 
-/* BOTTOM DARK NAVY BAR OVERLAY */
+/* BOTTOM DARK NAVY BAR */
 .slider-bottom-bar {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 12;
-  background: linear-gradient(180deg, rgba(30, 27, 75, 0.94) 0%, rgba(15, 23, 42, 0.98) 100%);
+  background: linear-gradient(180deg, rgba(30, 27, 75, 0.92) 0%, rgba(15, 23, 42, 0.98) 100%);
   backdrop-filter: blur(12px);
   padding: 16px 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.15);
@@ -413,30 +439,14 @@
   text-align: center;
 }
 
-.halls-title-badge-wrapper {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.halls-line-decor {
-  width: 40px;
-  height: 2px;
-  background: #1F2B8D;
-}
-
-.halls-dot-decor {
-  color: #1F2B8D;
-  font-size: 12px;
-  font-weight: 900;
-}
-
 .halls-header .halls-title-badge {
   font-size: 24px;
   font-weight: 900;
-  color: #1F2B8D;
+  color: #1A05A2;
   font-family: "Poppins", sans-serif;
+  border-bottom: 2.5px solid #E60067;
+  padding-bottom: 4px;
+  display: inline-block;
 }
 
 .halls-header .halls-sub-text {

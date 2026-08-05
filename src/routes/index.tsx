@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { Reveal } from "@/components/site/Reveal";
 import { brochurePages } from "@/lib/brochure-pages";
@@ -9,7 +9,21 @@ import { ShieldCheck, Users, Heart, Sprout, Award } from "lucide-react";
 import SpecialReasons from "@/components/site/SpecialReasons";
 import HomeHero from "@/components/HomeHero/HomeHero";
 import SportsSection from "@/components/SportsSection";
-import JourneyTimeline from "@/components/journey-v2/JourneyTimeline";
+import JourneySection from "@/components/journey/JourneySection";
+
+
+export const Route = createFileRoute("/")(({
+  head: () => ({
+    meta: [
+      { title: "प्रीतम आनंदशाळा & स्पोर्ट्स क्लब | सांगली" },
+      {
+        name: "description",
+        content: "सांगलीतील प्रीतम ज्येष्ठ नागरिक आनंदशाळा व प्रीतम स्पोर्ट्स अँड फिटनेस क्लब.",
+      },
+    ],
+  }),
+  component: IndexComponent,
+}));
 
 const publicImages = [
   "/images/Screenshot 2026-07-31 103107.png",
@@ -197,7 +211,7 @@ const keyHighlights = [
 ];
 
 function IndexComponent() {
-  const [selectedSection, setSelectedSection] = useState<"aanandshala" | "sports" | null>("aanandshala");
+  const [selectedSection, setSelectedSection] = useState<"aanandshala" | "sports" | null>(null);
   const [selectedGalleryCategory, setSelectedGalleryCategory] = useState("सर्व");
   const { isEn } = useLanguage();
 
@@ -256,219 +270,219 @@ function IndexComponent() {
       {/* 1. SECTION CARDS SELECTOR (SHOWN FIRST ON INITIAL ENTRY) */}
       {selectedSection === null && (
         <section id="sections" className="relative py-10 sm:py-14 px-4 overflow-hidden bg-gradient-to-b from-[#F4F7FB] via-[#EBF0F9] to-[#E2E8F5] dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 border-b border-[#E60067]/15 min-h-[calc(100vh-80px)] flex flex-col justify-center">
-        {/* DOT GRID BACKGROUND DECORATION */}
-        <div className="pointer-events-none absolute top-6 left-10 opacity-20 hidden md:block">
-          <div className="grid grid-cols-6 gap-2.5">
-            {Array.from({ length: 24 }).map((_, i) => (
-              <span key={i} className="size-1.5 rounded-full bg-[#E60067]" />
-            ))}
+          {/* DOT GRID BACKGROUND DECORATION */}
+          <div className="pointer-events-none absolute top-6 left-10 opacity-20 hidden md:block">
+            <div className="grid grid-cols-6 gap-2.5">
+              {Array.from({ length: 24 }).map((_, i) => (
+                <span key={i} className="size-1.5 rounded-full bg-[#E60067]" />
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="pointer-events-none absolute top-6 right-10 opacity-20 hidden md:block">
-          <div className="grid grid-cols-6 gap-2.5">
-            {Array.from({ length: 24 }).map((_, i) => (
-              <span key={i} className="size-1.5 rounded-full bg-[#E60067]" />
-            ))}
-          </div>
-        </div>
-
-        {/* FLOATING AMBIENT LIGHT BLOBS */}
-        <div className="pointer-events-none absolute top-1/4 left-1/12 size-96 rounded-full bg-[#E60067]/10 blur-3xl animate-float opacity-70" />
-        <div className="pointer-events-none absolute bottom-1/4 right-1/12 size-96 rounded-full bg-[#316728]/20 blur-3xl animate-float-reverse opacity-70" />
-
-        {/* BRAND HEADER */}
-        <div className="animate-fade-up text-center max-w-3xl mx-auto mb-6 sm:mb-8 relative z-10">
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#E60067]/30 bg-[#E60067]/10 px-5 py-1.5 text-xs sm:text-sm font-extrabold text-[#E60067] shadow-sm backdrop-blur-md animate-pulse-emerald">
-            ♥ {isEn ? "Sangli · Maharashtra · Service, Love & Trust for All" : "सांगली · महाराष्ट्र · सर्वांसाठी सेवा, प्रेम आणि विश्वास"}
-          </span>
-
-          <h2 className="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-black text-[#1A05A2] tracking-tight drop-shadow-sm">
-            {isEn ? "Preetam Project, Sangli" : "प्रीतम प्रकल्प, सांगली"}
-          </h2>
-
-          {/* ORNAMENTAL DIVIDER */}
-          <div className="flex items-center justify-center gap-3 my-3">
-            <div className="h-[1.5px] w-12 sm:w-20 bg-gradient-to-r from-transparent via-[#E60067]/50 to-transparent" />
-            <span className="text-[#E60067] text-sm font-bold">❦</span>
-            <div className="h-[1.5px] w-12 sm:w-20 bg-gradient-to-r from-transparent via-[#E60067]/50 to-transparent" />
+          <div className="pointer-events-none absolute top-6 right-10 opacity-20 hidden md:block">
+            <div className="grid grid-cols-6 gap-2.5">
+              {Array.from({ length: 24 }).map((_, i) => (
+                <span key={i} className="size-1.5 rounded-full bg-[#E60067]" />
+              ))}
+            </div>
           </div>
 
-          <p className="text-xs sm:text-base text-foreground/80 font-medium max-w-2xl mx-auto leading-relaxed">
-            {isEn ? "Click on one of the 2 premier sections below to view complete details & amenities" : "संपूर्ण माहिती व सुविधा पाहण्यासाठी खालील २ उत्कृष्ट विभागांपैकी एका विभागावर क्लिक करा"}
-          </p>
+          {/* FLOATING AMBIENT LIGHT BLOBS */}
+          <div className="pointer-events-none absolute top-1/4 left-1/12 size-96 rounded-full bg-[#E60067]/10 blur-3xl animate-float opacity-70" />
+          <div className="pointer-events-none absolute bottom-1/4 right-1/12 size-96 rounded-full bg-[#316728]/20 blur-3xl animate-float-reverse opacity-70" />
 
-          {/* FILTER SWITCH BUTTONS */}
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <button
-              onClick={() => handleSectionSelect(null)}
-              className={`rounded-full px-7 py-3 text-xs sm:text-sm font-extrabold transition-all duration-300 cursor-pointer shadow-md ${
-                selectedSection === null
-                  ? "bg-[#1A05A2] text-white shadow-xl scale-105"
-                  : "bg-white/90 border border-[#E60067]/20 text-[#1A05A2] hover:bg-[#E60067]/10"
-              }`}
-            >
-              ⠿ {isEn ? "All 2 Projects" : "सर्व २ प्रकल्प (All Sections)"}
-            </button>
-            <button
+          {/* BRAND HEADER */}
+          <div className="animate-fade-up text-center max-w-3xl mx-auto mb-6 sm:mb-8 relative z-10">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#E60067]/30 bg-[#E60067]/10 px-5 py-1.5 text-xs sm:text-sm font-extrabold text-[#E60067] shadow-sm backdrop-blur-md animate-pulse-emerald">
+              ♥ {isEn ? "Sangli · Maharashtra · Service, Love & Trust for All" : "सांगली · महाराष्ट्र · सर्वांसाठी सेवा, प्रेम आणि विश्वास"}
+            </span>
+
+            <h2 className="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-black text-[#1A05A2] tracking-tight drop-shadow-sm">
+              {isEn ? "Preetam Project, Sangli" : "प्रीतम प्रकल्प, सांगली"}
+            </h2>
+
+            {/* ORNAMENTAL DIVIDER */}
+            <div className="flex items-center justify-center gap-3 my-3">
+              <div className="h-[1.5px] w-12 sm:w-20 bg-gradient-to-r from-transparent via-[#E60067]/50 to-transparent" />
+              <span className="text-[#E60067] text-sm font-bold">❦</span>
+              <div className="h-[1.5px] w-12 sm:w-20 bg-gradient-to-r from-transparent via-[#E60067]/50 to-transparent" />
+            </div>
+
+            <p className="text-xs sm:text-base text-foreground/80 font-medium max-w-2xl mx-auto leading-relaxed">
+              {isEn ? "Click on one of the 2 premier sections below to view complete details & amenities" : "संपूर्ण माहिती व सुविधा पाहण्यासाठी खालील २ उत्कृष्ट विभागांपैकी एका विभागावर क्लिक करा"}
+            </p>
+
+            {/* FILTER SWITCH BUTTONS */}
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <button
+                onClick={() => handleSectionSelect(null)}
+                className={`rounded-full px-7 py-3 text-xs sm:text-sm font-extrabold transition-all duration-300 cursor-pointer shadow-md ${selectedSection === null
+                    ? "bg-[#1A05A2] text-white shadow-xl scale-105"
+                    : "bg-white/90 border border-[#E60067]/20 text-[#1A05A2] hover:bg-[#E60067]/10"
+                  }`}
+              >
+                ⠿ {isEn ? "All 2 Projects" : "सर्व २ प्रकल्प (All Sections)"}
+              </button>
+              <button
+                onClick={() => handleSectionSelect("aanandshala")}
+                className={`rounded-full px-7 py-3 text-xs sm:text-sm font-extrabold transition-all duration-300 cursor-pointer shadow-md ${selectedSection === "aanandshala"
+                    ? "bg-[#E60067] text-white shadow-xl scale-105"
+                    : "bg-white/90 border border-[#E60067]/20 text-[#E60067] hover:bg-[#E60067]/10"
+                  }`}
+              >
+                🏠 {isEn ? "Section 1: Anandashram" : "विभाग १ : आनंदआश्रम"}
+              </button>
+              <button
+                onClick={() => handleSectionSelect("sports")}
+                className={`rounded-full px-7 py-3 text-xs sm:text-sm font-extrabold transition-all duration-300 cursor-pointer shadow-md ${selectedSection === "sports"
+                    ? "bg-[#1A05A2] text-white shadow-xl scale-105"
+                    : "bg-white/90 border border-[#1A05A2]/20 text-[#1A05A2] hover:bg-[#1A05A2]/10"
+                  }`}
+              >
+                🏋️‍♂️ {isEn ? "Section 2: Sports Club" : "विभाग २ : स्पोर्ट्स क्लब"}
+              </button>
+            </div>
+          </div>
+
+          {/* 2 MAIN LUXURY FEATURE CARDS - ANIMATED */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl w-full mx-auto relative z-10">
+            {/* SECTION 1 CARD: PREETAM AANANDASHRAM */}
+            <div
               onClick={() => handleSectionSelect("aanandshala")}
-              className={`rounded-full px-7 py-3 text-xs sm:text-sm font-extrabold transition-all duration-300 cursor-pointer shadow-md ${
-                selectedSection === "aanandshala"
-                  ? "bg-[#E60067] text-white shadow-xl scale-105"
-                  : "bg-white/90 border border-[#E60067]/20 text-[#E60067] hover:bg-[#E60067]/10"
-              }`}
+              style={{ animationDelay: "150ms" }}
+              className={`glow-card animate-fade-up group relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#FFFDF9] via-[#FDF7EE] to-[#FAF1E4] dark:from-slate-900 dark:to-slate-950 cursor-pointer flex flex-col justify-between transition-all duration-500 hover:-translate-y-3 hover:scale-[1.015] hover:shadow-[0_30px_80px_rgba(129,11,56,0.35)] shadow-[0_15px_40px_rgba(129,11,56,0.1)] ${selectedSection === "aanandshala" ? "ring-4 ring-[#E60067] scale-[1.02]" : ""
+                }`}
             >
-              🏠 {isEn ? "Section 1: Anandashram" : "विभाग १ : आनंदआश्रम"}
-            </button>
-            <button
+              <div className="grid grid-cols-1 md:grid-cols-12 items-stretch min-h-[380px] size-full">
+                {/* LEFT CONTENT */}
+                <div className="md:col-span-6 p-6 sm:p-8 flex flex-col justify-between space-y-4 relative z-10">
+                  <div className="space-y-3">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#E60067] px-4 py-1.5 text-xs font-extrabold text-white shadow-md group-hover:bg-[#541A1A] group-hover:scale-105 transition-all duration-300">
+                      🏠 {isEn ? "Section 1" : "विभाग १"}
+                    </span>
+
+                    <h3 className="font-display text-2xl sm:text-3xl font-black text-[#541A1A] group-hover:text-[#E60067] transition-colors leading-tight">
+                      {isEn ? site.nameEn : site.nameMr}
+                    </h3>
+
+                    <div className="flex items-center gap-2 my-1">
+                      <div className="h-[1px] w-8 bg-[#E60067]/40 group-hover:w-12 transition-all duration-300" />
+                      <span className="text-[#E60067] text-xs group-hover:rotate-45 transition-transform duration-500">❦</span>
+                      <div className="h-[1px] w-8 bg-[#E60067]/40 group-hover:w-12 transition-all duration-300" />
+                    </div>
+
+                    <p className="text-xs sm:text-sm text-foreground/85 leading-relaxed font-medium">
+                      {isEn
+                        ? "India's first senior citizen Anandashram! Residence, healthy meals, 24x7 care, 55ft Radha Krishna statue, temple, gaushala, 15 activity halls & full amenities."
+                        : "भारतातील पहिले ज्येष्ठ नागरिक आनंदआश्रम! निवास, सकस जेवण, 24x7 देखभाल, 55 फुटांची राधाकृष्ण मूर्ती, मंदिर, गोशाळा, 15 उपक्रम हॉल व सर्व सोयी सुविधा."}
+                    </p>
+                  </div>
+
+                  {/* BOTTOM BAR */}
+                  <div className="pt-4 border-t border-[#E60067]/15 flex items-center justify-between gap-2">
+                    <div className="grid size-11 shrink-0 place-items-center rounded-2xl bg-[#E60067]/10 text-[#E60067] text-xl font-bold shadow-inner group-hover:scale-110 group-hover:bg-[#E60067]/20 transition-all duration-300">
+                      👥
+                    </div>
+                    <span className="inline-flex items-center gap-2 rounded-full bg-[#E60067] px-5 py-3 text-xs sm:text-sm font-extrabold text-white shadow-lg group-hover:bg-[#541A1A] transition-all duration-300 group-hover:shadow-xl">
+                      {isEn ? "Open Anandashram Details" : "आनंदआश्रम माहिती उघडा"}
+                      <span className="grid size-6 place-items-center rounded-full bg-white text-[#E60067] text-xs font-black group-hover:translate-x-1.5 group-hover:bg-amber-300 group-hover:text-[#541A1A] transition-all duration-300">
+                        →
+                      </span>
+                    </span>
+                  </div>
+                </div>
+
+                {/* RIGHT FULL-HEIGHT BUILDING IMAGE */}
+                <div className="md:col-span-6 relative min-h-[260px] md:min-h-full overflow-hidden rounded-b-[2.5rem] md:rounded-b-none md:rounded-l-[50px] border-t md:border-t-0 md:border-l-2 border-[#E6D2BF] bg-[#F5EBE0]">
+                  <img
+                    src="/images/aandshala_img.png"
+                    alt={isEn ? site.nameEn : site.nameMr}
+                    className="absolute inset-0 size-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#FAF1E4]/30 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#541A1A]/30 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/25 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                </div>
+              </div>
+            </div>
+
+            {/* SECTION 2 CARD: PREETAM SPORTS & FITNESS CLUB */}
+            <div
               onClick={() => handleSectionSelect("sports")}
-              className={`rounded-full px-7 py-3 text-xs sm:text-sm font-extrabold transition-all duration-300 cursor-pointer shadow-md ${
-                selectedSection === "sports"
-                  ? "bg-[#1A05A2] text-white shadow-xl scale-105"
-                  : "bg-white/90 border border-[#1A05A2]/20 text-[#1A05A2] hover:bg-[#1A05A2]/10"
-              }`}
+              style={{ animationDelay: "300ms" }}
+              className={`glow-card animate-fade-up group relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#FFFDF9] via-[#FDF7EE] to-[#FAF1E4] dark:from-slate-900 dark:to-slate-950 cursor-pointer flex flex-col justify-between transition-all duration-500 hover:-translate-y-3 hover:scale-[1.015] hover:shadow-[0_30px_80px_rgba(129,11,56,0.35)] shadow-[0_15px_40px_rgba(129,11,56,0.1)] ${selectedSection === "sports" ? "ring-4 ring-[#E60067] scale-[1.02]" : ""
+                }`}
             >
-              🏋️‍♂️ {isEn ? "Section 2: Sports Club" : "विभाग २ : स्पोर्ट्स क्लब"}
-            </button>
-          </div>
-        </div>
-
-        {/* 2 MAIN LUXURY FEATURE CARDS - ANIMATED */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl w-full mx-auto relative z-10">
-          {/* SECTION 1 CARD: PREETAM AANANDASHRAM */}
-          <div
-            onClick={() => handleSectionSelect("aanandshala")}
-            style={{ animationDelay: "150ms" }}
-            className={`glow-card animate-fade-up group relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#FFFDF9] via-[#FDF7EE] to-[#FAF1E4] dark:from-slate-900 dark:to-slate-950 cursor-pointer flex flex-col justify-between transition-all duration-500 hover:-translate-y-3 hover:scale-[1.015] hover:shadow-[0_30px_80px_rgba(129,11,56,0.35)] shadow-[0_15px_40px_rgba(129,11,56,0.1)] ${
-              selectedSection === "aanandshala" ? "ring-4 ring-[#E60067] scale-[1.02]" : ""
-            }`}
-          >
-            <div className="grid grid-cols-1 md:grid-cols-12 items-stretch min-h-[380px] size-full">
-              {/* LEFT CONTENT */}
-              <div className="md:col-span-6 p-6 sm:p-8 flex flex-col justify-between space-y-4 relative z-10">
-                <div className="space-y-3">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#E60067] px-4 py-1.5 text-xs font-extrabold text-white shadow-md group-hover:bg-[#541A1A] group-hover:scale-105 transition-all duration-300">
-                    🏠 {isEn ? "Section 1" : "विभाग १"}
-                  </span>
-
-                  <h3 className="font-display text-2xl sm:text-3xl font-black text-[#541A1A] group-hover:text-[#E60067] transition-colors leading-tight">
-                    {isEn ? site.nameEn : site.nameMr}
-                  </h3>
-
-                  <div className="flex items-center gap-2 my-1">
-                    <div className="h-[1px] w-8 bg-[#E60067]/40 group-hover:w-12 transition-all duration-300" />
-                    <span className="text-[#E60067] text-xs group-hover:rotate-45 transition-transform duration-500">❦</span>
-                    <div className="h-[1px] w-8 bg-[#E60067]/40 group-hover:w-12 transition-all duration-300" />
-                  </div>
-
-                  <p className="text-xs sm:text-sm text-foreground/85 leading-relaxed font-medium">
-                    {isEn
-                      ? "India's first senior citizen Anandashram! Residence, healthy meals, 24x7 care, 55ft Radha Krishna statue, temple, gaushala, 15 activity halls & full amenities."
-                      : "भारतातील पहिले ज्येष्ठ नागरिक आनंदआश्रम! निवास, सकस जेवण, 24x7 देखभाल, 55 फुटांची राधाकृष्ण मूर्ती, मंदिर, गोशाळा, 15 उपक्रम हॉल व सर्व सोयी सुविधा."}
-                  </p>
-                </div>
-
-                {/* BOTTOM BAR */}
-                <div className="pt-4 border-t border-[#E60067]/15 flex items-center justify-between gap-2">
-                  <div className="grid size-11 shrink-0 place-items-center rounded-2xl bg-[#E60067]/10 text-[#E60067] text-xl font-bold shadow-inner group-hover:scale-110 group-hover:bg-[#E60067]/20 transition-all duration-300">
-                    👥
-                  </div>
-                  <span className="inline-flex items-center gap-2 rounded-full bg-[#E60067] px-5 py-3 text-xs sm:text-sm font-extrabold text-white shadow-lg group-hover:bg-[#541A1A] transition-all duration-300 group-hover:shadow-xl">
-                    {isEn ? "Open Anandashram Details" : "आनंदआश्रम माहिती उघडा"}
-                    <span className="grid size-6 place-items-center rounded-full bg-white text-[#E60067] text-xs font-black group-hover:translate-x-1.5 group-hover:bg-amber-300 group-hover:text-[#541A1A] transition-all duration-300">
-                      →
+              <div className="grid grid-cols-1 md:grid-cols-12 items-stretch min-h-[380px] size-full">
+                {/* LEFT CONTENT */}
+                <div className="md:col-span-6 p-6 sm:p-8 flex flex-col justify-between space-y-4 relative z-10">
+                  <div className="space-y-3">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#E60067] px-4 py-1.5 text-xs font-extrabold text-white shadow-md group-hover:bg-[#541A1A] group-hover:scale-105 transition-all duration-300">
+                      🏋️‍♂️ {isEn ? "Section 2" : "विभाग २"}
                     </span>
-                  </span>
-                </div>
-              </div>
 
-              {/* RIGHT FULL-HEIGHT BUILDING IMAGE */}
-              <div className="md:col-span-6 relative min-h-[260px] md:min-h-full overflow-hidden rounded-b-[2.5rem] md:rounded-b-none md:rounded-l-[50px] border-t md:border-t-0 md:border-l-2 border-[#E6D2BF] bg-[#F5EBE0]">
-                <img
-                  src="/images/aandshala_img.png"
-                  alt={isEn ? site.nameEn : site.nameMr}
-                  className="absolute inset-0 size-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#FAF1E4]/30 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#541A1A]/30 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/25 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                    <h3 className="font-display text-2xl sm:text-3xl font-black text-[#541A1A] group-hover:text-[#E60067] transition-colors leading-tight">
+                      {isEn ? sportsClub.nameEn : sportsClub.nameMr}
+                    </h3>
+
+                    <div className="flex items-center gap-2 my-1">
+                      <div className="h-[1px] w-8 bg-[#E60067]/40 group-hover:w-12 transition-all duration-300" />
+                      <span className="text-[#E60067] text-xs group-hover:rotate-45 transition-transform duration-500">❦</span>
+                      <div className="h-[1px] w-8 bg-[#E60067]/40 group-hover:w-12 transition-all duration-300" />
+                    </div>
+
+                    <p className="text-xs sm:text-sm text-foreground/85 leading-relaxed font-medium">
+                      {isEn
+                        ? "Sangli's premier 1.5 acre modern sports complex! Olympic standard swimming pool, indoor badminton, table tennis court, AC gym & restaurant."
+                        : "सांगलीतील 1.5 एकर भव्य आधुनिक क्रीडा संकूल! ऑलिंपिक स्टँडर्ड स्विमिंग पूल, इनडोअर बॅडमिंटन, टेबल टेनिस कोर्ट, वातानुकूलित जिम व रेस्टॉरंट."}
+                    </p>
+                  </div>
+
+                  {/* BOTTOM BAR */}
+                  <div className="pt-4 border-t border-[#E60067]/15 flex items-center justify-between gap-2">
+                    <div className="grid size-11 shrink-0 place-items-center rounded-2xl bg-[#E60067]/10 text-[#E60067] text-xl font-bold shadow-inner group-hover:scale-110 group-hover:bg-[#E60067]/20 transition-all duration-300">
+                      🏋️‍♂️
+                    </div>
+                    <span className="inline-flex items-center gap-2 rounded-full bg-[#E60067] px-5 py-3 text-xs sm:text-sm font-extrabold text-white shadow-lg group-hover:bg-[#541A1A] transition-all duration-300 group-hover:shadow-xl">
+                      {isEn ? "Open Sports Club Details" : "स्पोर्ट्स क्लब माहिती उघडा"}
+                      <span className="grid size-6 place-items-center rounded-full bg-white text-[#E60067] text-xs font-black group-hover:translate-x-1.5 group-hover:bg-amber-300 group-hover:text-[#541A1A] transition-all duration-300">
+                        →
+                      </span>
+                    </span>
+                  </div>
+                </div>
+
+                {/* RIGHT FULL-HEIGHT SPORTS IMAGE */}
+                <div className="md:col-span-6 relative min-h-[260px] md:min-h-full overflow-hidden rounded-b-[2.5rem] md:rounded-b-none md:rounded-l-[50px] border-t md:border-t-0 md:border-l-2 border-[#E6D2BF] bg-[#F5EBE0]">
+                  <img
+                    src="/images/sports_img.png"
+                    alt={isEn ? sportsClub.nameEn : sportsClub.nameMr}
+                    className="absolute inset-0 size-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#FAF1E4]/30 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#541A1A]/30 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/25 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                </div>
               </div>
             </div>
           </div>
 
-          {/* SECTION 2 CARD: PREETAM SPORTS & FITNESS CLUB */}
-          <div
-            onClick={() => handleSectionSelect("sports")}
-            style={{ animationDelay: "300ms" }}
-            className={`glow-card animate-fade-up group relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#FFFDF9] via-[#FDF7EE] to-[#FAF1E4] dark:from-slate-900 dark:to-slate-950 cursor-pointer flex flex-col justify-between transition-all duration-500 hover:-translate-y-3 hover:scale-[1.015] hover:shadow-[0_30px_80px_rgba(129,11,56,0.35)] shadow-[0_15px_40px_rgba(129,11,56,0.1)] ${
-              selectedSection === "sports" ? "ring-4 ring-[#E60067] scale-[1.02]" : ""
-            }`}
-          >
-            <div className="grid grid-cols-1 md:grid-cols-12 items-stretch min-h-[380px] size-full">
-              {/* LEFT CONTENT */}
-              <div className="md:col-span-6 p-6 sm:p-8 flex flex-col justify-between space-y-4 relative z-10">
-                <div className="space-y-3">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#E60067] px-4 py-1.5 text-xs font-extrabold text-white shadow-md group-hover:bg-[#541A1A] group-hover:scale-105 transition-all duration-300">
-                    🏋️‍♂️ {isEn ? "Section 2" : "विभाग २"}
-                  </span>
-
-                  <h3 className="font-display text-2xl sm:text-3xl font-black text-[#541A1A] group-hover:text-[#E60067] transition-colors leading-tight">
-                    {isEn ? sportsClub.nameEn : sportsClub.nameMr}
-                  </h3>
-
-                  <div className="flex items-center gap-2 my-1">
-                    <div className="h-[1px] w-8 bg-[#E60067]/40 group-hover:w-12 transition-all duration-300" />
-                    <span className="text-[#E60067] text-xs group-hover:rotate-45 transition-transform duration-500">❦</span>
-                    <div className="h-[1px] w-8 bg-[#E60067]/40 group-hover:w-12 transition-all duration-300" />
-                  </div>
-
-                  <p className="text-xs sm:text-sm text-foreground/85 leading-relaxed font-medium">
-                    {isEn
-                      ? "Sangli's premier 1.5 acre modern sports complex! Olympic standard swimming pool, indoor badminton, table tennis court, AC gym & restaurant."
-                      : "सांगलीतील 1.5 एकर भव्य आधुनिक क्रीडा संकूल! ऑलिंपिक स्टँडर्ड स्विमिंग पूल, इनडोअर बॅडमिंटन, टेबल टेनिस कोर्ट, वातानुकूलित जिम व रेस्टॉरंट."}
-                  </p>
+          {/* 5 LUXURY FEATURE BADGES */}
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 max-w-6xl w-full mx-auto relative z-10">
+            {[
+              { icon: "🛡️", titleEn: "Trust & Safety", titleMr: "विश्वास आणि सुरक्षा", textEn: "Symbol of your trust", textMr: "आपल्या विश्वासाचे प्रतीक" },
+              { icon: "👥", titleEn: "Expert Experienced Team", titleMr: "तज्ज्ञ आणि अनुभवी टीम", textEn: "Always ready for service", textMr: "सेवेसाठी सदैव तत्पर" },
+              { icon: "❤️", titleEn: "Service is Our Identity", titleMr: "सेवा हीच आमची ओळख", textEn: "Love, service & dedication", textMr: "प्रेम, सेवा आणि समर्पण" },
+              { icon: "🌱", titleEn: "Clean & Scenic Campus", titleMr: "स्वच्छ आणि सुंदर परिसर", textEn: "Healthy lifestyle environment", textMr: "आरोग्याची जीवनशैली" },
+              { icon: "🏆", titleEn: "Premium Facilities", titleMr: "उत्तम सुविधा व व्यवस्थापन", textEn: "Dedicated to your happiness", textMr: "आपल्या सुखाचा आमचा ध्यास" },
+            ].map((badge, i) => (
+              <div key={i} className="glow-card rounded-2xl border border-[#E60067]/15 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md p-4 flex items-center gap-3 transition-all hover:scale-105 hover:border-[#E60067]/40 shadow-sm">
+                <div className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#E60067]/10 text-[#E60067] text-xl font-bold shadow-inner">
+                  {badge.icon}
                 </div>
-
-                {/* BOTTOM BAR */}
-                <div className="pt-4 border-t border-[#E60067]/15 flex items-center justify-between gap-2">
-                  <div className="grid size-11 shrink-0 place-items-center rounded-2xl bg-[#E60067]/10 text-[#E60067] text-xl font-bold shadow-inner group-hover:scale-110 group-hover:bg-[#E60067]/20 transition-all duration-300">
-                    🏋️‍♂️
-                  </div>
-                  <span className="inline-flex items-center gap-2 rounded-full bg-[#E60067] px-5 py-3 text-xs sm:text-sm font-extrabold text-white shadow-lg group-hover:bg-[#541A1A] transition-all duration-300 group-hover:shadow-xl">
-                    {isEn ? "Open Sports Club Details" : "स्पोर्ट्स क्लब माहिती उघडा"}
-                    <span className="grid size-6 place-items-center rounded-full bg-white text-[#E60067] text-xs font-black group-hover:translate-x-1.5 group-hover:bg-amber-300 group-hover:text-[#541A1A] transition-all duration-300">
-                      →
-                    </span>
-                  </span>
+                <div>
+                  <h4 className="text-xs sm:text-sm font-black text-[#541A1A] leading-tight">{isEn ? badge.titleEn : badge.titleMr}</h4>
+                  <p className="text-[11px] text-muted-foreground font-medium mt-0.5">{isEn ? badge.textEn : badge.textMr}</p>
                 </div>
-              </div>
-
-              {/* RIGHT FULL-HEIGHT SPORTS IMAGE */}
-              <div className="md:col-span-6 relative min-h-[260px] md:min-h-full overflow-hidden rounded-b-[2.5rem] md:rounded-b-none md:rounded-l-[50px] border-t md:border-t-0 md:border-l-2 border-[#E6D2BF] bg-[#F5EBE0]">
-                <img
-                  src="/images/sports_img.png"
-                  alt={isEn ? sportsClub.nameEn : sportsClub.nameMr}
-                  className="absolute inset-0 size-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#FAF1E4]/30 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#541A1A]/30 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/25 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* 5 LUXURY FEATURE BADGES */}
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 max-w-6xl w-full mx-auto relative z-10">
-          {[
-            { icon: "🛡️", titleEn: "Trust & Safety", titleMr: "विश्वास आणि सुरक्षा", textEn: "Symbol of your trust", textMr: "आपल्या विश्वासाचे प्रतीक" },
-            { icon: "👥", titleEn: "Expert Experienced Team", titleMr: "तज्ज्ञ आणि अनुभवी टीम", textEn: "Always ready for service", textMr: "सेवेसाठी सदैव तत्पर" },
-            { icon: "❤️", titleEn: "Service is Our Identity", titleMr: "सेवा हीच आमची ओळख", textEn: "Love, service & dedication", textMr: "प्रेम, सेवा आणि समर्पण" },
-            { icon: "🌱", titleEn: "Clean & Scenic Campus", titleMr: "स्वच्छ आणि सुंदर परिसर", textEn: "Healthy lifestyle environment", textMr: "आरोग्याची जीवनशैली" },
-            { icon: "🏆", titleEn: "Premium Facilities", titleMr: "उत्तम सुविधा व व्यवस्थापन", textEn: "Dedicated to your happiness", textMr: "आपल्या सुखाचा आमचा ध्यास" },
-          ].map((badge, i) => (
-            <div key={i} className="glow-card rounded-2xl border border-[#E60067]/15 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md p-4 flex items-center gap-3 transition-all hover:scale-105 hover:border-[#E60067]/40 shadow-sm">
-              <div className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#E60067]/10 text-[#E60067] text-xl font-bold shadow-inner">
-                {badge.icon}
               </div>
               <div>
                 <h4 className="text-xs sm:text-sm font-black text-[#541A1A] leading-tight">{isEn ? badge.titleEn : badge.titleMr}</h4>
@@ -543,7 +557,7 @@ function IndexComponent() {
           <SpecialReasons />
 
           {/* OUR JOURNEY SECTION */}
-          <JourneyTimeline />
+          <JourneySection />
 
 
           {/* 15 ACTIVITY HALLS */}
@@ -755,10 +769,10 @@ function IndexComponent() {
 
             {/* 2-Column Content Grid */}
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-              
+
               {/* Left Column - Story Text (7 cols) */}
               <div className="lg:col-span-7 flex flex-col justify-between">
-                
+
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#17286E] mb-6 sm:mb-8">
                   {isEn ? "Story of Anandshala" : "आनंदशाळेची कहाणी"}
                 </h2>
@@ -856,11 +870,10 @@ function IndexComponent() {
                   <button
                     key={category}
                     onClick={() => setSelectedGalleryCategory(category)}
-                    className={`group relative overflow-hidden rounded-full border px-7 py-3 text-sm font-semibold transition-all duration-300 cursor-pointer ${
-                      selectedGalleryCategory === category
+                    className={`group relative overflow-hidden rounded-full border px-7 py-3 text-sm font-semibold transition-all duration-300 cursor-pointer ${selectedGalleryCategory === category
                         ? "bg-gradient-to-r from-pink-600 to-purple-700 text-white shadow-xl scale-105 border-transparent"
                         : "bg-white text-[#1f2a8a] border-gray-200 hover:border-pink-400 hover:text-pink-600 hover:-translate-y-1 hover:shadow-lg"
-                    }`}
+                      }`}
                   >
                     <span className="relative z-10">{category}</span>
 
@@ -960,5 +973,3 @@ function IndexComponent() {
     </div>
   );
 }
-
-export default IndexComponent;

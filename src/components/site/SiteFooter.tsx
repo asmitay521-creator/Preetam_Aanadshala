@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 import { navLinks, site } from "@/lib/site-info";
 import { useLanguage } from "@/lib/use-language";
 
