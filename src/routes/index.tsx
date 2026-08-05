@@ -253,8 +253,8 @@ function IndexComponent() {
 
   return (
     <div className="min-h-screen bg-background animate-fade-up">
-      {/* HOME HERO BANNER */}
-      <HomeHero />
+      {/* 1. SECTION CARDS SELECTOR (SHOWN FIRST ON INITIAL ENTRY) */}
+      {selectedSection === null && (
         <section id="sections" className="relative py-10 sm:py-14 px-4 overflow-hidden bg-gradient-to-b from-[#F4F7FB] via-[#EBF0F9] to-[#E2E8F5] dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 border-b border-[#E60067]/15 min-h-[calc(100vh-80px)] flex flex-col justify-center">
         {/* DOT GRID BACKGROUND DECORATION */}
         <div className="pointer-events-none absolute top-6 left-10 opacity-20 hidden md:block">
@@ -478,12 +478,39 @@ function IndexComponent() {
           ))}
         </div>
       </section>
+      )}
 
       {/* ============================================================== */}
       {/* 2. SECTION 1 DETAILS: PREETAM AANANDSHALA (DEDICATED VIEW)     */}
       {/* ============================================================== */}
       {selectedSection === "aanandshala" && (
         <div id="aanandshala-section" className="animate-fade-up">
+          {/* TOP BACK / NAVIGATION BAR */}
+          <div className="sticky top-[70px] z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-[#E60067]/20 py-3 px-4 shadow-md flex items-center justify-between max-w-7xl mx-auto rounded-full my-4">
+            <button
+              onClick={() => handleSectionSelect(null)}
+              className="inline-flex items-center gap-2 rounded-full bg-[#1A05A2] px-5 py-2 text-xs sm:text-sm font-extrabold text-white shadow-md hover:bg-[#E60067] transition-all cursor-pointer"
+            >
+              ← {isEn ? "All 2 Sections Menu" : "सर्व २ प्रकल्प मेनू (All Sections)"}
+            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => handleSectionSelect("aanandshala")}
+                className="rounded-full bg-[#E60067] px-4 py-2 text-xs sm:text-sm font-extrabold text-white shadow-sm cursor-pointer"
+              >
+                🏠 {isEn ? "Anandashram" : "विभाग १ : आनंदआश्रम"}
+              </button>
+              <button
+                onClick={() => handleSectionSelect("sports")}
+                className="rounded-full bg-[#1A05A2]/10 border border-[#1A05A2]/30 px-4 py-2 text-xs sm:text-sm font-extrabold text-[#1A05A2] hover:bg-[#1A05A2] hover:text-white transition-all cursor-pointer"
+              >
+                🏋️‍♂️ {isEn ? "Sports Club" : "विभाग २ : स्पोर्ट्स क्लब"}
+              </button>
+            </div>
+          </div>
+
+          {/* HOME HERO BANNER */}
+          <HomeHero />
 
           {/* MARQUEE TICKER */}
           <div className="overflow-hidden border-b py-3" style={{ background: "#1F070F", borderColor: "rgba(129,11,56,0.4)" }}>
@@ -902,6 +929,30 @@ function IndexComponent() {
       {/* ============================================================== */}
       {selectedSection === "sports" && (
         <div id="sports-section" className="animate-fade-up">
+          {/* TOP BACK / NAVIGATION BAR */}
+          <div className="sticky top-[70px] z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-[#1A05A2]/20 py-3 px-4 shadow-md flex items-center justify-between max-w-7xl mx-auto rounded-full my-4">
+            <button
+              onClick={() => handleSectionSelect(null)}
+              className="inline-flex items-center gap-2 rounded-full bg-[#1A05A2] px-5 py-2 text-xs sm:text-sm font-extrabold text-white shadow-md hover:bg-[#E60067] transition-all cursor-pointer"
+            >
+              ← {isEn ? "All 2 Sections Menu" : "सर्व २ प्रकल्प मेनू (All Sections)"}
+            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => handleSectionSelect("aanandshala")}
+                className="rounded-full bg-[#E60067]/10 border border-[#E60067]/30 px-4 py-2 text-xs sm:text-sm font-extrabold text-[#E60067] hover:bg-[#E60067] hover:text-white transition-all cursor-pointer"
+              >
+                🏠 {isEn ? "Anandashram" : "विभाग १ : आनंदआश्रम"}
+              </button>
+              <button
+                onClick={() => handleSectionSelect("sports")}
+                className="rounded-full bg-[#1A05A2] px-4 py-2 text-xs sm:text-sm font-extrabold text-white shadow-sm cursor-pointer"
+              >
+                🏋️‍♂️ {isEn ? "Sports Club" : "विभाग २ : स्पोर्ट्स क्लब"}
+              </button>
+            </div>
+          </div>
+
           {/* ── PREETAM SPORTS PREMIUM SECTION ── */}
           <SportsSection />
         </div>
