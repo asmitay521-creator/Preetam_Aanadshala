@@ -1,0 +1,640 @@
+@import url("https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+/* =====================================================
+MAIN SECTION
+===================================================== */
+
+.specialReasonsSection {
+  width: 100%;
+  min-height: 750px;
+  padding: 35px 0 60px;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(255, 245, 226, 0.55),
+      transparent 65%
+    ),
+    #fffdf9;
+  font-family: "Mukta", sans-serif;
+}
+
+/* =====================================================
+HEADING
+===================================================== */
+
+.reasonsHeading {
+  text-align: center;
+  max-width: 1250px;
+  margin: 0 auto 30px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.miniHeading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #E60067;
+}
+
+.miniLine {
+  width: 38px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #0284C7);
+}
+
+.miniLine.reverse {
+  background: linear-gradient(90deg, #0284C7, transparent);
+}
+
+.miniDiamond {
+  color: #E60067;
+  font-size: 9px;
+}
+
+.reasonsHeading h2 {
+  margin: 10px 0 5px;
+  color: #0C2370;
+  font-size: clamp(28px, 2.8vw, 44px);
+  line-height: 1.3;
+  font-weight: 800;
+}
+
+.reasonsHeading h2 span {
+  white-space: nowrap;
+}
+
+.headingOrnament {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  margin: 4px 0 6px;
+  color: #d49c3f;
+}
+
+.headingOrnament span {
+  width: 58px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, #d49c3f);
+}
+
+.headingOrnament span:last-child {
+  background: linear-gradient(90deg, #d49c3f, transparent);
+}
+
+.headingOrnament b {
+  font-size: 16px;
+}
+
+.reasonsHeading > p {
+  margin: 0;
+  color: #44413f;
+  font-size: clamp(15px, 1.1vw, 19px);
+  font-weight: 500;
+}
+
+/* =====================================================
+CONTINUOUS INFINITE MARQUEE CAROUSEL
+===================================================== */
+
+.specialReasonsCarousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 10px 0 50px;
+}
+
+/* FADE GRADIENT OVERLAYS AT EDGES */
+.specialReasonsCarousel::before,
+.specialReasonsCarousel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(25px, 5vw, 80px);
+  z-index: 30;
+  pointer-events: none;
+}
+
+.specialReasonsCarousel::before {
+  left: 0;
+  background: linear-gradient(90deg, #fffdf9 20%, transparent 100%);
+}
+
+.specialReasonsCarousel::after {
+  right: 0;
+  background: linear-gradient(270deg, #fffdf9 20%, transparent 100%);
+}
+
+.reasonsTrack {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: continuousMarquee 50s linear infinite;
+  will-change: transform;
+}
+
+/* PAUSE MARQUEE ON HOVER / TOUCH */
+.specialReasonsCarousel:hover .reasonsTrack,
+.reasonsTrack:hover,
+.reasonsTrack:active {
+  animation-play-state: paused !important;
+}
+
+@keyframes continuousMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 10px));
+  }
+}
+
+.reasonSlide {
+  width: 290px;
+  flex: 0 0 290px;
+  box-sizing: border-box;
+}
+
+/* =====================================================
+CARD WRAPPER - COMPACT SIZE
+===================================================== */
+
+.reasonItem {
+  --theme: #e5a315;
+  position: relative;
+  height: 380px;
+  padding-top: 55px;
+  overflow: visible;
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.reasonItem:hover {
+  transform: translateY(-6px);
+  filter: drop-shadow(0 12px 20px rgba(129, 11, 56, 0.14));
+}
+
+/* =====================================================
+NUMBER BADGE - RESIZED COMPACT
+===================================================== */
+
+.numberBadge {
+  position: absolute;
+  top: 0;
+  left: 16px;
+  width: 90px;
+  height: 100px;
+  z-index: 20;
+}
+
+.badgeCircle {
+  position: relative;
+  z-index: 4;
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(145deg, #fff7ea, #ffffff 55%, #fff);
+  border: 1px solid color-mix(in srgb, var(--theme) 45%, white);
+  box-shadow:
+    -5px 6px 0 -1px var(--theme),
+    0 6px 14px rgba(80, 49, 18, 0.08);
+}
+
+.badgeCircle::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.badgeCircle span {
+  position: relative;
+  z-index: 3;
+  color: var(--theme);
+  font-family: Arial, sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -1.5px;
+}
+
+.badgePointer {
+  position: absolute;
+  z-index: 2;
+  left: 14px;
+  top: 58px;
+  width: 38px;
+  height: 38px;
+  background: var(--theme);
+  transform: rotate(45deg);
+  border-radius: 0 0 2px 0;
+}
+
+.badgePointer::after {
+  content: "";
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #fffdf9;
+  top: -18px;
+  left: 18px;
+}
+
+/* =====================================================
+TOP CONNECTOR LINE
+===================================================== */
+
+.cardTopLine {
+  position: absolute;
+  z-index: 5;
+  top: 46px;
+  left: 75px;
+  right: 6px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--theme),
+    color-mix(in srgb, var(--theme) 35%, white)
+  );
+}
+
+/* =====================================================
+BACK LAYER
+===================================================== */
+
+.backCard {
+  position: absolute;
+  top: 55px;
+  left: 6px;
+  right: -5px;
+  height: 305px;
+  border-radius: 12px 12px 40px 35px;
+  background: #fff;
+  border: 1px solid rgba(235, 220, 203, 0.6);
+  box-shadow: 0 10px 16px rgba(72, 46, 23, 0.06);
+  transform: translate(5px, 6px);
+}
+
+/* =====================================================
+MAIN CARD
+===================================================== */
+
+.mainReasonCard {
+  position: relative;
+  z-index: 6;
+  width: 100%;
+  height: 295px;
+  padding: 75px 14px 35px;
+  overflow: visible;
+  background: linear-gradient(
+    150deg,
+    #fffdfa 0%,
+    #ffffff 50%,
+    #fffaf5 100%
+  );
+  border: 1.2px solid color-mix(in srgb, var(--theme) 28%, white);
+  border-top-color: transparent;
+  border-radius: 12px 12px 16px 16px;
+  box-shadow: 0 10px 16px rgba(75, 47, 24, 0.07);
+}
+
+/* =====================================================
+RIGHT COLORED STRIPE
+===================================================== */
+
+.rightColorEdge {
+  position: absolute;
+  top: 0;
+  right: -1px;
+  width: 8px;
+  height: 145px;
+  border-radius: 0 7px 0 0;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    var(--theme) 0%,
+    color-mix(in srgb, var(--theme) 70%, white) 100%
+  );
+}
+
+.rightColorEdge::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: -8px;
+  width: 24px;
+  height: 28px;
+  background: white;
+  transform: rotate(35deg);
+}
+
+/* =====================================================
+ICON HOLDER - COMPACT SIZE (NO OVERLAP)
+===================================================== */
+
+.iconHolder {
+  position: absolute;
+  z-index: 12;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(145deg, #fff, #fffaf4);
+  border: 1.5px solid color-mix(in srgb, var(--theme) 42%, white);
+  box-shadow:
+    0 8px 12px rgba(72, 43, 20, 0.11),
+    inset 0 0 12px rgba(255, 255, 255, 0.8);
+}
+
+.iconHolder::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: -3px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(81, 51, 24, 0.08);
+  filter: blur(4px);
+}
+
+.iconInner {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--theme);
+}
+
+.book-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--theme);
+}
+
+.book-icon svg:first-child {
+  margin-bottom: -4px;
+}
+
+.people-icon {
+  position: relative;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--theme);
+}
+
+.people-icon svg:first-child {
+  margin-bottom: -10px;
+}
+
+/* =====================================================
+CONTENT - CLEAR & SPACIOUS
+===================================================== */
+
+.reasonContent {
+  min-height: 125px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 2px;
+}
+
+.reasonContent p {
+  margin: 0;
+  color: #4d1c22;
+  font-size: 14.5px;
+  line-height: 1.55;
+  font-weight: 700;
+}
+
+/* =====================================================
+DOTS
+===================================================== */
+
+.dotRow {
+  position: absolute;
+  z-index: 10;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.smallDots {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.smallDots i {
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--theme);
+}
+
+.centerDot {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 32% 27%,
+    #fff5d5 0%,
+    var(--theme) 50%,
+    color-mix(in srgb, var(--theme) 80%, black) 100%
+  );
+  box-shadow: 0 2px 5px color-mix(in srgb, var(--theme) 35%, transparent);
+}
+
+/* =====================================================
+CURVED BOTTOM - SVG
+===================================================== */
+
+.bottomCurveSvg {
+  position: absolute;
+  z-index: 20;
+  left: -1px;
+  right: -1px;
+  bottom: -32px;
+  height: 48px;
+  pointer-events: none;
+}
+
+.bottomCurveSvg svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.curveFill {
+  fill: #fffdfa;
+}
+
+.curveStroke {
+  fill: none;
+  stroke: var(--theme);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+}
+
+.paperFold {
+  position: absolute;
+  z-index: 25;
+  right: 3px;
+  top: 5px;
+  width: 50px;
+  height: 24px;
+  background: linear-gradient(
+    155deg,
+    #ffffff 10%,
+    #fffaf3 55%,
+    #f1e6d8 100%
+  );
+  border-radius: 0 0 24px 75%;
+  transform: rotate(7deg);
+  box-shadow: -3px 3px 6px rgba(73, 45, 21, 0.08);
+}
+
+.paperFold::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  width: 36px;
+  height: 1px;
+  background: rgba(220, 205, 185, 0.45);
+  transform: rotate(-5deg);
+}
+
+/* =====================================================
+BOTTOM MESSAGE
+===================================================== */
+
+.bottomMessage {
+  max-width: 930px;
+  min-height: 75px;
+  margin: 15px auto 0;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background: linear-gradient(180deg, #ffffff, #fffefa);
+  border-radius: 38px 38px 20px 20px;
+  box-shadow: 0 8px 18px rgba(70, 44, 20, 0.08);
+  border: 1px solid rgba(212, 156, 63, 0.3);
+}
+
+.bottomMessage p {
+  margin: 0;
+  color: #262d37;
+  text-align: center;
+  font-size: clamp(14px, 1.15vw, 18px);
+  line-height: 1.5;
+  font-weight: 700;
+}
+
+.goldStar {
+  color: #bd861e;
+  font-size: 22px;
+}
+
+.goldLeaf {
+  color: #d8a12e;
+  font-size: 48px;
+  line-height: 1;
+}
+
+.leftLeaf {
+  transform: rotate(-30deg);
+}
+
+.rightLeaf {
+  transform: rotate(210deg);
+}
+
+/* =====================================================
+RESPONSIVE BREAKPOINTS
+===================================================== */
+
+@media (max-width: 650px) {
+  .specialReasonsSection {
+    padding: 25px 0 35px;
+  }
+
+  .reasonsHeading h2 {
+    font-size: 25px;
+  }
+
+  .reasonsHeading h2 span {
+    white-space: normal;
+  }
+
+  .miniHeading {
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  .reasonSlide {
+    width: 265px;
+    flex: 0 0 265px;
+  }
+
+  .reasonItem {
+    height: 360px;
+  }
+
+  .reasonContent p {
+    font-size: 13.5px;
+  }
+
+  .bottomMessage {
+    padding: 12px 16px;
+    gap: 8px;
+  }
+
+  .goldLeaf {
+    display: none;
+  }
+
+  .goldStar {
+    font-size: 15px;
+  }
+}
