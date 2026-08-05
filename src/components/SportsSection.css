@@ -1,0 +1,654 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Mukta:wght@400;600;700;800;900&display=swap");
+
+/* ══════════════════════════════════════════════════════════════
+   PREETAM SPORTS & FITNESS CLUB — MATCHING MOCKUP DESIGN
+   Theme: Vibrant Magenta #E60067 | Navy Blue #1A05A2 | Pure White
+   ══════════════════════════════════════════════════════════════ */
+
+.sp-v3-root {
+  width: 100%;
+  font-family: "Mukta", "Poppins", system-ui, sans-serif;
+  background: #F4F7FB;
+  color: #1E293B;
+  overflow-x: hidden;
+}
+
+.sp-container {
+  width: min(1320px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+/* ── TOP HEADER ── */
+.sp-header {
+  background: #ffffff;
+  border-bottom: 1px solid rgba(230, 0, 103, 0.12);
+  padding: 12px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 16px rgba(26, 5, 162, 0.05);
+}
+
+.sp-logo-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sp-logo-trophy {
+  font-size: 26px;
+}
+
+.sp-logo-title {
+  font-size: 19px;
+  font-weight: 900;
+  color: #1A05A2;
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+.sp-logo-sub {
+  font-size: 10px;
+  font-weight: 800;
+  color: #E60067;
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+
+.sp-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.sp-nav-link {
+  font-size: 14px;
+  font-weight: 700;
+  color: #33407A;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  padding: 4px 0;
+  transition: color 0.2s;
+}
+
+.sp-nav-link.active,
+.sp-nav-link:hover {
+  color: #E60067;
+}
+
+.sp-nav-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #E60067;
+  border-radius: 4px;
+}
+
+.sp-header-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.sp-lang-btn {
+  background: #ffffff;
+  border: 1px solid rgba(26, 5, 162, 0.2);
+  border-radius: 50px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1A05A2;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(26, 5, 162, 0.05);
+}
+
+.sp-cta-btn {
+  background: linear-gradient(135deg, #E60067 0%, #FF2A85 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  padding: 9px 22px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(230, 0, 103, 0.3);
+  transition: transform 0.2s;
+}
+
+.sp-cta-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* ── HERO SECTION ── */
+.sp-hero-sec {
+  padding: 24px 0 16px;
+}
+
+.sp-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 28px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sp-hero-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(230, 0, 103, 0.08);
+  border: 1px solid rgba(230, 0, 103, 0.25);
+  color: #E60067;
+  border-radius: 50px;
+  padding: 6px 18px;
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 12px rgba(230, 0, 103, 0.1);
+}
+
+.sp-hero-main-title {
+  font-size: 52px;
+  font-weight: 900;
+  line-height: 1.1;
+  margin: 0 0 14px;
+  letter-spacing: -0.8px;
+  animation: titleGlowPulse 4s ease-in-out infinite;
+}
+
+@keyframes titleGlowPulse {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.sp-txt-navy {
+  color: #1A05A2;
+  display: block;
+}
+
+.sp-txt-magenta {
+  background: linear-gradient(135deg, #E60067 0%, #FF2A85 50%, #9333EA 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(230, 0, 103, 0.2));
+}
+
+.sp-hero-bullets {
+  font-size: 15px;
+  font-weight: 700;
+  color: #33407A;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.sp-hero-action-btns {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.sp-btn-pink-hero {
+  background: linear-gradient(135deg, #E60067 0%, #FF2A85 100%);
+  color: #ffffff;
+  border-radius: 50px;
+  padding: 11px 26px;
+  font-size: 14px;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(230, 0, 103, 0.35);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sp-btn-white-hero {
+  background: #ffffff;
+  color: #1A05A2;
+  border: 1.5px solid rgba(26, 5, 162, 0.2);
+  border-radius: 50px;
+  padding: 11px 22px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* HERO MINI STATS ROW */
+.sp-mini-stats-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #ffffff;
+  border: 1px solid rgba(120, 140, 255, 0.2);
+  border-radius: 16px;
+  padding: 10px 16px;
+  box-shadow: 0 6px 16px rgba(90, 105, 255, 0.06);
+  flex-wrap: wrap;
+}
+
+.sp-mini-stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #1A05A2;
+}
+
+/* RIGHT HERO IMAGE & FLOATING CARDS */
+.sp-hero-right-container {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+.sp-hero-building-frame {
+  width: 100%;
+  border-radius: 36px 36px 140px 36px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(26, 5, 162, 0.18);
+  border: 3px solid #ffffff;
+}
+
+.sp-hero-building-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* UNITED DARK BLUE GLASS BAR BELOW HERO IMAGE (MATCHING IMAGE 2) */
+.sp-hero-overlay-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: linear-gradient(145deg, #1C2760 0%, #10173E 100%);
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  border-radius: 28px;
+  padding: 16px 6px;
+  margin-top: -55px;
+  position: relative;
+  z-index: 20;
+  width: calc(100% - 20px);
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 20px 48px rgba(16, 23, 62, 0.45), 0 6px 20px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(16px);
+}
+
+.sp-overlay-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 4px 10px;
+  border-right: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.sp-overlay-item:last-child {
+  border-right: none;
+}
+
+.sp-overlay-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 10px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.sp-overlay-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.sp-overlay-desc {
+  font-size: 10px;
+  color: #94A3B8;
+  line-height: 1.3;
+}
+
+/* ── "आमच्या सुविधा" SECTION (8 CARDS GRID) ── */
+.sp-facilities-sec {
+  padding: 48px 0 24px;
+}
+
+.sp-sec-title-center {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 900;
+  color: #1A05A2;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.sp-sec-title-center::before,
+.sp-sec-title-center::after {
+  content: "";
+  height: 2px;
+  width: 32px;
+  background: #E60067;
+  border-radius: 2px;
+}
+
+.sp-facilities-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.sp-fac-card-v2 {
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(120, 140, 255, 0.18);
+  box-shadow: 0 8px 24px rgba(90, 105, 255, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.sp-fac-card-v2:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(230, 0, 103, 0.18);
+}
+
+.sp-fac-img-box {
+  width: 100%;
+  height: 140px;
+  overflow: hidden;
+  position: relative;
+}
+
+.sp-fac-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.sp-fac-card-v2:hover .sp-fac-img {
+  transform: scale(1.08);
+}
+
+.sp-fac-body {
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex: 1;
+}
+
+.sp-fac-info-title {
+  font-size: 14px;
+  font-weight: 900;
+  color: #1A05A2;
+  margin-bottom: 2px;
+}
+
+.sp-fac-info-sub {
+  font-size: 11px;
+  color: #64748B;
+  line-height: 1.3;
+}
+
+.sp-fac-arrow-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f0f5ff;
+  color: #1A05A2;
+  border: none;
+  font-size: 14px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.sp-fac-card-v2:hover .sp-fac-arrow-btn {
+  background: #E60067;
+  color: #ffffff;
+}
+
+/* ── FULL WIDTH MAGENTA GRADIENT STATS BAR ── */
+.sp-gradient-stats-banner {
+  background: linear-gradient(90deg, #1A05A2 0%, #E60067 50%, #C83DFF 100%);
+  border-radius: 20px;
+  padding: 22px 32px;
+  color: #ffffff;
+  margin: 40px 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  box-shadow: 0 16px 36px rgba(230, 0, 103, 0.3);
+}
+
+.sp-banner-stat {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sp-banner-stat-icon {
+  font-size: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sp-banner-stat-val {
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.sp-banner-stat-lbl {
+  font-size: 11px;
+  opacity: 0.9;
+  margin-top: 2px;
+}
+
+/* ── "आरोग्य, फिटनेस आणि आनंदाचा एकत्रित प्रवास!" GRID ── */
+.sp-journey-sec {
+  background: #ffffff;
+  border: 1px solid rgba(120, 140, 255, 0.2);
+  border-radius: 28px;
+  padding: 36px;
+  margin: 36px 0;
+  box-shadow: 0 12px 32px rgba(90, 105, 255, 0.08);
+}
+
+.sp-journey-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 36px;
+  align-items: center;
+}
+
+.sp-journey-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 79, 156, 0.1);
+  color: #E60067;
+  border-radius: 50px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.sp-journey-title {
+  font-size: 32px;
+  font-weight: 900;
+  color: #1A05A2;
+  line-height: 1.25;
+  margin: 0 0 14px;
+}
+
+.sp-journey-sub {
+  font-size: 14px;
+  color: #64748B;
+  margin-bottom: 24px;
+}
+
+/* 6 PHOTO COLLAGE GRID */
+.sp-photo-collage {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.sp-collage-img-box {
+  width: 100%;
+  height: 110px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.sp-collage-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+
+.sp-collage-img-box:hover img {
+  transform: scale(1.08);
+}
+
+/* ── FOOTER ── */
+.sp-footer {
+  background: #0D1636;
+  color: #ffffff;
+  padding: 48px 0 20px;
+  border-top: 3px solid #E60067;
+  margin-top: 48px;
+}
+
+.sp-footer-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr 0.8fr 1fr 1fr;
+  gap: 28px;
+  margin-bottom: 32px;
+}
+
+.sp-footer-brand-title {
+  font-size: 17px;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.sp-footer-brand-desc {
+  font-size: 12px;
+  color: #94A3B8;
+  line-height: 1.6;
+}
+
+.sp-footer-col-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #FF4F9C;
+  margin-bottom: 12px;
+}
+
+.sp-footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sp-footer-link {
+  font-size: 12px;
+  color: #CBD5E1;
+  text-decoration: none;
+}
+
+.sp-footer-link:hover {
+  color: #FF4F9C;
+}
+
+.sp-footer-contact {
+  font-size: 12px;
+  color: #CBD5E1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sp-map-preview {
+  width: 100%;
+  height: 100px;
+  border-radius: 14px;
+  background: #1E293B;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: #94A3B8;
+}
+
+.sp-footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 18px;
+  text-align: center;
+  font-size: 12px;
+  color: #64748B;
+}
+
+@media (max-width: 1024px) {
+  .sp-hero-grid,
+  .sp-journey-grid,
+  .sp-facilities-grid,
+  .sp-hero-overlay-cards,
+  .sp-gradient-stats-banner,
+  .sp-footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .sp-hero-main-title {
+    font-size: 34px;
+  }
+  .sp-nav-links {
+    display: none;
+  }
+}
