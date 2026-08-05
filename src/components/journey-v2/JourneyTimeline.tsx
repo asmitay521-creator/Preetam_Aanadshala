@@ -296,27 +296,9 @@ export default function JourneyTimeline() {
             <div className="journey-row-empty" />
           </div>
 
-          {/* ROW 4: Quote Card (Left) & Card 4 (Right) */}
-          <div className="journey-row-item row-both">
-            {/* Quote Card (Left) */}
-            <motion.div
-              initial={{ opacity: 0, x: -50, y: 20 }}
-              whileInView={{ opacity: 1, x: 0, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-              whileHover={{ y: -6, scale: 1.015 }}
-              className="journey-quote-box left-box"
-            >
-              <div className="quote-inner">
-                <div className="quote-mark quote-start">“</div>
-                <p className="quote-text">
-                  आनंदात जगायचं, आरोग्य जपायचं,<br />
-                  आनंदशाळेत येऊन स्वप्न साकारायचं.
-                </p>
-                <p className="quote-author">– डॉ. नितीन ओक, अभिनेते</p>
-                <div className="quote-mark quote-end">”</div>
-              </div>
-            </motion.div>
+          {/* ROW 4: Card 4 (Right) */}
+          <div className="journey-row-item row-right">
+            <div className="journey-row-empty" />
 
             {/* Center Node 4 */}
             <motion.div
@@ -369,6 +351,26 @@ export default function JourneyTimeline() {
             </motion.div>
           </div>
         </div>
+
+        {/* DEDICATED BOTTOM STANDALONE QUOTE CARD (FURTHER DOWN BELOW ALL CARDS) */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+          whileHover={{ y: -6, scale: 1.01 }}
+          className="quote-standalone-container"
+        >
+          <div className="quote-standalone-card">
+            <div className="quote-mark quote-start">“</div>
+            <p className="quote-text">
+              आनंदात जगायचं, आरोग्य जपायचं,<br />
+              आनंदशाळेत येऊन स्वप्न साकारायचं.
+            </p>
+            <p className="quote-author">– डॉ. नितीन ओक, अभिनेते</p>
+            <div className="quote-mark quote-end">”</div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
