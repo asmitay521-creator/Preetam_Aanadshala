@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
 import "./Navbar.css";
 
@@ -14,7 +14,8 @@ const menuItems = [
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const location = useLocation();
+  const pathname = location.pathname;
 
   // Close mobile menu on route change
   useEffect(() => {

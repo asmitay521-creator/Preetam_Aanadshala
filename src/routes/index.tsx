@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Reveal } from "@/components/site/Reveal";
 import { brochurePages } from "@/lib/brochure-pages";
@@ -484,14 +484,9 @@ function IndexComponent() {
                   <p className="text-[11px] text-muted-foreground font-medium mt-0.5">{isEn ? badge.textEn : badge.textMr}</p>
                 </div>
               </div>
-              <div>
-                <h4 className="text-xs sm:text-sm font-black text-[#541A1A] leading-tight">{isEn ? badge.titleEn : badge.titleMr}</h4>
-                <p className="text-[11px] text-muted-foreground font-medium mt-0.5">{isEn ? badge.textEn : badge.textMr}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
       )}
 
       {/* ============================================================== */}
@@ -973,3 +968,5 @@ function IndexComponent() {
     </div>
   );
 }
+
+export default IndexComponent;

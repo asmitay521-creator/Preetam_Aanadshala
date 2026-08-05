@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import React from "react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
@@ -271,3 +271,5 @@ function Gallery() {
     </div>
   );
 }
+
+export default Gallery;

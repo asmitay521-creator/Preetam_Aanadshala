@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import React from "react";
 import AnandshalaStory from "@/components/AnandshalaStory";
 import JourneySection from "@/components/journey/JourneySection";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -31,3 +31,5 @@ function About() {
     </>
   );
 }
+
+export default About;

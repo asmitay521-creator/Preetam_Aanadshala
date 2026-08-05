@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useAdminStore, BrochureItem, PackageItem } from "@/lib/admin-store";
 
@@ -1509,3 +1509,5 @@ function AdminPage() {
     </div>
   );
 }
+
+export default AdminPage;
