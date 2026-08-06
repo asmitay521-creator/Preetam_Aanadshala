@@ -214,56 +214,7 @@ export default function ScheduleSection() {
           </div>
         </div>
 
-        {/* BOTTOM ACTION BAR */}
-        <div className="mt-8 bg-gradient-to-r from-[#1A05A2] via-[#E60067] to-[#1A05A2] rounded-3xl p-4 sm:p-6 flex flex-col md:flex-row items-center justify-between shadow-2xl gap-6">
-           <div className="flex flex-wrap justify-center md:justify-start items-center gap-6 lg:gap-10">
-              <div className="flex items-center gap-3 text-white">
-                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-xl">🏆</div>
-                <div>
-                  <div className="font-black leading-tight text-lg">15+</div>
-                  <div className="text-xs font-medium">विविध उपक्रम</div>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 text-white">
-                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-xl">🕒</div>
-                <div>
-                  <div className="font-black leading-tight text-sm">6AM - 10PM</div>
-                  <div className="text-xs font-medium">सुविधा उपलब्ध</div>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 text-white">
-                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-xl">👩‍⚕️</div>
-                <div>
-                  <div className="font-black leading-tight text-sm">24x7</div>
-                  <div className="text-xs font-medium">वैद्यकीय सेवा</div>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 text-white">
-                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-xl">🛡️</div>
-                <div>
-                  <div className="font-black leading-tight text-sm">100%</div>
-                  <div className="text-xs font-medium">सुरक्षित व स्वच्छ</div>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 text-white">
-                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-xl">❤️</div>
-                <div>
-                  <div className="font-black leading-tight text-sm">आपले समाधान,</div>
-                  <div className="text-xs font-medium">आमचे ध्येय</div>
-                </div>
-              </div>
-           </div>
 
-           <div className="bg-white rounded-full px-6 py-3 flex items-center gap-4 shrink-0 shadow-lg cursor-pointer hover:scale-105 transition-transform">
-              <div className="w-10 h-10 rounded-full bg-[#E60067] text-white flex items-center justify-center text-xl animate-pulse">
-                📞
-              </div>
-              <div>
-                <div className="text-slate-500 text-xs font-bold">आजच संपर्क साधा :</div>
-                <div className="text-[#E60067] text-xl font-black">9370237633</div>
-              </div>
-           </div>
-        </div>
 
       </div>
     </section>

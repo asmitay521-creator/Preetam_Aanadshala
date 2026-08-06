@@ -1,10 +1,181 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import "./SportsSection.css";
 import { site, sportsClub } from "../lib/site-info";
+
+interface FacilityDetail {
+  id: string;
+  titleMr: string;
+  titleEn: string;
+  subMr: string;
+  subEn: string;
+  descMr: string;
+  img: string;
+  icon: string;
+  featuresMr: string[];
+  timingMr: string;
+}
+
+const facilityItems: FacilityDetail[] = [
+  {
+    id: "gym",
+    icon: "🏋️♂️",
+    titleMr: "जिम & बॉडीबिल्डिंग",
+    titleEn: "Gym & Bodybuilding Studio",
+    subMr: "आधुनिक उपकरणांसह प्रशिक्षित ट्रेनर्स",
+    subEn: "Certified trainers with modern fitness equipment",
+    descMr: "जागतिक दर्जाची फिटनेस उपकरणे, पूर्णतः वातानुकूलित परिसर आणि वैयक्तिक प्रमाणित ट्रेनर्सच्या मार्गदर्शनाखाली बॉडीबिल्डिंग व फिटनेस ट्रेनिंग.",
+    img: "https://d3k88l35vy59af.cloudfront.net/A42/9663/1763184848892.jpg",
+    timingMr: "सकाळी ६:०० ते रात्री ९:३०",
+    featuresMr: [
+      "प्रमाणित पर्सनल ट्रेनर्स",
+      "वातानुकूलित (AC) प्रिमियम परिसर",
+      "कार्डिओ व व्हेट ट्रेनिंग मशीन्स",
+      "विशेष डायट व पोषण आहार मार्गदर्शन"
+    ]
+  },
+  {
+    id: "swimming",
+    icon: "🏊♂️",
+    titleMr: "स्विमिंग पूल",
+    titleEn: "Olympic Standard Swimming Pool",
+    subMr: "ऑलिंपिक मानकांचा स्वच्छ पूल",
+    subEn: "Clean Olympic standard filtered pool",
+    descMr: "ऑलिंपिक मानकांनुसार बनवलेला स्वच्छ, २५ मीटरचा शुद्ध पाण्याचा पोहण्याचा तलाव. महिला व पुरुषांसाठी सुरक्षित व स्वतंत्र बॅचेस.",
+    img: "https://d3k88l35vy59af.cloudfront.net/A42/9663/1762243460172.jpg",
+    timingMr: "सकाळी ६:०० ते रात्री ८:००",
+    featuresMr: [
+      "ऑलिंपिक स्टँडर्ड फिल्टर्ड पाणी",
+      "सुरक्षा गार्ड व एक्सपर्ट लाइफगार्ड",
+      "स्वतंत्र चेंजिंग रूम व हॉट शॉवर",
+      "लहान मुले व बिगिनर्स साठी विशेष ट्रेनिंग"
+    ]
+  },
+  {
+    id: "badminton",
+    icon: "🏸",
+    titleMr: "इनडोअर बॅडमिंटन",
+    titleEn: "Indoor Badminton Arena",
+    subMr: "आंतरराष्ट्रीय मानकांच्या कोर्टसह",
+    subEn: "International standard wooden courts",
+    descMr: "लाकडी सिंथेटिक मॅटिंग व आय-प्रोटेक्ट LED लाईटिंगसह सुसज्ज इनडोअर बॅडमिंटन कोर्ट. सर्व वयोगटातील लोकांसाठी खेळण्याची व सराव करण्याची उत्तम सोय.",
+    img: "https://d3k88l35vy59af.cloudfront.net/A42/9663/1763203444303.jpg",
+    timingMr: "सकाळी ६:०० ते रात्री ९:००",
+    featuresMr: [
+      "प्र्रीमियम वूडन सिंथेटिक मॅटिंग",
+      "प्रोफेशनल अँटी-ग्लेअर LED लाईटिंग",
+      "रॅकेट व कॉक उपलब्ध",
+      "टूर्नामेंट स्टँडर्ड कोर्ट्स"
+    ]
+  },
+  {
+    id: "pickleball",
+    icon: "🏓",
+    titleMr: "पिकलबॉल",
+    titleEn: "Pickleball Court",
+    subMr: "नवीन खेळ, मजा आणि फिटनेस",
+    subEn: "Modern trending sport for total fitness",
+    descMr: "जगातील सर्वात वेगाने लोकप्रिय होणारा पिकलबॉल खेळ! कुटुंबासोबत व मित्रांसोबत खेळण्यासाठी सांगलीतील भव्य पिकलबॉल कोर्ट.",
+    img: "https://d3k88l35vy59af.cloudfront.net/A42/9663/1763357638128.jpg",
+    timingMr: "सकाळी ६:०० ते रात्री ९:००",
+    featuresMr: [
+      "सांगलीतील पहिले भव्य पिकलबॉल कोर्ट",
+      "सोपा व आरोग्यदायी फिटनेस खेळ",
+      "पॅडल्स व बॉल्स उपलब्ध",
+      "सर्व वयोगटांसाठी अत्यंत सोयीचे"
+    ]
+  },
+  {
+    id: "yoga",
+    icon: "🧘",
+    titleMr: "योग & ध्यान कक्ष",
+    titleEn: "Yoga & Meditation Studio",
+    subMr: "शारीरिक व मानसिक आरोग्य संतुलन",
+    subEn: "Physical and mental health harmony",
+    descMr: "शांत, प्रसन्न व निसर्गरम्य वातावरणात योगाभ्यास, प्राणायाम व ध्यानधारणा. अनुभवी योगशिक्षकांकडून दररोज सकाळी व संध्याकाळी मार्गदर्शन.",
+    img: "https://d3k88l35vy59af.cloudfront.net/A42/9663/1763188841664.jpg",
+    timingMr: "सकाळी ६:३० ते ९:०० व सायं. ५ ते ७",
+    featuresMr: [
+      "शांत व प्रसन्न वातानुकूलित हॉल",
+      "प्राणायाम व योगासने वर्ग",
+      "मानसिक ताणतणाव व BP मुक्ती",
+      "ज्येष्ठ नागरिकांसाठी विशेष सोपा योगा"
+    ]
+  },
+  {
+    id: "zumba",
+    icon: "💃",
+    titleMr: "झुंबा & डान्स क्लास",
+    titleEn: "Zumba & Fitness Dance",
+    subMr: "एनर्जेटिक सेशन्स आणि प्रोफेशनल कोडिंग",
+    subEn: "High energy zumba and dance workout",
+    descMr: "संगीताच्या तालावर एनर्जेटिक झुंबा व फिटनेस डान्स सेशन्स. वजन नियंत्रित ठेवण्यासाठी व आनंदाने कॅलरी बर्न करण्यासाठी सर्वोत्तम उपक्रम.",
+    img: "https://d3k88l35vy59af.cloudfront.net/A42/9663/1763357581614.png",
+    timingMr: "सकाळी ७:०० ते ८:०० व सायं. ६ ते ७",
+    featuresMr: [
+      "प्रोफेशनल सर्टीफाइड झुंबा ट्रेनर्स",
+      "हाय-फाय साऊंड व म्युझिक सिस्टीम",
+      "मजबूत कार्डिओ वर्कआउट",
+      "उत्साही व आनंदी वातावरण"
+    ]
+  },
+  {
+    id: "squash",
+    icon: "🎾",
+    titleMr: "स्क्वॅश कोर्ट",
+    titleEn: "Squash Arena",
+    subMr: "आंतरराष्ट्रीय मानकांच्या स्वच्छ कोर्ट",
+    subEn: "International glass-back squash court",
+    descMr: "आंतरराष्ट्रीय ग्लास-बॅक मानकांचे स्क्वॅश कोर्ट. जलद हालचाली, स्टॅमिना व उच्च फिटनेससाठी अतिशय उपयुक्त.",
+    img: "https://d3k88l35vy59af.cloudfront.net/A42/9663/1763184843273.jpg",
+    timingMr: "सकाळी ६:०० ते रात्री ९:००",
+    featuresMr: [
+      "ग्लास-बॅक आंतरराष्ट्रीय मानकांचे कोर्ट",
+      "स्पेशल वूडन स्प्रंग फ्लोअरिंग",
+      "रॅकेट व इक्विपमेंट सोय",
+      "उच्च फिटनेस व स्टॅमिना वर्कआउट"
+    ]
+  },
+  {
+    id: "snooker",
+    icon: "🎱",
+    titleMr: "स्नूकर & पूल लाउंज",
+    titleEn: "Snooker & Pool Lounge",
+    subMr: "एकग्रता वाढवणारा स्नूकर आणि पूल टेबल",
+    subEn: "Concentration boosting snooker and pool table",
+    descMr: "प्रीमियम वूलन क्लोथवर आंतरराष्ट्रीय मानकांचे स्नूकर व पूल टेबल्स. वातानुकूलित लाउंजमध्ये एकाग्रता व मनोरंजनाचा आनंद.",
+    img: "https://d3k88l35vy59af.cloudfront.net/A42/9663/1763357638129.jpg",
+    timingMr: "सकाळी १०:०० ते रात्री ९:००",
+    featuresMr: [
+      "आंतरराष्ट्रीय मानकांचे स्नूकर टेबल्स",
+      "प्रीमियम ८-बॉल पूल टेबल",
+      "एसी लाउंज व सोफा सीटिंग",
+      "मित्र-मैत्रिणींसोबत रिलॅक्सिंग वेळ"
+    ]
+  }
+];
 
 export const SportsSection: React.FC = () => {
   const [activeNav, setActiveNav] = useState("home");
   const [lang, setLang] = useState<"mr" | "en">("mr");
+  const [selectedFacility, setSelectedFacility] = useState<FacilityDetail | null>(null);
+
+  useEffect(() => {
+    if (selectedFacility) {
+      document.body.style.overflow = "hidden";
+      document.body.style.height = "100vh";
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+      document.body.style.height = "";
+      document.documentElement.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.height = "";
+      document.documentElement.style.overflow = "";
+    };
+  }, [selectedFacility]);
 
   const toggleLang = () => setLang((l) => (l === "mr" ? "en" : "mr"));
 
@@ -15,109 +186,89 @@ export const SportsSection: React.FC = () => {
         {/* ══════════════════════════════════════════════════════════════
             2. HERO SECTION
            ══════════════════════════════════════════════════════════════ */}
-        <section className="sp-hero-sec">
-          <div className="sp-hero-grid">
-            {/* LEFT COLUMN */}
-            <div>
-              <div className="sp-hero-pill-badge">
-                <span>🏵️ सांगलीतील १.५ एकर भव्य क्रीडा व फिटनेस संकुल</span>
+        <section className="sp-clean-sec">
+          {/* TOP PHOTO BANNER WITH AERIAL IMAGE & FLOATING BADGES */}
+          <div className="sp-exact-banner-box">
+            <img
+              src="/images/sports_hero_bg.png"
+              alt="Preetam Sports Complex Sangli Aerial View"
+              className="sp-exact-banner-img"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src =
+                  "https://d3k88l35vy59af.cloudfront.net/A42/9663/1763184848892.jpg";
+              }}
+            />
+            <div className="sp-exact-banner-overlay">
+              <div className="sp-exact-top-pill">
+                <span className="sp-pulse-dot">⚡</span>
+                <span>महाराष्ट्रातील १.५ एकर भव्य प्रीमियम संकुल</span>
               </div>
-
-              <h1 className="sp-hero-main-title">
-                <span className="sp-txt-navy">प्रीतम स्पोर्ट्स</span>
-                <span className="sp-txt-magenta">अँड फिटनेस क्लब</span>
-                <span className="sp-txt-navy">सांगली</span>
+              <h1 className="sp-exact-banner-title">
+                प्रीतम स्पोर्ट्स अँड फिटनेस क्लब
+                <br />
+                <span className="sp-title-highlight">• सांगली</span>
               </h1>
+            </div>
+          </div>
 
-              <div className="sp-hero-bullets">
-                <div>• जिम • बॉडीबिल्डिंग • स्विमिंग पूल • इनडोअर बॅडमिंटन • पिकलबॉल</div>
-                <div>• योगा • झुंबा • डान्स • स्क्वॅश — एकाच छताखाली आरोग्याचा नवा अध्याय!</div>
-              </div>
+          {/* MIDDLE CHIPS ROW */}
+          <div className="sp-exact-chips-row">
+            <div className="sp-exact-chip"><span className="sp-exact-chip-icon">🏋️♂️</span> जिम व बॉडीबिल्डिंग</div>
+            <div className="sp-exact-chip"><span className="sp-exact-chip-icon">🏊♂️</span> पोहणे</div>
+            <div className="sp-exact-chip"><span className="sp-exact-chip-icon">🏸</span> बॅडमिंटन</div>
+            <div className="sp-exact-chip"><span className="sp-exact-chip-icon">🏓</span> पिकलबॉल</div>
+            <div className="sp-exact-chip"><span className="sp-exact-chip-icon">🧘</span> योग व मेडिटेशन</div>
+            <div className="sp-exact-chip"><span className="sp-exact-chip-icon">💃</span> झुंबा व डान्स</div>
+            <div className="sp-exact-chip"><span className="sp-exact-chip-icon">🎾</span> स्क्वॅश</div>
+          </div>
 
-              <div className="sp-hero-action-btns">
-                <a href={`tel:${sportsClub.phones[0]}`} className="sp-btn-pink-hero">
-                  📞 आजच प्रवेश घ्या
-                </a>
-                <a
-                  href={sportsClub.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="sp-btn-white-hero"
-                >
-                  💬 WhatsApp चौकशी
-                </a>
-              </div>
+          {/* CTA BUTTONS ROW */}
+          <div className="sp-exact-btns-row">
+            <a href={`tel:${sportsClub.phones[0]}`} className="sp-exact-btn-red">
+              <span> आजच प्रवेश घ्या</span>
+              <span className="sp-btn-arrow">→</span>
+            </a>
+            <a
+              href={sportsClub.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="sp-exact-btn-wa"
+            >
+              <span>💬 WhatsApp चौकशी</span>
+            </a>
+          </div>
 
-              {/* MINI STATS ROW */}
-              <div className="sp-mini-stats-row">
-                <div className="sp-mini-stat">🏆 10K+ सदस्य परिवार</div>
-                <div className="sp-mini-stat">🏋️ 15+ वैविध्यपूर्ण उपक्रम</div>
-                <div className="sp-mini-stat">📍 1.5 एकर भव्य संकुल</div>
-                <div className="sp-mini-stat">⏰ 6AM - 10PM उपलब्ध</div>
-                <div className="sp-mini-stat">🛡️ 100% सुरक्षित व स्वच्छ</div>
+          {/* ATTRACTIVE 4-CARD ULTRA STATS ROW */}
+          <div className="sp-pro-stats-grid">
+            <div className="sp-pro-stat-card">
+              <div className="sp-pro-stat-icon-box bg-purple">🏛️</div>
+              <div className="sp-pro-stat-info">
+                <div className="sp-pro-stat-val">१.५ एकर</div>
+                <div className="sp-pro-stat-lbl">भव्य संकुल क्षेत्रफळ</div>
               </div>
             </div>
 
-            {/* RIGHT COLUMN BUILDING ARCH FRAME */}
-            <div className="sp-hero-right-container">
-              <div className="sp-hero-building-frame">
-                <img
-                  src="/preetam_sports.png"
-                  alt="Preetam Sports & Fitness Building"
-                  className="sp-hero-building-img"
-                  onError={(e) => {
-                    // Fallback to online sports building image if local image fails
-                    (e.target as HTMLImageElement).src =
-                      "https://d3k88l35vy59af.cloudfront.net/A42/9663/1763184848892.jpg";
-                  }}
-                />
+            <div className="sp-pro-stat-card">
+              <div className="sp-pro-stat-icon-box bg-pink">🎓</div>
+              <div className="sp-pro-stat-info">
+                <div className="sp-pro-stat-val">२५+</div>
+                <div className="sp-pro-stat-lbl">प्रमाणित प्रशिक्षक</div>
               </div>
+            </div>
 
-              {/* UNITED DARK BLUE CAPSULE GLASS BAR (EXACT MATCH FOR IMAGE 2) */}
-              <div className="sp-hero-overlay-bar">
-                <div className="sp-overlay-item">
-                  <div
-                    className="sp-overlay-icon-box"
-                    style={{ background: "#FFDFEC", color: "#E60067" }}
-                  >
-                    🏆
-                  </div>
-                  <div className="sp-overlay-title">प्रोफेशनल ट्रेनर्स</div>
-                  <div className="sp-overlay-desc">प्रमाणित व अनुभवी ट्रेनर्स मार्गदर्शन</div>
-                </div>
+            <div className="sp-pro-stat-card">
+              <div className="sp-pro-stat-icon-box bg-blue">👥</div>
+              <div className="sp-pro-stat-info">
+                <div className="sp-pro-stat-val">१०००+</div>
+                <div className="sp-pro-stat-lbl">आनंदी सभासद</div>
+              </div>
+            </div>
 
-                <div className="sp-overlay-item">
-                  <div
-                    className="sp-overlay-icon-box"
-                    style={{ background: "#E0F2FE", color: "#0284C7" }}
-                  >
-                    ⚡
-                  </div>
-                  <div className="sp-overlay-title">अत्याधुनिक उपकरणे</div>
-                  <div className="sp-overlay-desc">जागतिक दर्जाची फिटनेस मशीन्स</div>
-                </div>
-
-                <div className="sp-overlay-item">
-                  <div
-                    className="sp-overlay-icon-box"
-                    style={{ background: "#F3E8FF", color: "#9333EA" }}
-                  >
-                    🧘
-                  </div>
-                  <div className="sp-overlay-title">योगा & झुंबा क्लास</div>
-                  <div className="sp-overlay-desc">शारीरिक व मानसिक आरोग्य संतुलन</div>
-                </div>
-
-                <div className="sp-overlay-item">
-                  <div
-                    className="sp-overlay-icon-box"
-                    style={{ background: "#E0F2FE", color: "#0284C7" }}
-                  >
-                    🏊
-                  </div>
-                  <div className="sp-overlay-title">स्विमिंग पूल</div>
-                  <div className="sp-overlay-desc">ऑलिंपिक मानकांचा स्वच्छ पूल</div>
-                </div>
+            <div className="sp-pro-stat-card">
+              <div className="sp-pro-stat-icon-box bg-green">🏋️</div>
+              <div className="sp-pro-stat-info">
+                <div className="sp-pro-stat-val">२८+</div>
+                <div className="sp-pro-stat-lbl">अत्याधुनिक सुविधा</div>
               </div>
             </div>
           </div>
@@ -127,202 +278,124 @@ export const SportsSection: React.FC = () => {
             3. "आमच्या सुविधा" 8 CARDS GRID
            ══════════════════════════════════════════════════════════════ */}
         <section className="sp-facilities-sec">
-          <div className="sp-sec-title-center">आमच्या सुविधा</div>
+          <div className="sp-sec-header">
+            <div className="sp-sec-badge">✨ प्रिमियम सोयी सुविधा</div>
+            <h2 className="sp-sec-title-center">आमच्या सुविधा (विस्तृत माहितीसाठी कार्डवर क्लिक करा)</h2>
+            <p className="sp-sec-subtitle">प्रीतम स्पोर्ट्स क्लबमधील जागतिक दर्जाच्या क्रीडा व फिटनेस सुविधा</p>
+          </div>
 
           <div className="sp-facilities-grid">
-            {/* CARD 1: GYM */}
-            <div className="sp-fac-card-v2">
-              <div className="sp-fac-img-box">
-                <img
-                  src="https://d3k88l35vy59af.cloudfront.net/A42/9663/1763184848892.jpg"
-                  alt="Gym"
-                  className="sp-fac-img"
-                />
-              </div>
-              <div className="sp-fac-body">
-                <div>
-                  <div className="sp-fac-info-title">जिम & बॉडीबिल्डिंग</div>
-                  <div className="sp-fac-info-sub">आधुनिक उपकरणांसह प्रशिक्षित ट्रेनर्स</div>
+            {facilityItems.map((item) => {
+              const isActive = selectedFacility?.id === item.id;
+              return (
+                <div
+                  key={item.id}
+                  className={`sp-fac-card-v2 ${isActive ? "active-card" : ""}`}
+                  onClick={() => setSelectedFacility(item)}
+                  role="button"
+                  tabIndex={0}
+                >
+                  <div className="sp-fac-img-box">
+                    <img
+                      src={item.img}
+                      alt={item.titleMr}
+                      className="sp-fac-img"
+                    />
+                    <span className="sp-fac-badge-overlay">{item.icon} क्लिक करा</span>
+                  </div>
+                  <div className="sp-fac-body">
+                    <div>
+                      <div className="sp-fac-info-title">{item.titleMr}</div>
+                      <div className="sp-fac-info-sub">{item.subMr}</div>
+                    </div>
+                  </div>
                 </div>
-                <button className="sp-fac-arrow-btn">→</button>
-              </div>
-            </div>
-
-            {/* CARD 2: SWIMMING POOL */}
-            <div className="sp-fac-card-v2">
-              <div className="sp-fac-img-box">
-                <img
-                  src="https://d3k88l35vy59af.cloudfront.net/A42/9663/1762243460172.jpg"
-                  alt="Swimming Pool"
-                  className="sp-fac-img"
-                />
-              </div>
-              <div className="sp-fac-body">
-                <div>
-                  <div className="sp-fac-info-title">स्विमिंग पूल</div>
-                  <div className="sp-fac-info-sub">ऑलिंपिक मानकांचा स्वच्छ पूल</div>
-                </div>
-                <button className="sp-fac-arrow-btn">→</button>
-              </div>
-            </div>
-
-            {/* CARD 3: BADMINTON */}
-            <div className="sp-fac-card-v2">
-              <div className="sp-fac-img-box">
-                <img
-                  src="https://d3k88l35vy59af.cloudfront.net/A42/9663/1763203444303.jpg"
-                  alt="Badminton"
-                  className="sp-fac-img"
-                />
-              </div>
-              <div className="sp-fac-body">
-                <div>
-                  <div className="sp-fac-info-title">इनडोअर बॅडमिंटन</div>
-                  <div className="sp-fac-info-sub">आंतरराष्ट्रीय मानकांच्या कोर्टसह</div>
-                </div>
-                <button className="sp-fac-arrow-btn">→</button>
-              </div>
-            </div>
-
-            {/* CARD 4: PICKLEBALL */}
-            <div className="sp-fac-card-v2">
-              <div className="sp-fac-img-box">
-                <img
-                  src="https://d3k88l35vy59af.cloudfront.net/A42/9663/1763357638128.jpg"
-                  alt="Pickleball"
-                  className="sp-fac-img"
-                />
-              </div>
-              <div className="sp-fac-body">
-                <div>
-                  <div className="sp-fac-info-title">पिकलबॉल</div>
-                  <div className="sp-fac-info-sub">नवीन खेळ, मजा आणि फिटनेस</div>
-                </div>
-                <button className="sp-fac-arrow-btn">→</button>
-              </div>
-            </div>
-
-            {/* CARD 5: YOGA */}
-            <div className="sp-fac-card-v2">
-              <div className="sp-fac-img-box">
-                <img
-                  src="https://d3k88l35vy59af.cloudfront.net/A42/9663/1763188841664.jpg"
-                  alt="Yoga"
-                  className="sp-fac-img"
-                />
-              </div>
-              <div className="sp-fac-body">
-                <div>
-                  <div className="sp-fac-info-title">योग & ध्यान कक्ष</div>
-                  <div className="sp-fac-info-sub">शारीरिक व मानसिक आरोग्य संतुलन</div>
-                </div>
-                <button className="sp-fac-arrow-btn">→</button>
-              </div>
-            </div>
-
-            {/* CARD 6: ZUMBA */}
-            <div className="sp-fac-card-v2">
-              <div className="sp-fac-img-box">
-                <img
-                  src="https://d3k88l35vy59af.cloudfront.net/A42/9663/1763357581614.png"
-                  alt="Zumba"
-                  className="sp-fac-img"
-                />
-              </div>
-              <div className="sp-fac-body">
-                <div>
-                  <div className="sp-fac-info-title">झुंबा & डान्स क्लास</div>
-                  <div className="sp-fac-info-sub">एनर्जेटिक सेशन्स आणि प्रोफेशनल कोडिंग</div>
-                </div>
-                <button className="sp-fac-arrow-btn">→</button>
-              </div>
-            </div>
-
-            {/* CARD 7: SQUASH */}
-            <div className="sp-fac-card-v2">
-              <div className="sp-fac-img-box">
-                <img
-                  src="https://d3k88l35vy59af.cloudfront.net/A42/9663/1763184843273.jpg"
-                  alt="Squash"
-                  className="sp-fac-img"
-                />
-              </div>
-              <div className="sp-fac-body">
-                <div>
-                  <div className="sp-fac-info-title">स्क्वॅश कोर्ट</div>
-                  <div className="sp-fac-info-sub">आंतरराष्ट्रीय मानकांच्या स्वच्छ कोर्ट</div>
-                </div>
-                <button className="sp-fac-arrow-btn">→</button>
-              </div>
-            </div>
-
-            {/* CARD 8: SNOOKER */}
-            <div className="sp-fac-card-v2">
-              <div className="sp-fac-img-box">
-                <img
-                  src="https://d3k88l35vy59af.cloudfront.net/A42/9663/1763357638129.jpg"
-                  alt="Snooker"
-                  className="sp-fac-img"
-                />
-              </div>
-              <div className="sp-fac-body">
-                <div>
-                  <div className="sp-fac-info-title">स्नूकर & पूल लाउंज</div>
-                  <div className="sp-fac-info-sub">एकग्रता वाढवणारा स्नूकर आणि पूल टेबल</div>
-                </div>
-                <button className="sp-fac-arrow-btn">→</button>
-              </div>
-            </div>
+              );
+            })}
           </div>
         </section>
 
         {/* ══════════════════════════════════════════════════════════════
-            4. MAGENTA GRADIENT STATS BANNER
+            FACILITY DETAIL POPUP MODAL
            ══════════════════════════════════════════════════════════════ */}
-        <section className="sp-gradient-stats-banner">
-          <div className="sp-banner-stat">
-            <div className="sp-banner-stat-icon">👥</div>
-            <div>
-              <div className="sp-banner-stat-val">10K+</div>
-              <div className="sp-banner-stat-lbl">सदस्य परिवार</div>
-            </div>
-          </div>
+        {selectedFacility &&
+          createPortal(
+            <div
+              className="sp-modal-overlay"
+              onClick={() => setSelectedFacility(null)}
+              onWheel={(e) => e.stopPropagation()}
+              onTouchMove={(e) => e.stopPropagation()}
+            >
+              <div className="sp-modal-container" onClick={(e) => e.stopPropagation()}>
+                <button
+                  className="sp-modal-close-btn"
+                  onClick={() => setSelectedFacility(null)}
+                  title="बंद करा"
+                >
+                  ✕
+                </button>
 
-          <div className="sp-banner-stat">
-            <div className="sp-banner-stat-icon">🏢</div>
-            <div>
-              <div className="sp-banner-stat-val">15+</div>
-              <div className="sp-banner-stat-lbl">वैविध्यपूर्ण उपक्रम</div>
-            </div>
-          </div>
+                <div className="sp-modal-hero-img-box">
+                  <img
+                    src={selectedFacility.img}
+                    alt={selectedFacility.titleMr}
+                    className="sp-modal-hero-img"
+                  />
+                  <div className="sp-modal-hero-badge">
+                    <span>{selectedFacility.icon}</span>
+                    <span>{selectedFacility.titleMr}</span>
+                  </div>
+                </div>
 
-          <div className="sp-banner-stat">
-            <div className="sp-banner-stat-icon">📍</div>
-            <div>
-              <div className="sp-banner-stat-val">15 एकर</div>
-              <div className="sp-banner-stat-lbl">भव्य संकुल परिसर</div>
-            </div>
-          </div>
+                <div className="sp-modal-content">
+                  <div className="sp-modal-header">
+                    <h3 className="sp-modal-title">
+                      {selectedFacility.icon} {selectedFacility.titleMr}
+                    </h3>
+                    <div className="sp-modal-timing">
+                      ⏰ उपलब्ध वेळ: <strong>{selectedFacility.timingMr}</strong>
+                    </div>
+                  </div>
 
-          <div className="sp-banner-stat">
-            <div className="sp-banner-stat-icon">⏰</div>
-            <div>
-              <div className="sp-banner-stat-val">6AM - 10PM</div>
-              <div className="sp-banner-stat-lbl">सुविधा उपलब्ध</div>
-            </div>
-          </div>
+                  <p className="sp-modal-desc">{selectedFacility.descMr}</p>
 
-          <div className="sp-banner-stat">
-            <div className="sp-banner-stat-icon">🛡️</div>
-            <div>
-              <div className="sp-banner-stat-val">100%</div>
-              <div className="sp-banner-stat-lbl">सुरक्षित व स्वच्छ</div>
-            </div>
-          </div>
-        </section>
+                  <div className="sp-modal-features-sec">
+                    <h4 className="sp-modal-features-title">✨ मुख्य वैशिष्ट्ये व सोयी:</h4>
+                    <ul className="sp-modal-features-list">
+                      {selectedFacility.featuresMr.map((feat, idx) => (
+                        <li key={idx} className="sp-modal-feat-item">
+                          <span className="sp-feat-check">✔</span> {feat}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="sp-modal-actions">
+                    <a
+                      href={`tel:${sportsClub.phones[0]}`}
+                      className="sp-modal-btn-call"
+                    >
+                      📞 आजच बुकिंग करा
+                    </a>
+                    <a
+                      href={`${sportsClub.whatsapp}&text=मला%20${encodeURIComponent(
+                        selectedFacility.titleMr
+                      )}%20बद्दल%20अधिक%20माहिती%20हवी%20आहे.`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="sp-modal-btn-wa"
+                    >
+                      💬 WhatsApp वर चौकशी करा
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>,
+            document.body
+          )}
 
         {/* ══════════════════════════════════════════════════════════════
-            5. "आरोग्य, फिटनेस आणि आनंदाचा एकत्रित प्रवास!" GRID
+            4. "आरोग्य, फिटनेस आणि आनंदाचा एकत्रित प्रवास!" GRID
            ══════════════════════════════════════════════════════════════ */}
         <section className="sp-journey-sec">
           <div className="sp-journey-grid">
@@ -335,7 +408,7 @@ export const SportsSection: React.FC = () => {
               <p className="sp-journey-sub">
                 प्रीतम स्पोर्ट्स अँड फिटनेस क्लब, सांगली तुमचं स्वागत आहे.
               </p>
-              <a href={`tel:${sportsClub.phones[0]}`} className="sp-btn-hero-pink">
+              <a href={`tel:${sportsClub.phones[0]}`} className="sp-btn-pink-hero">
                 आजच प्रवेश घ्या →
               </a>
             </div>
@@ -383,70 +456,6 @@ export const SportsSection: React.FC = () => {
         </section>
       </div>
 
-      {/* ══════════════════════════════════════════════════════════════
-          6. FOOTER SECTION
-         ══════════════════════════════════════════════════════════════ */}
-      <footer className="sp-footer">
-        <div className="sp-container">
-          <div className="sp-footer-grid">
-            {/* BRAND */}
-            <div>
-              <div className="sp-footer-brand-title">🏆 PREETAM® Est. 2025 • सांगली</div>
-              <p className="sp-footer-brand-desc">
-                सांगलीतील १.५ एकर भव्य क्रीडा व फिटनेस संकुल — एकाच छताखाली आरोग्याचा नवा अध्याय!
-              </p>
-            </div>
-
-            {/* QUICK LINKS */}
-            <div>
-              <div className="sp-footer-col-title">द्रुत दुवे</div>
-              <div className="sp-footer-links">
-                <a href="#" className="sp-footer-link">मुख्यपृष्ठ</a>
-                <a href="#" className="sp-footer-link">आमच्याबद्दल</a>
-                <a href="#" className="sp-footer-link">सुविधा</a>
-                <a href="#" className="sp-footer-link">कार्यक्रम</a>
-                <a href="#" className="sp-footer-link">गॅलरी</a>
-                <a href="#" className="sp-footer-link">संपर्क</a>
-              </div>
-            </div>
-
-            {/* FACILITIES */}
-            <div>
-              <div className="sp-footer-col-title">सुविधा</div>
-              <div className="sp-footer-links">
-                <a href="#" className="sp-footer-link">जिम & बॉडीबिल्डिंग</a>
-                <a href="#" className="sp-footer-link">स्विमिंग पूल</a>
-                <a href="#" className="sp-footer-link">बॅडमिंटन कोर्ट</a>
-                <a href="#" className="sp-footer-link">योगा & ध्यान</a>
-                <a href="#" className="sp-footer-link">झुंबा & डान्स</a>
-                <a href="#" className="sp-footer-link">स्क्वॅश कोर्ट</a>
-              </div>
-            </div>
-
-            {/* CONTACT */}
-            <div>
-              <div className="sp-footer-col-title">संपर्क माहिती</div>
-              <div className="sp-footer-contact">
-                <div>📞 9370237633</div>
-                <div>✉️ preetamclub@gmail.com</div>
-                <div>📍 प्रीतम स्पोर्ट्स अँड फिटनेस क्लब, सांगली, महाराष्ट्र - 416415</div>
-              </div>
-            </div>
-
-            {/* MAP PREVIEW */}
-            <div>
-              <div className="sp-footer-col-title">आम्हाला भेट द्या!</div>
-              <div className="sp-map-preview">
-                📍 सांगली-मिरज रोड, सांगली
-              </div>
-            </div>
-          </div>
-
-          <div className="sp-footer-bottom">
-            © 2025 Preetam Sports & Fitness Club. सर्व हक्क राखीव.
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };

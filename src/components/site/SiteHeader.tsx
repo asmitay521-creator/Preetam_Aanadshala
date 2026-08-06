@@ -38,7 +38,10 @@ export function SiteHeader() {
         {/* LOGO */}
         <Link
           to="/"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            window.dispatchEvent(new CustomEvent("reset-section"));
+          }}
           className="group flex items-center gap-3 cursor-pointer shrink-0"
         >
           <div className="leading-tight">
@@ -59,22 +62,29 @@ export function SiteHeader() {
 
         {/* DESKTOP NAV */}
         <nav className="hidden items-center gap-1 sm:gap-2 lg:flex">
-          {navLinks.map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
-              className="group relative rounded-full px-4 py-2 text-sm font-bold transition-all duration-300 hover:text-[#E60067]"
-              style={{ color: "#1A05A2" }}
-              activeProps={{ style: { color: "#E60067" } }}
-              activeOptions={{ exact: l.to === "/" }}
-            >
-              {isMr ? l.label : l.en}
-              <span
-                className="absolute inset-x-4 -bottom-1 h-0.5 origin-center scale-x-0 rounded-full transition-transform duration-300 group-hover:scale-x-100"
-                style={{ background: "#E60067" }}
-              />
-            </Link>
-          ))}
+          {navLinks.map((l) => {
+            const isActive = l.to === "/" ? pathname === "/" : pathname.startsWith(l.to);
+            return (
+              <Link
+                key={l.to}
+                to={l.to}
+                onClick={() => {
+                  if (l.to === "/") {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                    window.dispatchEvent(new CustomEvent("reset-section"));
+                  }
+                }}
+                className="group relative rounded-full px-4 py-2 text-sm font-bold transition-all duration-300 hover:text-[#E60067]"
+                style={{ color: isActive ? "#E60067" : "#1A05A2" }}
+              >
+                {isMr ? l.label : l.en}
+                <span
+                  className={`absolute inset-x-4 -bottom-1 h-0.5 origin-center rounded-full transition-transform duration-300 ${isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
+                  style={{ background: "#E60067" }}
+                />
+              </Link>
+            );
+          })}
 
           {/* LANGUAGE TOGGLE BUTTON */}
           <button
@@ -148,19 +158,30 @@ export function SiteHeader() {
         >
           <div className="h-0.5 w-full" style={{ background: "linear-gradient(90deg, #1A05A2, #E60067, #0284C7)" }} />
           <nav className="container-page flex flex-col py-4 gap-1">
-            {navLinks.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                className="rounded-xl px-4 py-3.5 text-base font-bold transition-all duration-200 flex items-center justify-between"
-                style={{ color: "#1A05A2" }}
-                activeProps={{ style: { color: "#E60067", background: "rgba(230, 0, 103, 0.08)" } }}
-                activeOptions={{ exact: l.to === "/" }}
-              >
-                <span>{isMr ? l.label : l.en}</span>
-                <span style={{ color: "#475569", fontSize: "0.75rem" }}>{isMr ? l.en : l.label}</span>
-              </Link>
-            ))}
+            {navLinks.map((l) => {
+              const isActive = l.to === "/" ? pathname === "/" : pathname.startsWith(l.to);
+              return (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  onClick={() => {
+                    setOpen(false);
+                    if (l.to === "/") {
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                      window.dispatchEvent(new CustomEvent("reset-section"));
+                    }
+                  }}
+                  className="rounded-xl px-4 py-3.5 text-base font-bold transition-all duration-200 flex items-center justify-between"
+                  style={{ 
+                    color: isActive ? "#E60067" : "#1A05A2",
+                    background: isActive ? "rgba(230, 0, 103, 0.08)" : "transparent"
+                  }}
+                >
+                  <span>{isMr ? l.label : l.en}</span>
+                  <span style={{ color: "#475569", fontSize: "0.75rem" }}>{isMr ? l.en : l.label}</span>
+                </Link>
+              );
+            })}
 
             {/* MOBILE LANGUAGE SWITCH OPTION */}
             <div className="mt-2 flex items-center justify-between px-4 py-3 rounded-xl bg-slate-50 border border-slate-200">
