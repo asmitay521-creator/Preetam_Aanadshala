@@ -5,7 +5,7 @@
 .journey-exact-v2 {
   position: relative;
   background: linear-gradient(180deg, #F4F8FC 0%, #EBF3FA 100%);
-  padding: 80px 20px 120px 20px;
+  padding: 20px 20px 120px 20px;
   overflow: hidden;
   font-family: inherit;
 }

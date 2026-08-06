@@ -128,61 +128,70 @@ function Gallery() {
             या श्रेणीत फोटो उपलब्ध नाहीत.
           </div>
         ) : (
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredImages.map((item, index) => (
-              <div
+              <motion.div
                 key={item.id}
+                initial={{ opacity: 0, y: 60, scale: 0.9, rotateX: -15 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.7, delay: (index % 3) * 0.15, ease: "easeOut" }}
+                whileHover={{ 
+                  scale: 1.03, 
+                  y: -12, 
+                  rotateZ: index % 2 === 0 ? 1.5 : -1.5,
+                  transition: { duration: 0.3 }
+                }}
                 onClick={() => openImage(index)}
-                className="group mb-6 break-inside-avoid cursor-pointer"
+                className="group relative cursor-pointer perspective-[1000px] z-10 hover:z-20"
               >
-                <div className="relative overflow-hidden rounded-[28px] shadow-xl transition-all duration-500 group-hover:-translate-y-3 group-hover:shadow-2xl">
+                {/* Animated Glowing Gradient Border */}
+                <div className="absolute inset-[-4px] rounded-[34px] bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-500 group-hover:animate-pulse" />
+                <div className="absolute inset-[-3px] rounded-[34px] bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                  {/* Variable Height Image */}
+                <div className="relative overflow-hidden rounded-[32px] shadow-lg bg-[#08142f] h-[340px] transition-all duration-500">
+
+                  {/* Fixed Height Image */}
                   <img
                     src={item.image}
                     alt={item.title}
                     loading="lazy"
-                    className={`w-full object-cover duration-700 group-hover:scale-110 ${
-                      index % 3 === 0
-                        ? "h-[520px]"
-                        : index % 2 === 0
-                        ? "h-[360px]"
-                        : "h-[270px]"
-                    }`}
+                    className="w-full h-full object-cover duration-700 group-hover:scale-110 group-hover:opacity-80"
                   />
 
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#08142f] via-[#08142f55] to-transparent opacity-80 group-hover:opacity-100 duration-500" />
+                  {/* Glow overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#120838] via-[#1a093399] to-transparent opacity-70 group-hover:opacity-90 duration-500" />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-pink-500 mix-blend-overlay duration-500" />
 
                   {/* HD Badge */}
                   <div className="absolute top-5 right-5">
-                    <span className="rounded-full bg-white/20 backdrop-blur-lg px-4 py-2 text-white text-xs font-semibold border border-white/20">
+                    <span className="rounded-full bg-white/20 backdrop-blur-md px-4 py-1.5 text-white text-[11px] font-bold border border-white/30 shadow-[0_0_15px_rgba(255,255,255,0.3)]">
                       📸 HD
                     </span>
                   </div>
 
                   {/* Category Badge */}
                   <div className="absolute top-5 left-5">
-                    <span className="rounded-full bg-pink-600 text-white px-4 py-2 text-xs font-semibold">
+                    <span className="rounded-full bg-gradient-to-r from-pink-600 to-purple-600 text-white px-4 py-1.5 text-[11px] font-bold shadow-lg border border-pink-400/50">
                       {item.category}
                     </span>
                   </div>
 
                   {/* Bottom Info */}
-                  <div className="absolute bottom-0 left-0 w-full p-6">
-                    <p className="text-pink-300 text-sm">{item.date}</p>
-                    <h3 className="text-2xl font-bold text-white mt-2">{item.title}</h3>
+                  <div className="absolute bottom-0 left-0 w-full p-7 transform transition-transform duration-500 group-hover:-translate-y-2">
+                    <p className="text-pink-300 text-xs font-bold uppercase tracking-wider mb-1">{item.date}</p>
+                    <h3 className="text-2xl font-black text-white drop-shadow-md">{item.title}</h3>
                   </div>
 
                   {/* Hover Arrow Button */}
-                  <div className="absolute bottom-6 right-6">
-                    <div className="h-12 w-12 rounded-full bg-white text-pink-600 flex items-center justify-center shadow-xl translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 duration-300">
-                      <ArrowUpRight size={20} />
+                  <div className="absolute bottom-7 right-7">
+                    <div className="h-12 w-12 rounded-full bg-gradient-to-tr from-pink-500 to-purple-500 text-white flex items-center justify-center shadow-[0_0_20px_rgba(230,0,103,0.5)] translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 duration-500 border border-white/30">
+                      <ArrowUpRight size={22} strokeWidth={2.5} />
                     </div>
                   </div>
 
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         )}

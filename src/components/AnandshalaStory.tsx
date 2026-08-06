@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import "./AnandshalaStory.css";
 
 import {
@@ -143,7 +144,7 @@ const AnandshalaStory: React.FC = () => {
 
         {/* ================= RIGHT SIDE ================= */}
 
-        <div className="campus-wrapper">
+        <motion.div className="campus-wrapper" initial={{ opacity: 0, x: 50, scale: 0.95 }} whileInView={{ opacity: 1, x: 0, scale: 1 }} transition={{ duration: 0.8, ease: "easeOut" }} viewport={{ once: true }}>
 
           {/* Decorative outside line */}
           <div className="outer-design-line"></div>
@@ -227,12 +228,11 @@ const AnandshalaStory: React.FC = () => {
 
           </div>
 
-        </div>
-
+        </motion.div>
       </div>
-
     </section>
   );
 };
 
 export default AnandshalaStory;
+

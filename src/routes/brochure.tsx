@@ -1,335 +1,228 @@
-import React from "react";
-import { useState } from "react";
-import { PageHero } from "@/components/site/PageHero";
-import { Reveal } from "@/components/site/Reveal";
-import { useLanguage } from "@/lib/use-language";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { BookOpen, Building2, Users, HeartHandshake, Handshake, ChevronLeft, ChevronRight, X, Download, Maximize2 } from "lucide-react";
 import { brochurePdfUrl } from "@/lib/brochure-pages";
 
-
-
 const brochureList = [
-  { id: 1, url: "/images/Screenshot 2026-07-31 103107.png", titleMr: "आनंदशाळा माहिती पत्रक व प्रवेश माहिती", captionEn: "Anandshala Brochure & Admission Details", categoryMr: "प्रवेश व नियम" },
-  { id: 2, url: "/images/Screenshot 2026-07-31 103131.png", titleMr: "५ तासांचे वेळापत्रक व १५ उपक्रम हॉल्स", captionEn: "5-Hour Daily Schedule & 15 Activity Halls", categoryMr: "वेळापत्रक & हॉल्स" },
-  { id: 3, url: "/images/Screenshot 2026-07-31 103213.png", titleMr: "५५ फुटांची राधाकृष्ण मूर्ती व मंदिर", captionEn: "55ft Radha Krishna Statue & Temple", categoryMr: "मंदिर परिसर" },
-  { id: 4, url: "/images/Screenshot 2026-07-31 103238.png", titleMr: "१ दिवस सहल भेट पास सोहळा व व्हॅन सेवा", captionEn: "One Day Picnic Pass & Transport Facility", categoryMr: "सहली & वाहतूक" },
-  { id: 5, url: "/images/aandshala sahal 1.jpeg", titleMr: "आनंद सहलीतील ज्येष्ठ नागरिकांचे आनंदी क्षण", captionEn: "Joyful Moments from Senior Citizen Trips", categoryMr: "सहली & फोटो" },
-  { id: 6, url: "/images/Screenshot 2026-07-31 103517.png", titleMr: "ज्येष्ठ नागरिक आनंद मेळावा सांगली", captionEn: "Senior Citizen Anand Mela Gathering", categoryMr: "मेळावा सोहळा" },
-  { id: 7, url: "/images/Screenshot 2026-07-31 103545.png", titleMr: "आनंद मेळावा सांस्कृतिक कार्यक्रम", captionEn: "Cultural Events & Celebrations", categoryMr: "सांस्कृतिक" },
-  { id: 8, url: "/images/Screenshot 2026-07-31 103659.png", titleMr: "विरंगुळा केंद्र - कॅरम, बुद्धिबळ व वाचनालय", captionEn: "Recreation Center: Chess, Carrom & Library", categoryMr: "विरंगुळा" },
-  { id: 9, url: "/images/Screenshot 2026-07-31 103712.png", titleMr: "स्विमिंग पूल, जीम व योग विरंगुळा केंद्र", captionEn: "Swimming Pool, Gym & Yoga Center", categoryMr: "फिटनेस" },
-  { id: 10, url: "/images/Screenshot 2026-07-31 103842.png", titleMr: "प्रीतम आपुलकी व जिव्हाळा ट्रस्ट सामाजिक कार्य", captionEn: "Preetam Apulki & Jivhala Trust Social Work", categoryMr: "सामाजिक कार्य" },
+  { id: 1, url: "/images/Screenshot 2026-07-31 103107.png", titleMr: "आनंदशाळा माहिती पत्रक व प्रवेश माहिती" },
+  { id: 2, url: "/images/Screenshot 2026-07-31 103131.png", titleMr: "५ तासांचे वेळापत्रक व १५ उपक्रम हॉल्स" },
+  { id: 3, url: "/images/Screenshot 2026-07-31 103213.png", titleMr: "५५ फुटांची राधाकृष्ण मूर्ती व मंदिर" },
+  { id: 4, url: "/images/Screenshot 2026-07-31 103238.png", titleMr: "१ दिवस सहल भेट पास सोहळा व व्हॅन सेवा" },
+  { id: 5, url: "/images/aandshala sahal 1.jpeg", titleMr: "आनंद सहलीतील ज्येष्ठ नागरिकांचे आनंदी क्षण" },
+];
+
+const indexItems = [
+  { num: "01", color: "bg-[#f44e7c]", title: "प्रवेश व नियम", desc: "आनंदशाळा माहिती पत्रक व प्रवेश माहिती" },
+  { num: "02", color: "bg-[#7961f2]", title: "संस्था परिचय", desc: "आनंदशाळेची परंपरा आणि ध्येय" },
+  { num: "03", color: "bg-[#2866dd]", title: "सुविधा व सेवा", desc: "आमच्या सुविधा व सेवांची माहिती" },
+  { num: "04", color: "bg-[#0bb5a9]", title: "आरोग्य व काळजी", desc: "आरोग्य सुविधा आणि वैद्यकीय सहाय्य" },
+  { num: "05", color: "bg-[#f59e0b]", title: "उपक्रम व संपर्क", desc: "उपक्रमांची माहिती व संपर्क तपशील" },
 ];
 
 function Brochure() {
-  const [active, setActive] = useState(0);
-  const [viewMode, setViewMode] = useState<"reader" | "grid">("reader");
+  const [activeIndex, setActiveIndex] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const { isEn } = useLanguage();
 
   return (
-    <div className="min-h-screen bg-slate-50/50">
-      <PageHero
-        eyebrow="Official Brochure"
-        title={isEn ? "Information Brochure" : "माहिती पत्रक"}
-        subtitle={isEn ? "Explore the complete official brochure online or download high-resolution pages." : "संपूर्ण माहिती पत्रक — सुंदर गॅलरी व ई-बुक स्वरूपात पहा आणि डाउनलोड करा."}
-      />
+    <div className="min-h-screen font-sans">
+      
+      {/* ══════════════════════════════════════════════════════════════
+          TOP LIGHT SECTION
+         ══════════════════════════════════════════════════════════════ */}
+      <div className="relative overflow-hidden bg-gradient-to-b from-[#f8faff] to-[#e6efff] py-4 sm:py-6">
+        {/* Background Decorations */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-40 bg-[radial-gradient(circle_at_20%_50%,#fce7f3_0%,transparent_50%),radial-gradient(circle_at_80%_50%,#e0e7ff_0%,transparent_50%)]" />
+        
+        {/* Floating elements mimicking the image */}
+        <div className="absolute left-[10%] top-[30%] opacity-20 pointer-events-none text-pink-500 rotate-[-15deg]">
+          <BookOpen size={80} />
+        </div>
+        <div className="absolute right-[10%] top-[25%] opacity-20 pointer-events-none text-blue-500 rotate-[15deg]">
+          <BookOpen size={80} />
+        </div>
 
-      <section className="container-page py-10 sm:py-14">
-        <Reveal>
+        <div className="relative z-10 flex flex-col items-center justify-center px-4 text-center">
           
-          {/* ══════════════════════════════════════════════════════════════
-              TOP ACTION BAR & VIEW SWITCHER
-             ══════════════════════════════════════════════════════════════ */}
-          <div className="mb-8 flex flex-wrap items-center justify-between gap-4 rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">
-            
-            {/* VIEW MODE TABS */}
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => setViewMode("reader")}
-                className={`flex items-center gap-2 rounded-2xl px-5 py-2.5 text-xs sm:text-sm font-extrabold transition-all cursor-pointer ${
-                  viewMode === "reader"
-                    ? "bg-[#E60067] text-white shadow-md shadow-[#E60067]/25"
-                    : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-                }`}
-              >
-                📖 {isEn ? "E-Book Reader" : "ई-बुक रीडर (Reader View)"}
-              </button>
+          <span className="mb-2 inline-flex items-center gap-2 rounded-full border border-pink-200 bg-white px-4 py-1 text-[10px] sm:text-xs font-bold tracking-widest text-[#e60067] shadow-sm uppercase">
+            🌿 Premium Collection
+          </span>
 
-              <button
-                onClick={() => setViewMode("grid")}
-                className={`flex items-center gap-2 rounded-2xl px-5 py-2.5 text-xs sm:text-sm font-extrabold transition-all cursor-pointer ${
-                  viewMode === "grid"
-                    ? "bg-[#E60067] text-white shadow-md shadow-[#E60067]/25"
-                    : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-                }`}
-              >
-                🖼️ {isEn ? "All Pages Grid" : "सर्व पाने ग्रिड (Gallery View)"}
-              </button>
-            </div>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight mb-2">
+            <span className="text-[#101f67]">अधिकृत</span>{" "}
+            <span className="text-[#e60067]">माहिती पत्रक</span>
+          </h1>
 
-            {/* DOWNLOAD FULL PDF BUTTON */}
-            {brochurePdfUrl && (
-              <a
-                href={brochurePdfUrl}
-                download="Preetam_Anandshala_Brochure.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-2xl bg-[#1A05A2] px-6 py-2.5 text-xs sm:text-sm font-extrabold text-white shadow-md hover:bg-[#150485] transition-all"
-              >
-                📥 {isEn ? "Download Complete PDF" : "संपूर्ण PDF डाऊनलोड करा"}
-              </a>
-            )}
-          </div>
+          <p className="text-xs sm:text-sm md:text-base text-slate-600 font-medium">
+            संपूर्ण माहिती पत्रक — सुंदर गॅलरी व ई-बुक स्वरूपात पहा.
+          </p>
 
-          {/* ══════════════════════════════════════════════════════════════
-              MODE 1: E-BOOK READER SHOWCASE
-             ══════════════════════════════════════════════════════════════ */}
-          {viewMode === "reader" && (
-            <div className="grid gap-8 lg:grid-columns lg:grid-cols-[1.3fr_0.7fr] items-start">
-              
-              {/* MAIN READER PREVIEW CARD */}
-              <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-4 shadow-xl">
-                <div className="relative flex items-center justify-center rounded-2xl bg-slate-950 p-2 min-h-[480px] max-h-[680px]">
-                  <img
-                    key={active}
-                    src={brochureList[active].url}
-                    alt={isEn ? brochureList[active].captionEn : brochureList[active].titleMr}
-                    className="animate-fade-up max-h-[640px] w-auto max-w-full rounded-lg object-contain shadow-2xl"
-                  />
-
-                  {/* FULLSCREEN HD ZOOM BUTTON */}
-                  <button
-                    onClick={() => setLightboxIndex(active)}
-                    className="absolute top-4 right-4 rounded-full bg-slate-900/80 px-4 py-2 text-xs font-bold text-white backdrop-blur-md hover:bg-[#E60067] transition-all cursor-pointer shadow-lg"
-                  >
-                    🔍 {isEn ? "View Full HD" : "HD फोटो पहा"}
-                  </button>
-                </div>
-
-                {/* BOTTOM CONTROLS */}
-                <div className="mt-4 flex items-center justify-between gap-4 border-t border-slate-100 pt-4">
-                  <button
-                    onClick={() => setActive((a) => (a - 1 + brochureList.length) % brochureList.length)}
-                    className="inline-flex items-center gap-2 rounded-full border-2 border-[#1A05A2] px-5 py-2.5 text-xs sm:text-sm font-extrabold text-[#1A05A2] hover:bg-[#1A05A2] hover:text-white transition-all cursor-pointer"
-                  >
-                    ← {isEn ? "Previous Page" : "मागील पान"}
-                  </button>
-
-                  <div className="text-center">
-                    <span className="inline-block rounded-full bg-[#E60067]/10 px-4 py-1 text-xs font-extrabold text-[#E60067]">
-                      {isEn ? `Page ${active + 1} of ${brochureList.length}` : `पान ${active + 1} / ${brochureList.length}`}
-                    </span>
-                    <h3 className="mt-1 text-sm font-black text-slate-800 line-clamp-1">
-                      {isEn ? brochureList[active].captionEn : brochureList[active].titleMr}
-                    </h3>
-                  </div>
-
-                  <button
-                    onClick={() => setActive((a) => (a + 1) % brochureList.length)}
-                    className="inline-flex items-center gap-2 rounded-full bg-[#E60067] px-5 py-2.5 text-xs sm:text-sm font-extrabold text-white shadow-md hover:bg-[#C2005A] transition-all cursor-pointer"
-                  >
-                    {isEn ? "Next Page" : "पुढील पान"} →
-                  </button>
-                </div>
-              </div>
-
-              {/* SIDEBAR THUMBNAILS LIST */}
-              <div className="flex flex-col rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-                <div className="mb-4 flex items-center justify-between border-b border-slate-100 pb-3">
-                  <h3 className="font-display text-base font-extrabold text-[#1A05A2]">
-                    📑 {isEn ? "Brochure Index" : "माहिती पत्रक अनुक्रमणिका"}
-                  </h3>
-                  <span className="text-xs font-bold text-slate-500">
-                    {brochureList.length} {isEn ? "Pages" : "पाने"}
-                  </span>
-                </div>
-
-                <div className="space-y-2.5 max-h-[540px] overflow-y-auto pr-1">
-                  {brochureList.map((item, index) => (
-                    <button
-                      key={item.id}
-                      onClick={() => setActive(index)}
-                      className={`group flex w-full items-center gap-3 rounded-2xl p-2.5 text-left transition-all cursor-pointer border ${
-                        active === index
-                          ? "border-[#E60067] bg-[#E60067]/10 shadow-sm"
-                          : "border-slate-100 bg-slate-50 hover:border-slate-300 hover:bg-slate-100"
-                      }`}
-                    >
-                      <div className="relative size-14 shrink-0 overflow-hidden rounded-xl bg-slate-900 border border-slate-200">
-                        <img
-                          src={item.url}
-                          alt={item.titleMr}
-                          className="size-full object-cover"
-                        />
-                        <span className="absolute top-1 left-1 rounded-md bg-slate-950/80 px-1.5 py-0.5 text-[9px] font-extrabold text-white">
-                          {item.id}
-                        </span>
-                      </div>
-
-                      <div className="flex-1 min-w-0">
-                        <span className="inline-block rounded-md bg-slate-200 px-2 py-0.5 text-[10px] font-extrabold text-slate-700">
-                          {item.categoryMr}
-                        </span>
-                        <h4 className={`mt-1 text-xs font-extrabold line-clamp-1 ${active === index ? "text-[#E60067]" : "text-slate-800"}`}>
-                          {isEn ? item.captionEn : item.titleMr}
-                        </h4>
-                      </div>
-                    </button>
-                  ))}
-                </div>
-
-                <a
-                  href={brochureList[active].url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-5 w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-slate-900 py-3.5 text-xs font-extrabold text-white shadow-md hover:bg-[#E60067] transition-all"
-                >
-                  ↗ {isEn ? "Open HD Image in New Tab" : "नवीन टॅबमध्ये HD फोटो उघडा"}
-                </a>
-              </div>
-
-            </div>
-          )}
-
-          {/* ══════════════════════════════════════════════════════════════
-              MODE 2: ALL PAGES GRID VIEW
-             ══════════════════════════════════════════════════════════════ */}
-          {viewMode === "grid" && (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {brochureList.map((item, index) => (
-                <div
-                  key={item.id}
-                  className="group relative flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white p-4 shadow-sm transition-all hover:-translate-y-1.5 hover:border-[#E60067] hover:shadow-xl"
-                >
-                  <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-slate-950">
-                    <img
-                      src={item.url}
-                      alt={item.titleMr}
-                      className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-
-                    <span className="absolute top-3 left-3 rounded-full bg-[#E60067] px-3 py-1 text-xs font-extrabold text-white shadow-md">
-                      पान {item.id}
-                    </span>
-
-                    <button
-                      onClick={() => {
-                        setActive(index);
-                        setLightboxIndex(index);
-                      }}
-                      className="absolute inset-0 flex items-center justify-center bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
-                    >
-                      <span className="rounded-full bg-white px-5 py-2.5 text-xs font-extrabold text-slate-900 shadow-xl">
-                        🔍 मोठे करून पहा
-                      </span>
-                    </button>
-                  </div>
-
-                  <div className="mt-4 flex flex-1 flex-col justify-between">
-                    <div>
-                      <span className="inline-block rounded-md bg-slate-100 px-2.5 py-1 text-[11px] font-extrabold text-slate-600">
-                        {item.categoryMr}
-                      </span>
-                      <h3 className="mt-2 text-xs sm:text-sm font-extrabold text-slate-900 leading-snug line-clamp-2">
-                        {isEn ? item.captionEn : item.titleMr}
-                      </h3>
-                    </div>
-
-                    <div className="mt-4 flex items-center gap-2">
-                      <button
-                        onClick={() => {
-                          setActive(index);
-                          setViewMode("reader");
-                        }}
-                        className="flex-1 rounded-xl bg-slate-100 py-2.5 text-center text-xs font-extrabold text-slate-800 hover:bg-[#E60067] hover:text-white transition-all cursor-pointer"
-                      >
-                        📖 रीडर मोड
-                      </button>
-
-                      <a
-                        href={item.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="rounded-xl border border-slate-200 p-2.5 text-slate-700 hover:border-[#1A05A2] hover:text-[#1A05A2] transition-all"
-                        title="HD इमेज उघडा"
-                      >
-                        ↗
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-
-        </Reveal>
-      </section>
+        </div>
+      </div>
 
       {/* ══════════════════════════════════════════════════════════════
-          HD LIGHTBOX POPUP MODAL
+          BOTTOM DARK SECTION
          ══════════════════════════════════════════════════════════════ */}
-      {lightboxIndex !== null && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/90 p-4 backdrop-blur-md"
-          onClick={() => setLightboxIndex(null)}
-        >
-          <div
-            className="relative flex max-h-[90vh] w-full max-w-5xl flex-col rounded-3xl bg-slate-900 p-4 shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
+      <div className="bg-[#15121e] px-4 py-6 sm:py-8 relative min-h-[70vh] flex items-center justify-center">
+        <div className="w-full max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-6 xl:gap-8 items-stretch">
+          
+          {/* LEFT: BROCHURE COVER & STATS */}
+          <div className="flex flex-col overflow-hidden rounded-[2rem] bg-[#1a2b6d] shadow-2xl">
+            
+            {/* Brochure Image */}
+            <div 
+              className="relative w-full bg-[#cbe3fa] cursor-pointer group flex-1 flex items-center justify-center p-2"
+              onClick={() => setLightboxIndex(activeIndex)}
+            >
+              <AnimatePresence mode="wait">
+                <motion.img 
+                  key={activeIndex}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 20 }}
+                  transition={{ duration: 0.3 }}
+                  src={brochureList[activeIndex].url} 
+                  alt={brochureList[activeIndex].titleMr} 
+                  className="w-full max-h-[500px] object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+                />
+              </AnimatePresence>
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                <span className="bg-white/90 text-[#1a2b6d] px-6 py-2 rounded-full font-bold opacity-0 group-hover:opacity-100 transition-opacity translate-y-4 group-hover:translate-y-0 shadow-lg flex items-center gap-2">
+                  <Maximize2 size={16} /> मोठे करून पहा
+                </span>
+              </div>
+            </div>
+
+            {/* Bottom Stats */}
+            <div className="grid grid-cols-4 divide-x divide-white/20 bg-[#162768] text-white py-6">
+              <div className="flex flex-col items-center text-center px-2">
+                <Building2 size={28} className="mb-2 opacity-80" />
+                <span className="text-[10px] sm:text-xs font-semibold leading-snug text-blue-100">दीड़ एकर<br/>परिसरात</span>
+              </div>
+              <div className="flex flex-col items-center text-center px-2">
+                <Users size={28} className="mb-2 opacity-80" />
+                <span className="text-[10px] sm:text-xs font-semibold leading-snug text-blue-100">2000+ हून अधिक<br/>संतुष्ट लाभार्थी</span>
+              </div>
+              <div className="flex flex-col items-center text-center px-2">
+                <HeartHandshake size={28} className="mb-2 opacity-80" />
+                <span className="text-[10px] sm:text-xs font-semibold leading-snug text-blue-100">15+ वर्षाची<br/>सेवेची परंपरा</span>
+              </div>
+              <div className="flex flex-col items-center text-center px-2">
+                <Handshake size={28} className="mb-2 opacity-80" />
+                <span className="text-[10px] sm:text-xs font-semibold leading-snug text-blue-100">संस्कार व सांस्कृतिक<br/>कार्यक्रम</span>
+              </div>
+            </div>
+
+          </div>
+
+          {/* RIGHT: INDEX LIST */}
+          <div className="flex flex-col rounded-[2rem] border border-[#2b253b] bg-[#1c1828] p-6 sm:p-8 shadow-2xl">
+            
+            <div className="mb-6 flex items-center gap-3">
+              <BookOpen className="text-pink-500" size={24} />
+              <h2 className="text-xl sm:text-2xl font-bold text-white">अनुक्रमणिका</h2>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              {indexItems.map((item, idx) => (
+                <button
+                  key={item.num}
+                  onClick={() => setActiveIndex(idx)}
+                  className={`group flex w-full items-center gap-4 rounded-2xl border p-3 text-left transition-all ${
+                    activeIndex === idx 
+                      ? "border-pink-500/50 bg-[#2a243a] shadow-lg shadow-pink-500/10"
+                      : "border-transparent bg-[#252033] hover:border-[#38304c] hover:bg-[#2a243a]"
+                  }`}
+                >
+                  <div className={`flex h-12 w-14 shrink-0 items-center justify-center rounded-xl text-lg font-black text-white shadow-inner ${item.color}`}>
+                    {item.num}
+                  </div>
+                  <div>
+                    <h3 className="text-sm sm:text-base font-bold text-pink-400 group-hover:text-pink-300 transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="mt-0.5 text-xs text-slate-400">
+                      {item.desc}
+                    </p>
+                  </div>
+                </button>
+              ))}
+            </div>
+
+            {/* Download Button */}
+            {brochurePdfUrl && (
+              <a 
+                href={brochurePdfUrl}
+                download="Brochure.pdf"
+                className="mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 py-3.5 text-sm font-bold text-white shadow-lg hover:bg-blue-500 transition-all"
+              >
+                <Download size={18} /> संपूर्ण PDF डाऊनलोड करा
+              </a>
+            )}
+
+          </div>
+
+        </div>
+      </div>
+
+      {/* ══════════════════════════════════════════════════════════════
+          LIGHTBOX FOR READING BROCHURE
+         ══════════════════════════════════════════════════════════════ */}
+      <AnimatePresence>
+        {lightboxIndex !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4 backdrop-blur-xl"
+            onClick={() => setLightboxIndex(null)}
           >
-            <button
-              onClick={() => setLightboxIndex(null)}
-              className="absolute top-4 right-4 z-10 grid size-10 place-items-center rounded-full bg-white/10 text-xl font-bold text-white hover:bg-[#E60067] transition-all cursor-pointer"
+            <div
+              className="relative flex max-h-[95vh] w-full max-w-5xl flex-col items-center justify-center"
+              onClick={(e) => e.stopPropagation()}
             >
-              ✕
-            </button>
+              <button
+                onClick={() => setLightboxIndex(null)}
+                className="absolute -top-12 right-0 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-pink-500 transition-all cursor-pointer border border-white/20"
+              >
+                <X size={20} />
+              </button>
 
-            <button
-              onClick={() => setLightboxIndex((prev) => (prev === null || prev === 0 ? brochureList.length - 1 : prev - 1))}
-              className="absolute top-1/2 left-4 z-10 -translate-y-1/2 grid size-12 place-items-center rounded-full bg-white/10 text-2xl font-bold text-white hover:bg-[#E60067] transition-all cursor-pointer"
-            >
-              ‹
-            </button>
+              <button
+                onClick={() => setLightboxIndex((prev) => (prev === null || prev === 0 ? brochureList.length - 1 : prev - 1))}
+                className="absolute top-1/2 left-2 z-10 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-pink-500 transition-all cursor-pointer border border-white/20 hover:scale-110"
+              >
+                <ChevronLeft size={24} />
+              </button>
 
-            <button
-              onClick={() => setLightboxIndex((prev) => (prev === null || prev === brochureList.length - 1 ? 0 : prev + 1))}
-              className="absolute top-1/2 right-4 z-10 -translate-y-1/2 grid size-12 place-items-center rounded-full bg-white/10 text-2xl font-bold text-white hover:bg-[#E60067] transition-all cursor-pointer"
-            >
-              ›
-            </button>
+              <button
+                onClick={() => setLightboxIndex((prev) => (prev === null || prev === brochureList.length - 1 ? 0 : prev + 1))}
+                className="absolute top-1/2 right-2 z-10 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-pink-500 transition-all cursor-pointer border border-white/20 hover:scale-110"
+              >
+                <ChevronRight size={24} />
+              </button>
 
-            <div className="flex max-h-[75vh] items-center justify-center overflow-hidden rounded-2xl bg-black">
-              <img
+              <motion.img
+                key={lightboxIndex}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3 }}
                 src={brochureList[lightboxIndex].url}
                 alt={brochureList[lightboxIndex].titleMr}
-                className="max-h-[75vh] w-auto max-w-full object-contain"
+                className="max-h-[85vh] w-auto max-w-full rounded-xl shadow-2xl object-contain"
               />
-            </div>
 
-            <div className="mt-4 flex items-center justify-between px-2 text-white">
-              <div>
-                <span className="text-xs font-bold text-[#E60067]">
-                  पान {lightboxIndex + 1} / {brochureList.length}
-                </span>
-                <h4 className="text-sm font-extrabold">
-                  {isEn ? brochureList[lightboxIndex].captionEn : brochureList[lightboxIndex].titleMr}
-                </h4>
+              <div className="absolute bottom-4 bg-black/60 backdrop-blur-md px-6 py-2 rounded-full text-white text-sm font-bold border border-white/10">
+                पान {lightboxIndex + 1} / {brochureList.length}
               </div>
-
-              <a
-                href={brochureList[lightboxIndex].url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full bg-[#E60067] px-5 py-2 text-xs font-extrabold text-white shadow-md hover:bg-[#C2005A] transition-all"
-              >
-                HD डाऊनलोड करा ↗
-              </a>
             </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </div>
   );
 }
 
 export default Brochure;
+

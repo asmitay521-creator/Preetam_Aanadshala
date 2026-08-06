@@ -10,7 +10,7 @@ import SpecialReasons from "@/components/site/SpecialReasons";
 import HomeHero from "@/components/HomeHero/HomeHero";
 import SportsSection from "@/components/SportsSection";
 import JourneySection from "@/components/journey/JourneySection";
-
+import ScheduleSection from "@/components/ScheduleSection";
 
 
 const publicImages = [
@@ -54,21 +54,18 @@ const reasonsList = [
 ];
 
 const activityHalls = [
-  { icon: "♟️", titleMr: "बैठे खेळ हॉल", titleEn: "Indoor Games Hall", textMr: "कॅरम, बुद्धिबळ, पत्ते, सापाशिडी इत्यादी खेळ खेळणे.", textEn: "Play Carrom, Chess, Cards, Snakes & Ladders." },
-  { icon: "🎨", titleMr: "आर्ट हॉल", titleEn: "Arts & Crafts Studio", textMr: "चित्रकला, हस्तकला, विणकाम व कला शिकणे व सराव करणे.", textEn: "Learn painting, handicrafts, knitting & creative arts." },
-  { icon: "🎵", titleMr: "संगीत उपकरणे हॉल", titleEn: "Music Instrument Lounge", textMr: "तबला, गिटार, हार्मोनिअम, पेटी, पियानो, सॅक्सोफोन, बासरी शिकणे व आनंद घेणे.", textEn: "Play & learn Tabla, Guitar, Harmonium, Piano, Saxophone & Flute." },
-  { icon: "💻", titleMr: "माहिती तंत्रज्ञान हॉल", titleEn: "IT & Digital Learning Hall", textMr: "कॉम्प्युटर, लॅपटॉप, मोबाईल, इंटरनेट व प्रिंटर शिकणे.", textEn: "Learn computer basics, smartphones, internet & printing." },
-  { icon: "🥳", titleMr: "करमणूक हॉल", titleEn: "Recreation & Fun Hall", textMr: "गप्पा-गोष्टी, अंताक्षरी, पासिंग गेम व समूह खेळ खेळणे.", textEn: "Enjoy Antakshari, group games, conversations & storytelling." },
-  { icon: "🏊", titleMr: "स्विमिंग पूल", titleEn: "Swimming Pool Complex", textMr: "पोहण्याचा व स्वच्छ पाण्यात खेळण्याचा मनसोक्त आनंद घेणे.", textEn: "Enjoy swimming in clean filtered water pool." },
-  { icon: "📽️", titleMr: "संस्कार व संप्रदाय हॉल", titleEn: "Spiritual & Cultural Hall", textMr: "विविध धार्मिक कार्यक्रम, संस्कार वर्ग व व्हिडिओ पाहणे.", textEn: "Spiritual discourses, value classes & video screenings." },
-  { icon: "🏸", titleMr: "विविध खेळ हॉल", titleEn: "Sports Arena", textMr: "बॅडमिंटन, टेबल टेनिस, स्नुकर व स्क्वॅश खेळणे.", textEn: "Play Badminton, Table Tennis, Snooker & Squash." },
-  { icon: "🏋️", titleMr: "व्यायाम हॉल", titleEn: "Fitness & Wellness Lounge", textMr: "जीम, योगा, मेडिटेशन, झुम्बा व डान्स इत्यादी करणे.", textEn: "Gym, Yoga, Meditation, Zumba & Dance sessions." },
-  { icon: "🍲", titleMr: "पाककृती हॉल", titleEn: "Culinary & Cooking Studio", textMr: "स्वयंपाक, नाश्ता, जेवण, आईस्क्रीम, सरबते व मिठाई इत्यादी बनवणे शिकणे.", textEn: "Learn culinary skills, mocktails, sweets & snacks." },
-  { icon: "🛌", titleMr: "विश्रांती हॉल", titleEn: "Relaxation Lounge", textMr: "वाचन करणे, शांत झोपणे किंवा आराम खुर्चीत विश्रांती घेणे.", textEn: "Read books, quiet nap, or relax on recliners." },
-  { icon: "🎬", titleMr: "थिएटर हॉल", titleEn: "Mini Theatre Hall", textMr: "टी.व्ही., सिनेमा, नाटक व सांस्कृतिक कार्यक्रम पाहणे.", textEn: "Watch movies, TV shows, dramas & cultural performances." },
-  { icon: "🛕", titleMr: "मंदिर हॉल", titleEn: "Temple & Meditation Hall", textMr: "५५ फुटांच्या मूर्तीसमोर भजन, कीर्तन, अभंग, जप व नामस्मरण करणे.", textEn: "Bhajans, Kirtans, chanting in front of 55ft Krishna statue." },
-  { icon: "😂", titleMr: "हास्य व कराओके हॉल", titleEn: "Laughter & Karaoke Studio", textMr: "हास्याचे वर्ग, गाण्याचे कराओके कार्यक्रम व व्हिडिओ पाहणे.", textEn: "Laughter yoga sessions, karaoke singing & comedy videos." },
-  { icon: "🚌", titleMr: "ई-रिक्षा व सायकली", titleEn: "E-Ricksha & Bicycle Rides", textMr: "इलेक्ट्रिक गाडी, २, ३, ४ व ६ चाकी रंगीत सायकलींचा आनंद घेणे.", textEn: "Enjoy ride on electric van, 2, 3, 4 & 6-wheel bicycles." },
+  { icon: "♟️", titleMr: "बैठे खेळ हॉल", titleEn: "Indoor Games Hall", textMr: "कॅरम, बुद्धिबळ, पत्ते, सापाशिडी इत्यादी खेळ खेळणे.", textEn: "Play Carrom, Chess, Cards, Snakes & Ladders.", image: "baithe khel.png" },
+  { icon: "🎨", titleMr: "आर्ट हॉल", titleEn: "Arts & Crafts Studio", textMr: "चित्रकला, हस्तकला, विणकाम व कला शिकणे व सराव करणे.", textEn: "Learn painting, handicrafts, knitting & creative arts.", image: "aart hall.png" },
+  { icon: "🎵", titleMr: "संगीत उपकरणे हॉल", titleEn: "Music Instrument Lounge", textMr: "तबला, गिटार, हार्मोनिअम, पेटी, पियानो, सॅक्सोफोन, बासरी शिकणे व आनंद घेणे.", textEn: "Play & learn Tabla, Guitar, Harmonium, Piano, Saxophone & Flute.", image: "sangit hall.png" },
+  { icon: "💻", titleMr: "माहिती तंत्रज्ञान हॉल", titleEn: "IT & Digital Learning Hall", textMr: "कॉम्प्युटर, लॅपटॉप, मोबाईल, इंटरनेट व प्रिंटर शिकणे.", textEn: "Learn computer basics, smartphones, internet & printing.", image: "mahiti tantradyan hall.png" },
+  { icon: "🥳", titleMr: "करमणूक हॉल", titleEn: "Recreation & Fun Hall", textMr: "गप्पा-गोष्टी, अंताक्षरी, पासिंग गेम व समूह खेळ खेळणे.", textEn: "Enjoy Antakshari, group games, conversations & storytelling.", image: "karmnuk hall.png" },
+  { icon: "🏊", titleMr: "स्विमिंग पूल", titleEn: "Swimming Pool Complex", textMr: "पोहण्याचा व स्वच्छ पाण्यात खेळण्याचा मनसोक्त आनंद घेणे.", textEn: "Enjoy swimming in clean filtered water pool.", image: "swimming hall.png" },
+  { icon: "📽️", titleMr: "संस्कार व संप्रदाय हॉल", titleEn: "Spiritual & Cultural Hall", textMr: "विविध धार्मिक कार्यक्रम, संस्कार वर्ग व व्हिडिओ पाहणे.", textEn: "Spiritual discourses, value classes & video screenings.", image: "sanskar sampraday hall.png" },
+  { icon: "🏸", titleMr: "विविध खेळ हॉल", titleEn: "Sports Arena", textMr: "बॅडमिंटन, टेबल टेनिस, स्नुकर व स्क्वॅश खेळणे.", textEn: "Play Badminton, Table Tennis, Snooker & Squash.", image: "tebal tenis.png" },
+  { icon: "🏋️", titleMr: "व्यायाम हॉल", titleEn: "Fitness & Wellness Lounge", textMr: "जीम, योगा, मेडिटेशन, झुम्बा व डान्स इत्यादी करणे.", textEn: "Gym, Yoga, Meditation, Zumba & Dance sessions.", image: "vyayam hall.png" },
+  { icon: "🍲", titleMr: "पाककृती हॉल", titleEn: "Culinary & Cooking Studio", textMr: "स्वयंपाक, नाश्ता, जेवण, आईस्क्रीम, सरबते व मिठाई इत्यादी बनवणे शिकणे.", textEn: "Learn culinary skills, mocktails, sweets & snacks.", image: "pakruti hall.png" },
+  { icon: "🛌", titleMr: "विश्रांती हॉल", titleEn: "Relaxation Lounge", textMr: "वाचन करणे, शांत झोपणे किंवा आराम खुर्चीत विश्रांती घेणे.", textEn: "Read books, quiet nap, or relax on recliners.", image: "vishranti hall.png" },
+  { icon: "🎬", titleMr: "थिएटर हॉल", titleEn: "Mini Theatre Hall", textMr: "टी.व्ही., सिनेमा, नाटक व सांस्कृतिक कार्यक्रम पाहणे.", textEn: "Watch movies, TV shows, dramas & cultural performances.", image: "ChatGPT Image Aug 5, 2026, 04_15_03 PM.png" },
 ];
 
 const dailySchedule = [
@@ -482,29 +479,6 @@ function IndexComponent() {
       {/* ============================================================== */}
       {selectedSection === "aanandshala" && (
         <div id="aanandshala-section" className="animate-fade-up">
-          {/* TOP BACK / NAVIGATION BAR */}
-          <div className="sticky top-[70px] z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-[#E60067]/20 py-3 px-4 shadow-md flex items-center justify-between max-w-7xl mx-auto rounded-full my-4">
-            <button
-              onClick={() => handleSectionSelect(null)}
-              className="inline-flex items-center gap-2 rounded-full bg-[#1A05A2] px-5 py-2 text-xs sm:text-sm font-extrabold text-white shadow-md hover:bg-[#E60067] transition-all cursor-pointer"
-            >
-              ← {isEn ? "All 2 Sections Menu" : "सर्व २ प्रकल्प मेनू (All Sections)"}
-            </button>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => handleSectionSelect("aanandshala")}
-                className="rounded-full bg-[#E60067] px-4 py-2 text-xs sm:text-sm font-extrabold text-white shadow-sm cursor-pointer"
-              >
-                🏠 {isEn ? "Anandashram" : "विभाग १ : आनंदआश्रम"}
-              </button>
-              <button
-                onClick={() => handleSectionSelect("sports")}
-                className="rounded-full bg-[#1A05A2]/10 border border-[#1A05A2]/30 px-4 py-2 text-xs sm:text-sm font-extrabold text-[#1A05A2] hover:bg-[#1A05A2] hover:text-white transition-all cursor-pointer"
-              >
-                🏋️‍♂️ {isEn ? "Sports Club" : "विभाग २ : स्पोर्ट्स क्लब"}
-              </button>
-            </div>
-          </div>
 
           {/* HOME HERO BANNER */}
           <HomeHero />
@@ -544,379 +518,87 @@ function IndexComponent() {
 
 
           {/* 15 ACTIVITY HALLS */}
-          <section className="container-page py-16">
-            <Reveal className="text-center">
-              <span className="text-xs uppercase tracking-[0.3em] text-accent font-bold">
-                {isEn ? "Halls & Activities" : "उपक्रम व हॉल्स"}
-              </span>
-              <h2 className="mt-3 font-display text-3xl sm:text-4xl font-extrabold">
-                {isEn ? "15 Special Activity Halls in Anandshala" : "आनंदशाळेतील १५ विशेष उपक्रम हॉल्स"}
-              </h2>
-              <p className="mt-2 text-muted-foreground max-w-2xl mx-auto text-sm">
-                {isEn ? "15 rich halls designed for daily joy, learning, recreation and hobbies!" : "आनंदशाळेत दररोज तुमच्या आवडीनुसार मनसोक्त आनंद घेता येईल असे १५ समृद्ध हॉल्स!"}
-              </p>
-            </Reveal>
+          <section className="relative py-20 bg-slate-50 dark:bg-[#0a0a1a] overflow-hidden">
+            {/* Background Decorations */}
+            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#E60067]/30 to-transparent" />
+            <div className="absolute -top-40 -right-40 size-[500px] bg-pink-500/5 rounded-full blur-[100px]" />
+            <div className="absolute top-40 -left-40 size-[400px] bg-blue-600/5 rounded-full blur-[100px]" />
 
-            <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {activityHalls.map((hall, i) => (
-                <Reveal key={hall.titleMr} delay={(i % 3) * 70}>
-                  <div className="glow-card group h-full p-5 transition-all duration-400">
-                    <div className="flex items-center gap-3">
-                      <span className="grid size-11 place-items-center rounded-xl bg-amber-500/10 text-2xl transition-transform group-hover:scale-110">
-                        {hall.icon}
-                      </span>
-                      <h3 className="font-display text-base font-bold text-foreground">
-                        {isEn ? hall.titleEn : hall.titleMr}
-                      </h3>
-                    </div>
-                    <p className="mt-3 text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                      {isEn ? hall.textEn : hall.textMr}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </section>
-
-          {/* DAILY SCHEDULE */}
-          <section className="relative py-16 sm:py-24 px-4 overflow-hidden bg-gradient-to-b from-[#FAF5EE] via-[#F6ECE0] to-[#EFE2D2] dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 border-y border-[#E6D2BF]">
-            <div className="pointer-events-none absolute top-0 left-0 size-80 sm:size-[400px]">
-              <svg className="size-full" viewBox="0 0 400 400" fill="none">
-                <path d="M 0 0 L 320 0 Q 240 160 0 280 Z" fill="#1B2A4A" opacity="0.95" />
-                <path d="M 0 0 L 340 0 Q 255 170 0 295 Z" fill="none" stroke="#D99A26" strokeWidth="4" />
-                <path d="M 0 0 L 360 0 Q 270 180 0 310 Z" fill="none" stroke="#E6D2BF" strokeWidth="1.5" strokeDasharray="6 6" />
-              </svg>
-            </div>
-
-            <div className="pointer-events-none absolute bottom-0 right-0 size-80 sm:size-[420px] opacity-25">
-              <svg className="size-full" viewBox="0 0 400 400" fill="none" stroke="#D99A26" strokeWidth="1">
-                {Array.from({ length: 16 }).map((_, rIdx) => (
-                  <line key={rIdx} x1="400" y1="400" x2={400 - Math.cos((rIdx * Math.PI) / 30) * 400} y2={400 - Math.sin((rIdx * Math.PI) / 30) * 400} />
-                ))}
-              </svg>
-            </div>
-
-            <div className="container-page relative z-10 max-w-7xl mx-auto">
-              <Reveal className="text-center max-w-3xl mx-auto mb-16">
-                <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#3B0E17] font-extrabold bg-[#F2DFBA] px-4 py-1.5 rounded-full border border-[#D99A26] shadow-sm">
-                  ✦ {isEn ? "Schedule & Routine" : "वेळापत्रक"} ✦
+            <div className="container-page relative z-10 max-w-7xl mx-auto px-4">
+              <Reveal className="text-center mb-16">
+                <span className="inline-block py-1.5 px-5 rounded-full bg-pink-500/10 border border-pink-500/20 text-xs font-black tracking-widest text-[#E60067] uppercase mb-4 shadow-sm">
+                  {isEn ? "Halls & Activities" : "उपक्रम व हॉल्स"}
                 </span>
-                <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-black text-[#1E293B] dark:text-white tracking-tight drop-shadow-sm">
-                  {isEn ? "Anandashala Daily Schedule (11:00 AM to 5:00 PM)" : "आनंदशाळेचे दैनिक वेळापत्रक (सकाळी ११ ते सायं. ५)"}
+                <h2 className="font-display text-4xl sm:text-5xl font-extrabold text-[#1a1a40] dark:text-white drop-shadow-sm tracking-tight mb-4">
+                  {isEn ? "15 Special Activity Halls in Anandshala" : "आनंदशाळेतील १५ विशेष उपक्रम हॉल्स"}
                 </h2>
-                <div className="flex items-center justify-center gap-3 my-3">
-                  <div className="h-[1.5px] w-16 bg-gradient-to-r from-transparent via-[#D99A26] to-transparent" />
-                  <span className="text-[#B8860B] text-sm font-bold">❦</span>
-                  <div className="h-[1.5px] w-16 bg-gradient-to-r from-transparent via-[#D99A26] to-transparent" />
-                </div>
-                <p className="text-sm sm:text-base text-[#475569] dark:text-slate-300 font-bold max-w-2xl mx-auto">
-                  {isEn ? "Planned daily activities for all-round development" : "विद्यार्थ्यांच्या सर्वांगीण विकासासाठी नियोजित रोजचे उपक्रम"}
+                <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-base sm:text-lg font-medium leading-relaxed">
+                  {isEn ? "15 thoughtfully designed halls tailored to fill your everyday with joy, learning, and endless recreation!" : "आनंदशाळेत दररोज तुमच्या आवडीनुसार मनसोक्त आनंद घेता येईल असे १५ समृद्ध आणि सुसज्ज हॉल्स!"}
                 </p>
               </Reveal>
 
-              {/* DESKTOP FLOW */}
-              <div className="hidden lg:block relative py-8">
-                <svg className="absolute inset-0 size-full pointer-events-none z-0 overflow-visible" preserveAspectRatio="none">
-                  <path d="M 120 105 L 1050 105 Q 1150 105 1150 225 Q 1150 345 1050 345 L 150 345" fill="none" stroke="#1B2A4A" strokeWidth="12" strokeLinecap="round" />
-                  <path d="M 120 105 L 1050 105 Q 1150 105 1150 225 Q 1150 345 1050 345 L 150 345" fill="none" stroke="#E0B85C" strokeWidth="3.5" strokeDasharray="9 7" />
-                </svg>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+                {activityHalls.map((hall, i) => (
+                  <Reveal key={hall.titleMr} delay={(i % 4) * 80} className={`${i === 0 || i === 7 ? 'lg:col-span-2' : ''}`}>
+                    <div className="group relative h-[320px] rounded-3xl overflow-hidden bg-slate-900 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer border border-white/10">
+                      
+                      {/* Background Image / Placeholder Gradient */}
+                      {hall.image ? (
+                        <img 
+                          src={`/images/subimg/${hall.image}`} 
+                          alt={hall.titleMr}
+                          loading="lazy"
+                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#1A05A2] via-[#E60067] to-orange-500 opacity-80 transition-transform duration-700 group-hover:scale-110" />
+                      )}
 
-                <div className="grid grid-cols-4 gap-6 relative z-10 mb-20">
-                  {dailySchedule.slice(0, 4).map((item, idx) => (
-                    <Reveal key={item.step} delay={idx * 120}>
-                      <div className="group relative flex flex-col items-center">
-                        <div className="relative -mb-6 z-20 flex flex-col items-center">
-                          <span className="size-10 grid place-items-center rounded-full bg-[#1B2A4A] border-2 border-[#D99A26] text-[#E0B85C] font-black text-sm shadow-xl group-hover:scale-110 transition-transform">
-                            {item.step}
-                          </span>
-                          <div className="size-16 rounded-full bg-gradient-to-b from-[#FFFDF9] to-[#F7EACD] border-2 border-[#D99A26] shadow-[0_0_20px_rgba(217,154,38,0.35)] grid place-items-center -mt-3 group-hover:rotate-6 group-hover:scale-105 transition-transform">
-                            {item.iconSvg}
+                      {/* Overlays */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+                      
+                      {/* Content Container */}
+                      <div className="absolute inset-0 p-6 flex flex-col justify-end z-10 text-white">
+                        
+                        {/* Icon & Title Row */}
+                        <div className="flex items-center gap-4 transform transition-transform duration-500 group-hover:-translate-y-4">
+                          <div className="grid size-12 shrink-0 place-items-center rounded-2xl bg-white/20 backdrop-blur-md shadow-inner text-2xl border border-white/30 group-hover:bg-[#E60067] transition-colors duration-500">
+                            {hall.icon}
                           </div>
-                        </div>
-                        <div className="w-full pt-9 p-6 rounded-[2.2rem] border-2 border-[#E2CBAE] bg-[#FFFDF9] dark:bg-slate-900 shadow-[0_15px_40px_rgba(129,11,56,0.06)] group-hover:shadow-[0_25px_60px_rgba(129,11,56,0.18)] group-hover:-translate-y-2.5 transition-all duration-300 text-center flex flex-col justify-between min-h-[225px]">
                           <div>
-                            <span className="inline-block rounded-full bg-[#F3DEB8] text-[#4A1515] px-3.5 py-1 text-xs font-black mb-3 border border-[#E2CBAE] shadow-sm">
-                              {isEn ? item.timeEn : item.timeMr}
-                            </span>
-                            <h3 className="font-display text-base font-black text-[#3B0E17] dark:text-white leading-tight group-hover:text-[#E60067] transition-colors">
-                              {isEn ? item.titleEn : item.titleMr}
+                            <h3 className="font-display text-xl sm:text-2xl font-bold leading-tight text-white drop-shadow-md">
+                              {isEn ? hall.titleEn : hall.titleMr}
                             </h3>
                           </div>
-                          <p className="mt-3 text-xs text-[#541A1A]/80 dark:text-slate-300 font-semibold leading-relaxed">
-                            {isEn ? item.textEn : item.textMr}
+                        </div>
+
+                        {/* Hidden Text sliding up on hover */}
+                        <div className="h-0 opacity-0 overflow-hidden transition-all duration-500 group-hover:h-auto group-hover:opacity-100 group-hover:mt-2">
+                          <p className="text-slate-200 text-sm sm:text-base font-medium leading-snug border-l-2 border-[#E60067] pl-3 py-1">
+                            {isEn ? hall.textEn : hall.textMr}
                           </p>
                         </div>
-                        {idx < 3 && (
-                          <div className="absolute -right-5 top-24 z-30 size-8 rounded-full bg-[#1B2A4A] border-2 border-[#D99A26] grid place-items-center text-[#E0B85C] text-xs font-black shadow-md">
-                            »
-                          </div>
-                        )}
-                      </div>
-                    </Reveal>
-                  ))}
-                </div>
 
-                <div className="grid grid-cols-3 gap-8 max-w-5xl mx-auto relative z-10">
-                  {dailySchedule.slice(4, 7).map((item, idx) => (
-                    <Reveal key={item.step} delay={(idx + 4) * 120}>
-                      <div className="group relative flex flex-col items-center">
-                        <div className="relative -mb-6 z-20 flex flex-col items-center">
-                          <span className="size-10 grid place-items-center rounded-full bg-[#1B2A4A] border-2 border-[#D99A26] text-[#E0B85C] font-black text-sm shadow-xl group-hover:scale-110 transition-transform">
-                            {item.step}
-                          </span>
-                          <div className="size-16 rounded-full bg-gradient-to-b from-[#FFFDF9] to-[#F7EACD] border-2 border-[#D99A26] shadow-[0_0_20px_rgba(217,154,38,0.35)] grid place-items-center -mt-3 group-hover:rotate-6 group-hover:scale-105 transition-transform">
-                            {item.iconSvg}
-                          </div>
+                        {/* Corner Decorative Element */}
+                        <div className="absolute top-4 right-4 opacity-0 transform translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
+                          <svg className="size-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                          </svg>
                         </div>
-                        <div className="w-full pt-9 p-6 rounded-[2.2rem] border-2 border-[#E2CBAE] bg-[#FFFDF9] dark:bg-slate-900 shadow-[0_15px_40px_rgba(129,11,56,0.06)] group-hover:shadow-[0_25px_60px_rgba(129,11,56,0.18)] group-hover:-translate-y-2.5 transition-all duration-300 text-center flex flex-col justify-between min-h-[225px]">
-                          <div>
-                            <span className="inline-block rounded-full bg-[#F3DEB8] text-[#4A1515] px-3.5 py-1 text-xs font-black mb-3 border border-[#E2CBAE] shadow-sm">
-                              {isEn ? item.timeEn : item.timeMr}
-                            </span>
-                            <h3 className="font-display text-base font-black text-[#3B0E17] dark:text-white leading-tight group-hover:text-[#E60067] transition-colors">
-                              {isEn ? item.titleEn : item.titleMr}
-                            </h3>
-                          </div>
-                          <p className="mt-3 text-xs text-[#541A1A]/80 dark:text-slate-300 font-semibold leading-relaxed">
-                            {isEn ? item.textEn : item.textMr}
-                          </p>
-                        </div>
-                      </div>
-                    </Reveal>
-                  ))}
-                </div>
-              </div>
-
-              {/* MOBILE TIMELINE */}
-              <div className="lg:hidden space-y-6 relative z-10">
-                {dailySchedule.map((item, idx) => (
-                  <Reveal key={item.step} delay={idx * 70}>
-                    <div className="glow-card group relative p-6 rounded-[2rem] bg-[#FFFDF9] dark:bg-slate-900 border-2 border-[#E2CBAE] flex items-start gap-4 shadow-md">
-                      <div className="shrink-0 flex flex-col items-center">
-                        <span className="size-8 grid place-items-center rounded-full bg-[#1B2A4A] border border-[#D99A26] text-[#E0B85C] font-black text-xs">
-                          {item.step}
-                        </span>
-                        <div className="size-13 rounded-full bg-gradient-to-b from-[#FFFDF9] to-[#F7EACD] border-2 border-[#D99A26] grid place-items-center mt-2 shadow-md">
-                          {item.iconSvg}
-                        </div>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <span className="inline-block rounded-full bg-[#F3DEB8] text-[#4A1515] px-3 py-1 text-[11px] font-black mb-2 border border-[#E2CBAE]">
-                          {isEn ? item.timeEn : item.timeMr}
-                        </span>
-                        <h3 className="font-display text-base font-black text-[#3B0E17] dark:text-white">
-                          {isEn ? item.titleEn : item.titleMr}
-                        </h3>
-                        <p className="mt-2 text-xs text-[#541A1A]/80 dark:text-slate-300 font-semibold leading-relaxed">
-                          {isEn ? item.textEn : item.textMr}
-                        </p>
                       </div>
                     </div>
                   </Reveal>
                 ))}
               </div>
-
-              <div className="mt-16 text-center">
-                <span className="inline-flex items-center gap-2.5 rounded-full bg-[#1B2A4A] border-2 border-[#D99A26] px-7 py-3.5 text-xs sm:text-sm font-extrabold text-[#F5E2B8] shadow-2xl backdrop-blur-md">
-                  <span className="text-amber-300 text-base">⭐</span>
-                  <span>
-                    {isEn
-                      ? "Anandashala is the confluence of sports, knowledge, values & creativity."
-                      : "खेळ, ज्ञान, संस्कार आणि सर्जनशीलतेचा संगम म्हणजे आनंदशाळा."}
-                  </span>
-                </span>
-              </div>
             </div>
           </section>
 
-          {/* STORY & FOUNDER MESSAGE - EXACT MATCH FOR USER IMAGE 2 */}
-          <section className="relative py-16 sm:py-24 px-4 bg-gradient-to-b from-[#F4F7FB] via-[#EEF3FF] to-[#E5EDFF]">
-            {/* Top Header matching Image 2 */}
-            <div className="text-center mb-12 sm:mb-16 max-w-4xl mx-auto">
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#17286E] tracking-tight">
-                {isEn ? "Preetam Senior Citizen Anandshala" : "प्रीतम ज्येष्ठ नागरिक आनंदशाळा"}
-              </h1>
+          {/* DAILY SCHEDULE NEW */}
+          <ScheduleSection />
 
-              <p className="text-lg sm:text-2xl text-[#2B3B7E] font-bold italic mt-3 sm:mt-4">
-                {isEn
-                  ? "Yes, I am speaking as Preetam Senior Citizen Anandshala...!"
-                  : "होय, मी प्रीतम ज्येष्ठ नागरिक आनंदशाळा बोलतेय...!"}
-              </p>
 
-              <div className="flex items-center justify-center gap-3 mt-5">
-                <div className="w-24 sm:w-36 h-[2px] bg-gradient-to-r from-transparent via-red-400 to-red-500" />
-                <div className="w-3.5 h-3.5 rounded-full bg-red-500 shadow-md shrink-0" />
-                <div className="w-24 sm:w-36 h-[2px] bg-gradient-to-l from-transparent via-red-400 to-red-500" />
-              </div>
-            </div>
 
-            {/* 2-Column Content Grid */}
-            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
 
-              {/* Left Column - Story Text (7 cols) */}
-              <div className="lg:col-span-7 flex flex-col justify-between">
-
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#17286E] mb-6 sm:mb-8">
-                  {isEn ? "Story of Anandshala" : "आनंदशाळेची कहाणी"}
-                </h2>
-
-                <div className="space-y-5 sm:space-y-6 text-[#2C3E50] text-base sm:text-lg lg:text-xl leading-relaxed font-medium">
-                  <p>
-                    {isEn ? (
-                      <>My seeds were planted by <strong>Shri. Abhinav Jagannath Kamani (Resident of Sangli)</strong> from his dream project. Abhinav started business on 26th January 2000 and celebrates every anniversary, senior citizen get-together & picnic with grand joy.</>
-                    ) : (
-                      <>माझ्या जन्माची बीजे रुजली ती श्री. अभिनव जगन्नाथ कामाणी, रा. सांगली यांच्या स्वप्न प्रकल्पातून. अभिनव यांनी 26 जानेवारी 2000 रोजी व्यवसाय सुरू केला आणि दरवर्षी वर्धापन दिन, ज्येष्ठ नागरिक मेळावा व सहलीचे आयोजन करून तो साजरा करतात.</>
-                    )}
-                  </p>
-
-                  <p>
-                    {isEn ? (
-                      <>Human beings naturally long for companionship, conversation, and relationships. When children grow up and move far away, solitude remains. This idea was born out of that thought — a 'school' for senior citizens where new joy is learned every single day.</>
-                    ) : (
-                      <>माणूस एकत्र राहणारा, बोलणारा, नाती जपणारा असतो. पाल्ये मोठे होऊन दूर देशी जाते तेव्हा मागे उरतात त्या आठवणी आणि एकांत... याच विचारातून ही संकल्पना समोर आली – ज्येष्ठ नागरिकांसाठी एक अशी 'शाळा', जिथे रोज नवा आनंद शिकायला मिळेल.</>
-                    )}
-                  </p>
-
-                  <p>
-                    {isEn ? (
-                      <>Built in a 1.5 acre scenic green campus in Sangli city, this is India's first grand project. Here one can stay happily from 1 day to a lifetime.</>
-                    ) : (
-                      <>सांगली शहरातील दीड एकर जागेत, निसर्गरम्य वातावरणात उभा राहणारा हा भारतातील पहिलाच भव्य प्रकल्प आहे. येथे 1 दिवसापासून ते आयुष्यभर आनंदाने राहता येते.</>
-                    )}
-                  </p>
-                </div>
-
-                {/* Quote Box (Left Bottom) */}
-                <div className="bg-[#EBF5FF] border-l-4 border-amber-500 rounded-r-3xl p-6 sm:p-7 mt-8 shadow-sm">
-                  <p className="text-[#17286E] font-extrabold text-base sm:text-xl leading-snug">
-                    {isEn
-                      ? "“Live with joy, preserve health, fulfill your dreams by coming to Anandshala.”"
-                      : "“आनंदात जगायचं, आरोग्य जपायचं, आनंदशाळेत येऊन स्वप्न साकारायचं.”"}
-                  </p>
-                  <p className="text-slate-600 font-bold text-sm sm:text-base mt-2.5">
-                    {isEn ? "— Dr. Girish Oak, Actor" : "— डॉ. गिरीश ओक, अभिनेते"}
-                  </p>
-                </div>
-
-              </div>
-
-              {/* Right Column - Poster Image Card (5 cols) */}
-              <div className="lg:col-span-5 flex justify-center">
-                <div className="rounded-[32px] overflow-hidden shadow-2xl border-4 border-white bg-white group hover:shadow-3xl transition duration-500 w-full max-w-lg">
-                  <img
-                    src="/images/anandashram_building_card.png"
-                    onError={(e) => {
-                      e.currentTarget.src = "/images/Screenshot 2026-07-31 104802.png";
-                    }}
-                    alt={isEn ? "Preetam Anandshala Poster" : "प्रीतम ज्येष्ठ नागरिक आनंदशाळा पोस्टर"}
-                    className="w-full h-auto object-cover max-h-[750px] transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-              </div>
-
-            </div>
-          </section>
-
-          {/* ================= GALLERY SECTION ================= */}
-          <section className="relative py-24 overflow-hidden bg-gradient-to-b from-[#f7fbff] via-[#eef5ff] to-[#ffffff]">
-
-            {/* Background Blur */}
-            <div className="absolute top-0 left-0 w-96 h-96 bg-pink-200/30 rounded-full blur-[120px]" />
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-200/30 rounded-full blur-[120px]" />
-
-            <div className="relative max-w-7xl mx-auto px-6">
-
-              {/* Heading */}
-              <div className="text-center">
-
-                <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white shadow text-pink-600 font-semibold tracking-wider text-sm">
-                  📸 GALLERY
-                </span>
-
-                <h2 className="mt-5 text-5xl font-extrabold text-[#1f2a8a]">
-                  {isEn ? "Gallery" : "गॅलरी"}
-                </h2>
-
-                <p className="mt-4 text-gray-600 max-w-3xl mx-auto leading-8">
-                  {isEn
-                    ? "Inspiring moments from the project created in the lap of nature in Sangli."
-                    : "सांगलीच्या कुशीत, निसर्गरम्य वातावरणात साकारलेल्या प्रकल्पातील प्रेरणादायी क्षण."}
-                </p>
-
-                <div className="mt-8 w-28 h-1 rounded-full mx-auto bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500"></div>
-
-              </div>
-
-              {/* Category Filter Buttons */}
-              <div className="mt-14 flex flex-wrap justify-center gap-4">
-                {galleryCategories.map((category) => (
-                  <button
-                    key={category}
-                    onClick={() => setSelectedGalleryCategory(category)}
-                    className={`group relative overflow-hidden rounded-full border px-7 py-3 text-sm font-semibold transition-all duration-300 cursor-pointer ${selectedGalleryCategory === category
-                        ? "bg-gradient-to-r from-pink-600 to-purple-700 text-white shadow-xl scale-105 border-transparent"
-                        : "bg-white text-[#1f2a8a] border-gray-200 hover:border-pink-400 hover:text-pink-600 hover:-translate-y-1 hover:shadow-lg"
-                      }`}
-                  >
-                    <span className="relative z-10">{category}</span>
-
-                    {selectedGalleryCategory !== category && (
-                      <span className="absolute inset-0 translate-y-full bg-gradient-to-r from-pink-500/10 to-purple-500/10 transition-transform duration-300 group-hover:translate-y-0" />
-                    )}
-                  </button>
-                ))}
-              </div>
-
-              {/* Gallery Grid */}
-              <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {[
-                  { src: "/images/aandshala sahal 1.jpeg", category: "वार्षिक स्नेहसंमेलन", title: "आनंद सहल", desc: "सहलीचा आनंददायी क्षण" },
-                  { src: "/images/aandmelav 10.jpeg", category: "आनंद मेळावा", title: "आनंद मेळावा", desc: "सांस्कृतिक कार्यक्रम" },
-                  { src: "/images/aandmelava1.jpg", category: "आनंद मेळावा", title: "सांस्कृतिक उत्सव", desc: "ज्येष्ठ नागरिक मेळावा" },
-                  { src: "/images/yoga.jpg", fallback: "/images/Screenshot 2026-07-31 103659.png", category: "ज्येष्ठ नागरिक आनंदशाळा", title: "योगा व प्राणायाम", desc: "आरोग्यदायी दिनचर्या" },
-                  { src: "/images/music.jpg", fallback: "/images/aandmelav 5.jpg", category: "ज्येष्ठ नागरिक आनंदशाळा", title: "संगीत संध्या", desc: "भजन व गायन" },
-                  { src: "/images/games.jpg", fallback: "/images/Screenshot 2026-07-31 103517.png", category: "ज्येष्ठ नागरिक आनंदशाळा", title: "खेळ व मनोरंजन", desc: "कॅरम व इनडोअर गेम्स" },
-                  { src: "/images/Screenshot 2026-07-31 103107.png", category: "ज्येष्ठ नागरिक आनंदशाळा", title: "आनंद निवास", desc: "वास्तू परिसर" },
-                  { src: "/images/Screenshot 2026-07-31 103213.png", category: "बांधकाम", title: "गार्डन व लॉन", desc: "हिरवागार परिसर" },
-                  { src: "/images/ropya mahotsv1.jpg", category: "भूमिपूजन", title: "भूमिपूजन सोहळा", desc: "शुभप्रसंग भूमिपूजन" },
-                  { src: "/images/ropya mahotsv 2.jpg", category: "भूमिपूजन", title: "रौप्य महोत्सव", desc: "रौप्य महोत्सव सोहळा" },
-                  { src: "/images/samajik karya1.jpeg", category: "सामाजिक कार्य", title: "सामाजिक कार्य", desc: "ज्येष्ठ नागरिक सेवा" },
-                  { src: "/images/samajik karya 2.jpeg", category: "सामाजिक कार्य", title: "आरोग्य शिबिर", desc: "मोफत आरोग्य सेवा" },
-                  { src: "/images/vyavsaik mahiti 1.jpeg", category: "मान्यवर भेट", title: "मान्यवर सत्कार", desc: "विशेष अतिथी सत्कार" },
-                  { src: "/images/vyavsaik mahiti 2.jpeg", category: "मान्यवर भेट", title: "मान्यवर भेट", desc: "विशेष मान्यवरांची भेट" },
-                  { src: "/images/img1.jpeg", category: "विशेष कार्यक्रम", title: "विशेष कार्यक्रम", desc: "सांस्कृतिक सादरीकरण" },
-                  { src: "/images/img2.jpeg", category: "विशेष कार्यक्रम", title: "आनंद उत्सव", desc: "आनंददायी क्षण" },
-                ]
-                  .filter((item) => selectedGalleryCategory === "सर्व" || item.category === selectedGalleryCategory)
-                  .map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="group relative rounded-[28px] overflow-hidden shadow-lg border border-white/60 bg-white hover:-translate-y-2 hover:shadow-2xl transition duration-500"
-                    >
-                      <div className="h-64 overflow-hidden">
-                        <img
-                          src={item.src}
-                          onError={(e) => {
-                            if (item.fallback) e.currentTarget.src = item.fallback;
-                          }}
-                          alt={item.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
-                        />
-                      </div>
-                      <div className="p-5 bg-white">
-                        <span className="inline-block px-3 py-1 rounded-full bg-pink-50 text-pink-600 text-xs font-bold mb-2">
-                          {item.category}
-                        </span>
-                        <h3 className="font-bold text-[#1f2a8a] text-lg">{item.title}</h3>
-                        <p className="text-sm text-gray-500 mt-1">{item.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-              </div>
-
-            </div>
-
-          </section>
         </div>
       )}
 

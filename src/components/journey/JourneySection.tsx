@@ -18,7 +18,7 @@ export default function JourneySection() {
 
       <section
         id="journey"
-        className="relative overflow-hidden isolate bg-gradient-to-b from-[#F7FAFF] via-[#F2F7FF] to-white py-44"
+        className="relative overflow-hidden isolate bg-gradient-to-b from-[#F7FAFF] via-[#F2F7FF] to-white pt-8 pb-16 sm:pt-12 sm:pb-20"
       >
         {/* Background Overlay Grid */}
         <div
@@ -45,9 +45,6 @@ export default function JourneySection() {
         <FloatingParticles />
 
         <div className="relative z-10 mx-auto max-w-7xl px-6">
-          {/* Heading */}
-          <JourneyHeader />
-
           {/* Timeline */}
           <JourneyTimeline />
 

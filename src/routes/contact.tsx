@@ -1,12 +1,8 @@
-import React from "react";
-import { useState } from "react";
-import { PageHero } from "@/components/site/PageHero";
+﻿import React, { useState } from "react";
+import { Phone, MessageCircle, Mail, User, MapPin, Building, Send, Map, CheckSquare, Edit3 } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
-import { site, sportsClub } from "@/lib/site-info";
 import { useAdminStore } from "@/lib/admin-store";
-import { useLanguage } from "@/lib/use-language";
-
-
+import { site, sportsClub } from "@/lib/site-info";
 
 function Contact() {
   const { addInquiry } = useAdminStore();
@@ -14,16 +10,8 @@ function Contact() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("Admission Inquiry");
+  const [subject, setSubject] = useState("आनंदशाळा प्रवेश चौकशी");
   const [message, setMessage] = useState("");
-  const { isEn } = useLanguage();
-
-  const contactCards = [
-    { icon: "📞", titleMr: "आनंदशाळा हेल्पलाईन", titleEn: "Anandshala Helpline", value: sportsClub.phones[0], href: `tel:${sportsClub.phones[0]}` },
-    { icon: "📞", titleMr: "कार्यालय संपर्क", titleEn: "Club Office Line", value: sportsClub.phones[1], href: `tel:${sportsClub.phones[1]}` },
-    { icon: "💬", titleMr: "थेट WhatsApp", titleEn: "Direct WhatsApp", value: sportsClub.phones[0], href: sportsClub.whatsapp },
-    { icon: "✉️", titleMr: "ई-मेल पत्ता", titleEn: "Email Address", value: site.email, href: `mailto:${site.email}` },
-  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,126 +26,246 @@ function Contact() {
   };
 
   return (
-    <>
-      <PageHero
-        eyebrow="Contact Us"
-        title={isEn ? "Contact Us" : "संपर्क"}
-        subtitle={isEn ? "Reach out to us for admissions, club membership, or picnic passes." : "प्रवेश, सहल पास किंवा अधिक माहितीसाठी आजच संपर्क साधा."}
-      />
-
-      <section className="container-page py-16">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {contactCards.map((c, i) => (
-            <Reveal key={c.titleMr} delay={i * 90}>
-              <a
-                href={c.href}
-                target={c.href.startsWith("http") ? "_blank" : undefined}
-                rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="block h-full rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-[#E60067] hover:shadow-md"
-              >
-                <span className="grid size-11 place-items-center rounded-xl bg-[#E60067]/10 text-xl">
-                  {c.icon}
-                </span>
-                <p className="mt-4 text-sm text-muted-foreground font-semibold">{isEn ? c.titleEn : c.titleMr}</p>
-                <p className="mt-1 font-bold break-words text-foreground">{c.value}</p>
-              </a>
-            </Reveal>
-          ))}
+    <div className="min-h-screen bg-[#f8f9fc] font-sans overflow-hidden">
+      
+      {/* ══════════════════════════════════════════════════════════════
+          TOP HEADER SECTION
+         ══════════════════════════════════════════════════════════════ */}
+      <div className="relative pt-20 pb-12 sm:pt-28 sm:pb-16 flex flex-col items-center text-center px-4">
+        
+        {/* Background Decorative Patterns */}
+        <div className="absolute top-10 left-10 opacity-30">
+          <div className="grid grid-cols-5 gap-2">
+            {[...Array(25)].map((_, i) => <div key={i} className="w-1.5 h-1.5 rounded-full bg-slate-300" />)}
+          </div>
+        </div>
+        <div className="absolute top-10 right-10 opacity-30">
+          <div className="grid grid-cols-5 gap-2">
+            {[...Array(25)].map((_, i) => <div key={i} className="w-1.5 h-1.5 rounded-full bg-slate-300" />)}
+          </div>
+        </div>
+        
+        {/* Floating Icons */}
+        <div className="absolute left-[15%] top-1/2 -translate-y-1/2 w-24 h-24 bg-pink-100 rounded-full flex items-center justify-center shadow-[0_0_50px_rgba(236,72,153,0.2)]">
+          <Phone className="text-pink-400" size={40} />
+          <div className="absolute inset-0 rounded-full border border-pink-200 animate-ping opacity-50" />
+        </div>
+        <div className="absolute right-[15%] top-1/2 -translate-y-1/2 text-blue-300/50 rotate-[-15deg]">
+          <Send size={100} strokeWidth={1} />
         </div>
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-2">
+        {/* Header Content */}
+        <span className="relative z-10 flex items-center gap-2 rounded-full border border-purple-200 bg-white px-4 py-1.5 text-xs font-black tracking-widest text-purple-600 shadow-sm uppercase mb-6">
+          <Phone size={14} /> CONTACT US
+        </span>
+
+        <h1 className="relative z-10 text-5xl sm:text-7xl font-black text-[#2e3192] mb-4 drop-shadow-sm">
+          संपर्क
+          <div className="flex items-center justify-center mt-3 gap-2 text-pink-500">
+            <span className="block w-12 h-0.5 bg-pink-500 rounded-full"></span>
+            <span className="block w-2 h-2 rounded-full bg-pink-500"></span>
+            <span className="block w-12 h-0.5 bg-pink-500 rounded-full"></span>
+          </div>
+        </h1>
+
+        <p className="relative z-10 mt-4 text-base sm:text-lg font-bold text-slate-600">
+          प्रवेश, सहकार्य किंवा अधिक माहितीसाठी आजच संपर्क साधा.
+        </p>
+
+      </div>
+
+      <div className="max-w-[1300px] mx-auto px-4 pb-20 relative z-10">
+
+        {/* ══════════════════════════════════════════════════════════════
+            CONTACT INFO CARDS
+           ══════════════════════════════════════════════════════════════ */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12">
+          
+          {/* Card 1 */}
+          <div className="flex items-center gap-4 bg-white rounded-[20px] p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center text-pink-500">
+              <Phone size={24} />
+            </div>
+            <div>
+              <p className="text-xs font-bold text-slate-500 mb-1">आनंदशाळा हेल्पलाईन</p>
+              <a href="tel:+919370237633" className="text-[15px] font-black text-[#e60067] tracking-wide">+91-9370237633</a>
+            </div>
+          </div>
+
+          {/* Card 2 */}
+          <div className="flex items-center gap-4 bg-white rounded-[20px] p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+              <Phone size={24} />
+            </div>
+            <div>
+              <p className="text-xs font-bold text-slate-500 mb-1">कार्यालय संपर्क</p>
+              <a href="tel:+919423258859" className="text-[15px] font-black text-[#662d91] tracking-wide">+91-9423258859</a>
+            </div>
+          </div>
+
+          {/* Card 3 */}
+          <div className="flex items-center gap-4 bg-white rounded-[20px] p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-500">
+              <MessageCircle size={24} />
+            </div>
+            <div>
+              <p className="text-xs font-bold text-slate-500 mb-1">चॅट WhatsApp</p>
+              <a href={sportsClub.whatsapp} target="_blank" rel="noopener noreferrer" className="text-[15px] font-black text-[#0071bc] tracking-wide">+91-9370237633</a>
+            </div>
+          </div>
+
+          {/* Card 4 */}
+          <div className="flex items-center gap-4 bg-white rounded-[20px] p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center text-orange-500">
+              <Mail size={24} />
+            </div>
+            <div>
+              <p className="text-xs font-bold text-slate-500 mb-1">ई-मेल पत्ता</p>
+              <a href={`mailto:${site.email}`} className="text-[13px] font-black text-[#f26522] tracking-wide truncate block w-[160px] sm:w-full">{site.email}</a>
+            </div>
+          </div>
+
+        </div>
+
+        {/* ══════════════════════════════════════════════════════════════
+            FORM AND MAP SECTION
+           ══════════════════════════════════════════════════════════════ */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+          
+          {/* LEFT: FORM */}
           <Reveal>
-            <form
-              onSubmit={handleSubmit}
-              className="rounded-3xl border border-border bg-card p-8 shadow-lg space-y-4"
-            >
-              <h2 className="font-display text-2xl font-bold">{isEn ? "Admission & Membership Enquiry" : "प्रवेश व मेंबरशिप चौकशी करा"}</h2>
-              <p className="text-sm text-muted-foreground">
-                {isEn ? "Fill in the details below — our team will reach out to you shortly." : "खालील माहिती भरा — आमची टीम लवकरच आपल्याशी संपर्क साधेल."}
-              </p>
+            <div className="h-full bg-white rounded-[24px] shadow-lg border border-slate-100 overflow-hidden relative flex flex-col p-8 sm:p-10">
+              {/* Left Gradient Border */}
+              <div className="absolute left-0 top-0 bottom-0 w-2 bg-gradient-to-b from-[#e60067] to-[#662d91]" />
+              
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-14 h-14 rounded-full border border-purple-100 flex items-center justify-center text-purple-600 shrink-0 shadow-sm">
+                  <CheckSquare size={26} />
+                </div>
+                <div>
+                  <h2 className="text-xl sm:text-2xl font-black text-[#1a1a40]">प्रवेश व नोंदणीची चौकशी करा</h2>
+                  <p className="text-xs sm:text-sm font-bold text-slate-500 mt-1">खालील माहिती भरा - आमची टीम लवकरच आपल्याशी संपर्क साधेल.</p>
+                </div>
+              </div>
 
               {submitted && (
-                <div className="p-4 rounded-2xl bg-emerald-500/20 border border-emerald-500/50 text-emerald-600 dark:text-emerald-400 font-bold text-sm animate-fade-up">
-                  ✓ {isEn ? "Your inquiry has been submitted successfully! We will contact you soon." : "तुमची चौकशी यशस्वीरित्या पाठवली गेली आहे! आम्ही लवकरच संपर्क करू."}
+                <div className="mb-6 p-4 rounded-xl bg-emerald-50 text-emerald-600 font-bold text-sm border border-emerald-200">
+                  तुमची चौकशी यशस्वीरित्या पाठवली गेली आहे! आम्ही लवकरच संपर्क करू.
                 </div>
               )}
 
-              <div>
-                <input
-                  required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder={isEn ? "Your Full Name" : "आपले पूर्ण नाव"}
-                  className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition-shadow focus:ring-2 focus:ring-[#810B38]"
-                />
-              </div>
+              <form onSubmit={handleSubmit} className="flex flex-col gap-5 flex-1">
+                
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                    <User size={18} />
+                  </div>
+                  <input
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="आपले पूर्ण नाव"
+                    className="w-full rounded-xl border border-slate-200 bg-white py-3.5 pl-11 pr-4 text-sm font-semibold outline-none transition-all focus:border-purple-400 focus:ring-4 focus:ring-purple-100 placeholder:text-slate-400 text-slate-700 shadow-sm"
+                  />
+                </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <input
-                  required
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder={isEn ? "Mobile Number" : "मोबाईल नंबर"}
-                  className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition-shadow focus:ring-2 focus:ring-[#810B38]"
-                />
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder={isEn ? "Email Address (Optional)" : "ई-मेल पत्ता (ऐच्छिक)"}
-                  className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition-shadow focus:ring-2 focus:ring-[#810B38]"
-                />
-              </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                      <Phone size={18} />
+                    </div>
+                    <input
+                      required
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      placeholder="मोबाईल नंबर"
+                      className="w-full rounded-xl border border-slate-200 bg-white py-3.5 pl-11 pr-4 text-sm font-semibold outline-none transition-all focus:border-purple-400 focus:ring-4 focus:ring-purple-100 placeholder:text-slate-400 text-slate-700 shadow-sm"
+                    />
+                  </div>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                      <Mail size={18} />
+                    </div>
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="ई-मेल पत्ता (पर्यायी)"
+                      className="w-full rounded-xl border border-slate-200 bg-white py-3.5 pl-11 pr-4 text-sm font-semibold outline-none transition-all focus:border-purple-400 focus:ring-4 focus:ring-purple-100 placeholder:text-slate-400 text-slate-700 shadow-sm"
+                    />
+                  </div>
+                </div>
 
-              <div>
-                <select
-                  value={subject}
-                  onChange={(e) => setSubject(e.target.value)}
-                  className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition-shadow focus:ring-2 focus:ring-[#810B38]"
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                    <CheckSquare size={18} />
+                  </div>
+                  <select
+                    value={subject}
+                    onChange={(e) => setSubject(e.target.value)}
+                    className="w-full rounded-xl border border-slate-200 bg-white py-3.5 pl-11 pr-4 text-sm font-bold outline-none transition-all focus:border-purple-400 focus:ring-4 focus:ring-purple-100 text-slate-700 shadow-sm appearance-none"
+                  >
+                    <option value="आनंदशाळा प्रवेश चौकशी">आनंदशाळा प्रवेश चौकशी</option>
+                    <option value="१ दिवस सहल पास">१ दिवस सहल पास</option>
+                    <option value="डे-केअर मन्थली">डे-केअर मासिक पास</option>
+                    <option value="आनंदनिवास">आनंदनिवास निवास पास</option>
+                    <option value="स्पोर्ट्स क्लब">स्पोर्ट्स क्लब मेंबरशिप</option>
+                  </select>
+                </div>
+
+                <div className="relative">
+                  <div className="absolute top-4 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                    <Edit3 size={18} />
+                  </div>
+                  <textarea
+                    rows={4}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    placeholder="आपला संदेश किंवा प्रश्न येथे लिहा..."
+                    className="w-full rounded-xl border border-slate-200 bg-white py-3.5 pl-11 pr-4 text-sm font-semibold outline-none transition-all focus:border-purple-400 focus:ring-4 focus:ring-purple-100 placeholder:text-slate-400 text-slate-700 shadow-sm resize-none"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="mt-auto w-full flex items-center justify-center gap-2 rounded-xl py-4 font-bold text-white shadow-lg transition-transform hover:-translate-y-0.5 cursor-pointer bg-gradient-to-r from-[#e60067] to-[#662d91]"
                 >
-                  <option value="आनंदशाळा प्रवेश चौकशी">{isEn ? "Anandshala Admission Enquiry" : "आनंदशाळा प्रवेश चौकशी"}</option>
-                  <option value="१ दिवस सहल पास">{isEn ? "One Day Picnic Pass" : "१ दिवस सहल भेट पास"}</option>
-                  <option value="डे-केअर मन्थली">{isEn ? "Day Care Monthly Pass" : "डे-केअर मासिक फी"}</option>
-                  <option value="आनंदनिवास">{isEn ? "Anandnivas Stay Pass" : "आनंदनिवास राहण्यासह"}</option>
-                  <option value="स्पोर्ट्स क्लब">{isEn ? "Preetam Sports Club Membership" : "स्पोर्ट्स क्लब मेंबरशिप"}</option>
-                </select>
-              </div>
-
-              <div>
-                <textarea
-                  rows={4}
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  placeholder={isEn ? "Your Message or Question..." : "आपला संदेश किंवा प्रश्न येथे लिहा..."}
-                  className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition-shadow focus:ring-2 focus:ring-[#810B38]"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full rounded-xl py-4 font-bold text-white shadow-lg transition-transform hover:scale-[1.01] cursor-pointer"
-                style={{ background: "linear-gradient(135deg, #541A1A 0%, #810B38 100%)" }}
-              >
-                ✉️ {isEn ? "Submit Enquiry Form" : "चौकशी अर्ज पाठवा"}
-              </button>
-            </form>
+                  <Send size={18} /> चौकशी अर्ज पाठवा
+                </button>
+              </form>
+            </div>
           </Reveal>
 
-          {/* ADDRESS & GOOGLE MAP CARD */}
-          <Reveal delay={140}>
-            <div className="h-full rounded-3xl border border-border bg-card p-8 shadow-lg flex flex-col justify-between">
-              <div>
-                <h2 className="font-display text-2xl font-bold text-[#541A1A]">📍 {isEn ? "Visit Location & Address" : "भेट द्या व पत्ता"}</h2>
-                <p className="mt-2 text-sm text-foreground font-semibold leading-relaxed">
-                  {isEn ? site.addressEn : site.addressMr}
-                </p>
-                <div className="mt-4 p-4 rounded-2xl bg-secondary/80 text-xs font-semibold text-foreground space-y-1">
-                  <p className="text-[#810B38] font-bold">⏰ {isEn ? site.timingEn : site.timingMr}</p>
-                  <p>🏆 {isEn ? sportsClub.timingEn : sportsClub.timingMr}</p>
+          {/* RIGHT: ADDRESS & MAP */}
+          <Reveal delay={100}>
+            <div className="h-full bg-white rounded-[24px] shadow-lg border border-slate-100 overflow-hidden relative flex flex-col p-8 sm:p-10">
+              {/* Left Gradient Border */}
+              <div className="absolute left-0 top-0 bottom-0 w-2 bg-gradient-to-b from-[#0071bc] to-[#00a8e8]" />
+              
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-14 h-14 rounded-full border border-blue-100 flex items-center justify-center text-blue-600 shrink-0 shadow-sm">
+                  <MapPin size={26} />
+                </div>
+                <div>
+                  <h2 className="text-xl sm:text-2xl font-black text-[#1a1a40]">भेट द्या व पत्ता</h2>
+                  <p className="text-[13px] sm:text-sm font-bold text-slate-500 mt-1 leading-relaxed">
+                    सर्वे नंबर 39/1, 2, 3 आनंद नगरी, माधवनगर दाबा जवळ,<br/>गांडगे रोड, रेल्वे गेट शेजारी, सांगली
+                  </p>
                 </div>
               </div>
 
-              <div className="mt-6 overflow-hidden rounded-2xl border border-border h-64 shadow">
+              <div className="bg-[#f4f7fb] rounded-xl p-4 mb-6 space-y-3 border border-blue-50/50">
+                <div className="flex items-center gap-3">
+                  <MapPin size={16} className="text-[#e60067]" />
+                  <p className="text-sm font-bold text-slate-700">आनंदशाळेचे केंद्र : इमारती नं 1 ते सर्वे. 5</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Building size={16} className="text-[#662d91]" />
+                  <p className="text-sm font-bold text-slate-700">कार्यालय केंद्र : इमारती नं 6 ते सर्वे 9</p>
+                </div>
+              </div>
+
+              <div className="flex-1 min-h-[220px] overflow-hidden rounded-2xl border border-slate-200 mb-6 shadow-sm">
                 <iframe
                   title="Google Maps Location"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3817.8!2d74.58!3d16.86!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTbCsDUxJzM2LjAiTiA3NMKwMzQnNDguMCJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
@@ -166,6 +274,7 @@ function Contact() {
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
+                  className="grayscale-[30%] contrast-[110%] hover:grayscale-0 transition-all duration-500"
                 />
               </div>
 
@@ -173,17 +282,20 @@ function Contact() {
                 href={sportsClub.googleMaps}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center justify-center gap-2 rounded-xl py-3 px-6 text-sm font-bold text-white shadow-md transition-transform hover:scale-102"
-                style={{ background: "linear-gradient(135deg, #128C7E 0%, #25D366 100%)" }}
+                className="w-full flex items-center justify-center gap-2 rounded-xl py-4 font-bold text-white shadow-lg transition-transform hover:-translate-y-0.5 cursor-pointer bg-gradient-to-r from-[#20b2aa] to-[#0ea5e9]"
               >
-                🗺️ {isEn ? "Open Directions on Google Maps" : "Google Maps वर दिशा पहा"}
+                <Map size={18} /> Google Maps वर दिशा पहा
               </a>
+
             </div>
           </Reveal>
+
         </div>
-      </section>
-    </>
+
+      </div>
+    </div>
   );
 }
 
 export default Contact;
+
