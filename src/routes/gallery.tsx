@@ -77,33 +77,33 @@ function Gallery() {
       <div className="fixed top-0 left-0 w-96 h-96 bg-pink-200/20 rounded-full blur-[120px] pointer-events-none" />
       <div className="fixed bottom-0 right-0 w-96 h-96 bg-blue-200/20 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-6 py-24">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-24">
 
         {/* ===== Heading ===== */}
-        <div className="text-center mb-16">
-          <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white shadow text-pink-400 font-semibold tracking-wider text-sm">
+        <div className="text-center mb-10 sm:mb-16">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 sm:px-5 sm:py-2 rounded-full bg-white shadow text-pink-500 font-semibold tracking-wider text-xs sm:text-sm">
             📸 GALLERY
           </span>
 
-          <h1 className="mt-5 text-5xl font-extrabold text-[#1f2a8a]">
+          <h1 className="mt-3 sm:mt-5 text-3xl sm:text-5xl font-extrabold text-[#1f2a8a]">
             गॅलरी
           </h1>
 
-          <p className="mt-4 text-gray-600 max-w-3xl mx-auto leading-8">
+          <p className="mt-3 text-sm sm:text-base text-gray-600 max-w-3xl mx-auto leading-7 sm:leading-8">
             सांगलीच्या कुशीत, निसर्गरम्य वातावरणात साकारलेल्या प्रकल्पातील
             प्रेरणादायी क्षण.
           </p>
 
-          <div className="mt-8 w-28 h-1 rounded-full mx-auto bg-gradient-to-r from-pink-400 via-purple-500 to-blue-500" />
+          <div className="mt-6 sm:mt-8 w-20 sm:w-28 h-1 rounded-full mx-auto bg-gradient-to-r from-pink-400 via-purple-500 to-blue-500" />
         </div>
 
         {/* ===== Category Filter Buttons ===== */}
-        <div className="flex flex-wrap justify-center gap-4 mb-6">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-6">
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`group relative overflow-hidden rounded-full border px-7 py-3 text-sm font-semibold transition-all duration-300 cursor-pointer ${
+              className={`group relative overflow-hidden rounded-full border px-4 py-2 sm:px-7 sm:py-3 text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer ${
                 selectedCategory === category
                   ? "bg-gradient-to-r from-pink-400 to-purple-700 text-white shadow-xl scale-105 border-transparent"
                   : "bg-white text-[#1f2a8a] border-gray-200 hover:border-pink-400 hover:text-pink-400 hover:-translate-y-1 hover:shadow-lg"
@@ -118,17 +118,17 @@ function Gallery() {
         </div>
 
         {/* ===== Photo Count ===== */}
-        <p className="text-center text-sm text-gray-400 mb-10">
+        <p className="text-center text-xs sm:text-sm text-gray-400 mb-8 sm:mb-10">
           {filteredImages.length} फोटो सापडले
         </p>
 
         {/* ===== Masonry Gallery Grid ===== */}
         {filteredImages.length === 0 ? (
-          <div className="text-center py-24 text-gray-400 text-xl">
+          <div className="text-center py-16 sm:py-24 text-gray-400 text-lg sm:text-xl">
             या श्रेणीत फोटो उपलब्ध नाहीत.
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
             {filteredImages.map((item, index) => (
               <motion.div
                 key={item.id}

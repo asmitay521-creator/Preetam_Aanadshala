@@ -5,6 +5,12 @@
   font-family: 'Poppins', sans-serif;
 }
 
+@media (max-width: 640px) {
+  .ps-section {
+    padding: 2.5rem 1rem;
+  }
+}
+
 .ps-header {
   text-align: center;
   margin-bottom: 3rem;

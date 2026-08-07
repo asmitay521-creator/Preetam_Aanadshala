@@ -76,18 +76,21 @@ function TimelineCard({
           relative
           w-full
           lg:w-[520px]
-          min-h-[220px]
-          p-10
-          rounded-[36px]
+          min-h-[200px]
+          p-5
+          sm:p-10
+          rounded-[24px]
+          sm:rounded-[36px]
           border
           border-white/40
           bg-white/70
           backdrop-blur-xl
-          shadow-[0_30px_80px_rgba(0,0,0,.12)]
+          shadow-[0_20px_60px_rgba(0,0,0,.08)]
           overflow-hidden
           transition-all
           duration-500
-          hover:-translate-y-4
+          hover:-translate-y-2
+          sm:hover:-translate-y-4
           hover:shadow-[0_40px_100px_rgba(0,0,0,.18)]
           transform-gpu
         "
@@ -125,9 +128,10 @@ function TimelineCard({
           className="
             absolute
             left-0
-            top-10
-            bottom-10
-            w-[5px]
+            top-6
+            bottom-6
+            w-[4px]
+            sm:w-[5px]
             rounded-full
             z-10
           "
@@ -139,12 +143,12 @@ function TimelineCard({
         {/* Date / Year Badge */}
         <div className="relative z-10">
           <div
-            className="inline-flex items-center gap-2 rounded-full px-5 py-2 text-white shadow-lg"
+            className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 sm:px-5 sm:py-2 text-white shadow-lg text-xs sm:text-base"
             style={{
               background: color,
             }}
           >
-            <CalendarDays size={16} />
+            <CalendarDays size={14} className="sm:w-4 sm:h-4" />
             <span className="font-semibold">{displayDate}</span>
           </div>
         </div>
@@ -152,9 +156,11 @@ function TimelineCard({
         {/* Title */}
         <h2
           className="
-            mt-6
-            pr-28
-            text-[28px]
+            mt-4
+            sm:mt-6
+            pr-0
+            sm:pr-28
+            text-[22px]
             sm:text-[34px]
             font-black
             leading-tight
@@ -169,11 +175,14 @@ function TimelineCard({
         {/* Description */}
         <p
           className="
-            mt-5
-            pr-28
-            leading-8
+            mt-3
+            sm:mt-5
+            pr-0
+            sm:pr-28
+            leading-7
+            sm:leading-8
             text-gray-600
-            text-base
+            text-sm
             sm:text-lg
             relative
             z-10
@@ -186,24 +195,26 @@ function TimelineCard({
         <div
           className="
             absolute
-            top-1/2
-            -translate-y-1/2
-            right-8
+            top-5
+            sm:top-1/2
+            sm:-translate-y-1/2
+            right-4
+            sm:right-8
             z-20
             pointer-events-none
           "
         >
           <motion.div
             animate={{
-              y: [0, -8, 0],
+              y: [0, -6, 0],
             }}
             transition={{
               duration: 3,
               repeat: Infinity,
             }}
             className="
-              h-24
-              w-24
+              h-14
+              w-14
               sm:h-28
               sm:w-28
               rounded-full
@@ -218,15 +229,15 @@ function TimelineCard({
           >
             <div
               className="
-                h-16
-                w-16
+                h-10
+                w-10
                 sm:h-20
                 sm:w-20
                 rounded-full
                 flex
                 items-center
                 justify-center
-                text-4xl
+                text-2xl
                 sm:text-5xl
               "
               style={{

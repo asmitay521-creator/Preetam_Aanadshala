@@ -785,10 +785,33 @@
 
 .sp-facilities-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: 32px;
-  max-width: 1140px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1200px;
   margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .sp-facilities-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .sp-facilities-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+  .sp-fac-img-box {
+    height: 190px;
+  }
+  .sp-fac-info-title {
+    font-size: 16px !important;
+  }
+  .sp-fac-info-sub {
+    font-size: 13px !important;
+  }
 }
 
 /* Beautiful Animated Card */
@@ -1438,4 +1461,36 @@
 .sp-modal-btn-wa:hover {
   border-color: #1A05A2;
   transform: translateY(-2px);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MOBILE RESPONSIVENESS MEDIA QUERIES (< 640px & < 480px)
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  .sp-container {
+    width: 100%;
+    padding: 0 12px;
+  }
+  .sp-exact-banner-box {
+    height: 280px;
+    border-radius: 20px;
+  }
+  .sp-exact-banner-overlay {
+    padding: 16px 16px 24px;
+  }
+  .sp-modal-btn-call, .sp-modal-btn-wa {
+    min-width: 100%;
+    flex: 1 1 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .sp-exact-banner-box {
+    height: 240px;
+    border-radius: 16px;
+  }
+  .sp-exact-top-pill {
+    font-size: 11px;
+    padding: 4px 12px;
+  }
 }

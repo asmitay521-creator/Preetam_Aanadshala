@@ -353,11 +353,11 @@ function IndexComponent() {
                 </div>
 
                 {/* RIGHT FULL-HEIGHT BUILDING IMAGE */}
-                <div className="md:col-span-6 relative min-h-[220px] md:min-h-full overflow-hidden rounded-b-[2.5rem] md:rounded-b-none md:rounded-l-[40px] xl:md:rounded-l-[50px] border-t md:border-t-0 md:border-l-2 border-[#E6D2BF] bg-[#F5EBE0]">
+                <div className="md:col-span-6 relative w-full h-64 sm:h-80 md:h-full min-h-[250px] overflow-hidden rounded-b-[2.5rem] md:rounded-b-none md:rounded-r-[2.5rem] border-t md:border-t-0 md:border-l-2 border-[#E6D2BF] bg-[#F5EBE0]">
                   <img
                     src="/images/aandshala_img.png"
                     alt={isEn ? site.nameEn : site.nameMr}
-                    className="absolute inset-0 size-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110"
+                    className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-[#FAF1E4]/30 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#541A1A]/30 via-transparent to-transparent pointer-events-none" />
@@ -403,15 +403,21 @@ function IndexComponent() {
                     <div className="grid size-9 xl:size-11 shrink-0 place-items-center rounded-[14px] xl:rounded-2xl bg-[#f472b6]/10 text-[#f472b6] text-lg xl:text-xl font-bold shadow-inner group-hover:scale-110 group-hover:bg-[#f472b6]/20 transition-all duration-300">
                       🏋️‍♂️
                     </div>
+                    <span className="inline-flex items-center gap-2 rounded-full bg-[#f472b6] px-4 py-2.5 xl:px-5 xl:py-3 text-[11px] xl:text-sm font-extrabold text-white shadow-lg group-hover:bg-[#541A1A] transition-all duration-300 group-hover:shadow-xl">
+                      {isEn ? "Open Sports Club Details" : "क्रीडा संकूल माहिती उघडा"}
+                      <span className="grid size-5 xl:size-6 place-items-center rounded-full bg-white text-[#f472b6] text-[10px] xl:text-xs font-black group-hover:translate-x-1.5 group-hover:bg-amber-300 group-hover:text-[#541A1A] transition-all duration-300">
+                        →
+                      </span>
+                    </span>
                   </div>
                 </div>
 
                 {/* RIGHT FULL-HEIGHT SPORTS IMAGE */}
-                <div className="md:col-span-6 relative min-h-[220px] md:min-h-full overflow-hidden rounded-b-[2.5rem] md:rounded-b-none md:rounded-l-[40px] xl:md:rounded-l-[50px] border-t md:border-t-0 md:border-l-2 border-[#E6D2BF] bg-[#F5EBE0]">
+                <div className="md:col-span-6 relative w-full h-64 sm:h-80 md:h-full min-h-[250px] overflow-hidden rounded-b-[2.5rem] md:rounded-b-none md:rounded-r-[2.5rem] border-t md:border-t-0 md:border-l-2 border-[#E6D2BF] bg-[#F5EBE0]">
                   <img
-                    src="/images/sports_img.png"
+                    src="/images/sports_hero_bg.png"
                     alt={isEn ? sportsClub.nameEn : sportsClub.nameMr}
-                    className="absolute inset-0 size-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110"
+                    className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-[#FAF1E4]/30 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#541A1A]/30 via-transparent to-transparent pointer-events-none" />

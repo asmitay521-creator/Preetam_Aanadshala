@@ -1,4 +1,4 @@
-﻿import React, { useState } from "react";
+import React, { useState } from "react";
 import { Phone, MessageCircle, Mail, User, MapPin, Building, Send, Map, CheckSquare, Edit3 } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { useAdminStore } from "@/lib/admin-store";
@@ -46,11 +46,11 @@ function Contact() {
         </div>
         
         {/* Floating Icons */}
-        <div className="absolute left-[15%] top-1/2 -translate-y-1/2 w-24 h-24 bg-pink-100 rounded-full flex items-center justify-center shadow-[0_0_50px_rgba(236,72,153,0.2)]">
+        <div className="hidden md:flex absolute left-[15%] top-1/2 -translate-y-1/2 w-24 h-24 bg-pink-100 rounded-full items-center justify-center shadow-[0_0_50px_rgba(236,72,153,0.2)]">
           <Phone className="text-pink-400" size={40} />
           <div className="absolute inset-0 rounded-full border border-pink-200 animate-ping opacity-50" />
         </div>
-        <div className="absolute right-[15%] top-1/2 -translate-y-1/2 text-blue-300/50 rotate-[-15deg]">
+        <div className="hidden md:block absolute right-[15%] top-1/2 -translate-y-1/2 text-blue-300/50 rotate-[-15deg]">
           <Send size={100} strokeWidth={1} />
         </div>
 
