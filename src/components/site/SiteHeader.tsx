@@ -53,7 +53,7 @@ export function SiteHeader() {
             </span>
             <span
               className="block text-[9px] sm:text-[10px] uppercase tracking-[0.2em] font-extrabold"
-              style={{ color: "#E60067" }}
+              style={{ color: "#f472b6" }}
             >
               SANGLI • MAHARASHTRA
             </span>
@@ -74,13 +74,13 @@ export function SiteHeader() {
                     window.dispatchEvent(new CustomEvent("reset-section"));
                   }
                 }}
-                className="group relative rounded-full px-4 py-2 text-sm font-bold transition-all duration-300 hover:text-[#E60067]"
-                style={{ color: isActive ? "#E60067" : "#1A05A2" }}
+                className="group relative rounded-full px-4 py-2 text-sm font-bold transition-all duration-300 hover:text-[#f472b6]"
+                style={{ color: isActive ? "#f472b6" : "#1A05A2" }}
               >
                 {isMr ? l.label : l.en}
                 <span
                   className={`absolute inset-x-4 -bottom-1 h-0.5 origin-center rounded-full transition-transform duration-300 ${isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
-                  style={{ background: "#E60067" }}
+                  style={{ background: "#f472b6" }}
                 />
               </Link>
             );
@@ -106,7 +106,7 @@ export function SiteHeader() {
             href="tel:+919370237633"
             className="ml-2 inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-xs font-extrabold text-white shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg"
             style={{
-              background: "linear-gradient(135deg, #E60067 0%, #1A05A2 100%)",
+              background: "linear-gradient(135deg, #f472b6 0%, #1A05A2 100%)",
             }}
           >
             <span>🏛️</span>
@@ -127,7 +127,7 @@ export function SiteHeader() {
             }}
           >
             <span>🌐</span>
-            <span className="text-[#E60067] uppercase font-black">{lang}</span>
+            <span className="text-[#f472b6] uppercase font-black">{lang}</span>
           </button>
 
           {/* MOBILE TOGGLE */}
@@ -156,7 +156,7 @@ export function SiteHeader() {
             backdropFilter: "blur(20px)",
           }}
         >
-          <div className="h-0.5 w-full" style={{ background: "linear-gradient(90deg, #1A05A2, #E60067, #0284C7)" }} />
+          <div className="h-0.5 w-full" style={{ background: "linear-gradient(90deg, #1A05A2, #f472b6, #0284C7)" }} />
           <nav className="container-page flex flex-col py-4 gap-1">
             {navLinks.map((l) => {
               const isActive = l.to === "/" ? pathname === "/" : pathname.startsWith(l.to);
@@ -173,7 +173,7 @@ export function SiteHeader() {
                   }}
                   className="rounded-xl px-4 py-3.5 text-base font-bold transition-all duration-200 flex items-center justify-between"
                   style={{ 
-                    color: isActive ? "#E60067" : "#1A05A2",
+                    color: isActive ? "#f472b6" : "#1A05A2",
                     background: isActive ? "rgba(230, 0, 103, 0.08)" : "transparent"
                   }}
                 >
@@ -188,7 +188,7 @@ export function SiteHeader() {
               <span className="text-xs font-bold text-[#1A05A2]">वेबसाईट भाषा / Website Language:</span>
               <button
                 onClick={toggleLanguage}
-                className="rounded-full px-4 py-1.5 text-xs font-bold text-white bg-[#E60067] shadow"
+                className="rounded-full px-4 py-1.5 text-xs font-bold text-white bg-[#f472b6] shadow"
               >
                 {isMr ? "Switch to English 🇬🇧" : "मराठी निवड करा 🇮🇳"}
               </button>
@@ -197,7 +197,7 @@ export function SiteHeader() {
             <a
               href="tel:+919970079090"
               className="mt-3 mx-1 py-3.5 text-base text-center font-bold text-white rounded-full"
-              style={{ background: "linear-gradient(135deg, #E60067, #1A05A2)" }}
+              style={{ background: "linear-gradient(135deg, #f472b6, #1A05A2)" }}
             >
               📞 {isMr ? "आजच प्रवेश घ्या · Call Now" : "Book Admission · Call Now"}
             </a>
@@ -208,7 +208,7 @@ export function SiteHeader() {
       {/* SCROLLED BOTTOM LINE */}
       <div
         className={`h-px transition-opacity duration-500 ${scrolled ? "opacity-100" : "opacity-0"}`}
-        style={{ background: "linear-gradient(90deg, transparent, #E60067, #0284C7, #1A05A2, transparent)" }}
+        style={{ background: "linear-gradient(90deg, transparent, #f472b6, #0284C7, #1A05A2, transparent)" }}
       />
     </header>
   );

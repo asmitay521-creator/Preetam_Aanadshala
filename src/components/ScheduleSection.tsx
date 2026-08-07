@@ -62,26 +62,26 @@ export default function ScheduleSection() {
           <div className="flex items-center gap-4 mb-2">
             <span className="text-xl sm:text-2xl font-bold text-[#1a1a40]">प्रीतम स्पोर्ट्स अँड फिटनेस क्लब आनंदशाळा</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#E60067] drop-shadow-sm flex items-center justify-center flex-wrap gap-2 md:gap-4">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#f472b6] drop-shadow-sm flex items-center justify-center flex-wrap gap-2 md:gap-4">
             <span className="text-pink-400 opacity-60">❦</span>
             प्रीतम ज्येष्ठ नागरिक आनंदशाळा वेळापत्रक
             <span className="text-pink-400 opacity-60">❦</span>
           </h2>
           <p className="mt-3 text-[#1a1a40] font-bold sm:text-lg flex items-center justify-center flex-wrap gap-2">
-            <span className="text-[#E60067]">❤</span> 
+            <span className="text-[#f472b6]">❤</span> 
             आनंदी जीवन, सुंदर खेवाणी... आरोग्य, मनोरंजन, संस्कार आणि सहवास यांचं आदर्श केंद्र. 
-            <span className="text-[#E60067]">❤</span>
+            <span className="text-[#f472b6]">❤</span>
           </p>
         </div>
 
         {/* DATE & TIME BADGES */}
         <div className="flex flex-col sm:flex-row items-center justify-between bg-white rounded-t-3xl border-b-4 border-[#1A05A2] shadow-sm p-4 px-6 md:px-12 z-10 relative mt-8">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-[#E60067] text-white flex items-center justify-center text-2xl shadow-md">
+            <div className="w-12 h-12 rounded-xl bg-[#f472b6] text-white flex items-center justify-center text-2xl shadow-md">
               📅
             </div>
             <div>
-              <div className="text-[#E60067] font-bold text-sm">वेळापत्रक</div>
+              <div className="text-[#f472b6] font-bold text-sm">वेळापत्रक</div>
               <div className="text-[#1a1a40] font-black">सोमवार, 22 ते शुक्रवार, 26 मे 2023</div>
             </div>
           </div>
@@ -107,7 +107,7 @@ export default function ScheduleSection() {
         <div className="overflow-x-auto bg-white rounded-b-3xl shadow-xl border border-slate-100">
           <table className="w-full min-w-[900px] text-center border-collapse">
             <thead>
-              <tr className="bg-gradient-to-r from-[#E60067] via-[#1A05A2] to-[#6a0dad] text-white">
+              <tr className="bg-gradient-to-r from-[#f472b6] via-[#1A05A2] to-[#6a0dad] text-white">
                 <th className="py-4 px-2 font-bold text-lg border-r border-white/20 w-[15%]">वेळ</th>
                 <th className="py-4 px-2 font-bold text-lg border-r border-white/20">सोमवार</th>
                 <th className="py-4 px-2 font-bold text-lg border-r border-white/20">मंगळवार</th>
@@ -157,7 +157,7 @@ export default function ScheduleSection() {
           
           {/* Features (Left) */}
           <div className="col-span-1 lg:col-span-3 bg-white rounded-[24px] shadow-md border border-slate-200 overflow-hidden relative">
-            <div className="bg-[#E60067] text-white text-center py-2 font-bold text-sm flex justify-center items-center gap-2 w-max mx-auto px-6 rounded-b-xl absolute top-0 inset-x-0">
+            <div className="bg-[#f472b6] text-white text-center py-2 font-bold text-sm flex justify-center items-center gap-2 w-max mx-auto px-6 rounded-b-xl absolute top-0 inset-x-0">
               <span className="text-xs">✦</span> आमच्या वैशिष्ट्ये <span className="text-xs">✦</span>
             </div>
             <div className="pt-14 pb-6 px-4 flex justify-between items-center gap-2">
@@ -170,7 +170,7 @@ export default function ScheduleSection() {
                 <div className="text-[9px] font-bold text-[#1a1a40] leading-tight">सुरक्षा<br/>प्रथम</div>
               </div>
               <div className="flex flex-col items-center text-center gap-2">
-                <div className="w-10 h-10 rounded-full bg-[#E60067] text-white flex items-center justify-center text-lg shadow-md">❤️</div>
+                <div className="w-10 h-10 rounded-full bg-[#f472b6] text-white flex items-center justify-center text-lg shadow-md">❤️</div>
                 <div className="text-[9px] font-bold text-[#1a1a40] leading-tight">आरोग्याची<br/>काळजी</div>
               </div>
               <div className="flex flex-col items-center text-center gap-2">
@@ -178,7 +178,7 @@ export default function ScheduleSection() {
                 <div className="text-[9px] font-bold text-[#1a1a40] leading-tight">मनोरंजन व<br/>संस्कृती</div>
               </div>
               <div className="flex flex-col items-center text-center gap-2">
-                <div className="w-10 h-10 rounded-full bg-[#E60067] text-white flex items-center justify-center text-lg shadow-md">🧘</div>
+                <div className="w-10 h-10 rounded-full bg-[#f472b6] text-white flex items-center justify-center text-lg shadow-md">🧘</div>
                 <div className="text-[9px] font-bold text-[#1a1a40] leading-tight">अनुभवी व तज्ञ<br/>मार्गदर्शक</div>
               </div>
             </div>
@@ -192,7 +192,7 @@ export default function ScheduleSection() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 mt-2">
               {rules.map((rule, idx) => (
                 <div key={idx} className="flex items-start gap-2">
-                  <div className="w-4 h-4 rounded-full bg-[#E60067] text-white flex items-center justify-center shrink-0 mt-0.5">
+                  <div className="w-4 h-4 rounded-full bg-[#f472b6] text-white flex items-center justify-center shrink-0 mt-0.5">
                     <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
                   </div>
                   <span className="text-[11px] font-bold text-[#1a1a40] leading-snug">{rule}</span>
@@ -202,8 +202,8 @@ export default function ScheduleSection() {
           </div>
 
           {/* Happy Moments (Right) */}
-          <div className="col-span-1 lg:col-span-3 bg-white rounded-[24px] shadow-md border border-[#E60067]/30 overflow-hidden relative">
-             <div className="bg-[#E60067] text-white text-center py-2 font-bold text-sm flex justify-center items-center gap-2 w-max mx-auto px-6 rounded-b-xl absolute top-0 inset-x-0 z-10">
+          <div className="col-span-1 lg:col-span-3 bg-white rounded-[24px] shadow-md border border-[#f472b6]/30 overflow-hidden relative">
+             <div className="bg-[#f472b6] text-white text-center py-2 font-bold text-sm flex justify-center items-center gap-2 w-max mx-auto px-6 rounded-b-xl absolute top-0 inset-x-0 z-10">
               <span className="text-xs">✦</span> आनंदी जीवनाचे सुंदर क्षण <span className="text-xs">✦</span>
             </div>
             <div className="w-full h-full min-h-[160px] pt-12 p-3">

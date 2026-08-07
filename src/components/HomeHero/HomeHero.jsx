@@ -82,22 +82,22 @@ const HomeHero = () => {
                 <div className="btn-contact-content">
                   <span className="btn-small-text">आजच संपर्क साधा</span>
                   <span className="btn-large-text">9370237633</span>
-                  <span className="btn-tiny-text">आपल्या सुदृढ भविष्यासाठी<br/>आम्ही नेहमी तयार!</span>
+                  <span className="btn-tiny-text">नेहमी आपल्या सेवेत तत्पर!</span>
                 </div>
                 <div className="btn-arrow-circle">
-                  <ArrowRight size={20} />
+                  <ArrowRight size={16} />
                 </div>
               </a>
 
               <a href="#sections" className="btn-department">
                 <div className="btn-dept-icon">
-                  <Landmark size={24} />
+                  <Landmark size={20} />
                 </div>
                 <div className="btn-dept-content">
                   <span className="btn-dept-title">विभाग निवडा</span>
-                  <span className="btn-dept-desc">आपल्याला पाहिजे त्या<br/>विभागातील सर्व माहिती पहा.</span>
+                  <span className="btn-dept-desc">सर्व विभागांची माहिती पहा.</span>
                 </div>
-                <ArrowRight size={16} className="btn-dept-arrow" />
+                <ArrowRight size={14} className="btn-dept-arrow" />
               </a>
             </div>
           </div>
@@ -194,53 +194,6 @@ const HomeHero = () => {
           </div>
         </div>
 
-        {/* BOTTOM STATS FOOTER */}
-        <div className="stats-footer">
-          <div className="stat-footer-item">
-            <Award size={24} className="text-gold" />
-            <div className="stat-footer-text">
-              <strong>15+</strong>
-              <span>विविध उपक्रम</span>
-            </div>
-          </div>
-          <div className="stat-footer-divider"></div>
-          
-          <div className="stat-footer-item">
-            <Clock size={24} className="text-orange" />
-            <div className="stat-footer-text">
-              <strong>6AM - 10PM</strong>
-              <span>सुविधा उपलब्ध</span>
-            </div>
-          </div>
-          <div className="stat-footer-divider"></div>
-          
-          <div className="stat-footer-item">
-            <Users size={24} className="text-purple-light" />
-            <div className="stat-footer-text">
-              <strong>24x7</strong>
-              <span>वैद्यकीय सेवा</span>
-            </div>
-          </div>
-          <div className="stat-footer-divider"></div>
-          
-          <div className="stat-footer-item">
-            <CheckCircle2 size={24} className="text-pink-light" />
-            <div className="stat-footer-text">
-              <strong>100%</strong>
-              <span>सुरक्षित व स्वच्छ</span>
-            </div>
-          </div>
-          
-          <div className="stat-footer-spacer"></div>
-          
-          <div className="stat-footer-end">
-            <Heart size={24} className="text-pink-light fill-current" />
-            <div className="stat-footer-text">
-              <strong>आपले समाधान,</strong>
-              <span>आमचे ध्येय</span>
-            </div>
-          </div>
-        </div>
 
       </div>
     </div>

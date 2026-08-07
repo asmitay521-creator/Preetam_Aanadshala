@@ -35,7 +35,7 @@ const featureCards = [
     num: "५००+",
     label: "आनंदी सदस्य परिवार",
     desc: "सांगली जिल्ह्यातील विश्वासू कुटुंब",
-    color: "#E60067",
+    color: "#f472b6",
     bg: "#FFF0F6",
   },
   {

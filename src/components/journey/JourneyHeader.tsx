@@ -31,8 +31,8 @@ function JourneyHeader() {
           }}
           className="inline-flex items-center gap-2 rounded-full border border-pink-200 bg-white/80 backdrop-blur-xl px-6 py-3 shadow-xl"
         >
-          <Sparkles size={18} className="text-pink-500" />
-          <span className="font-semibold uppercase tracking-[4px] text-pink-600">
+          <Sparkles size={18} className="text-pink-400" />
+          <span className="font-semibold uppercase tracking-[4px] text-pink-400">
             वाट चाल
           </span>
         </motion.div>
@@ -93,7 +93,7 @@ function JourneyHeader() {
           viewport={{
             once: true,
           }}
-          className="mx-auto mt-12 h-[5px] w-44 origin-center rounded-full bg-gradient-to-r from-pink-500 via-blue-500 to-green-500"
+          className="mx-auto mt-12 h-[5px] w-44 origin-center rounded-full bg-gradient-to-r from-pink-400 via-blue-500 to-green-500"
         />
       </div>
     </section>

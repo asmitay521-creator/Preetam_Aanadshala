@@ -60,7 +60,7 @@ export default function About() {
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
               className="absolute -bottom-10 left-10 bg-white rounded-3xl shadow-2xl p-6 flex items-center gap-4"
             >
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-r from-pink-500 to-blue-500 flex items-center justify-center flex-shrink-0">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-r from-pink-400 to-blue-500 flex items-center justify-center flex-shrink-0">
                 <HeartHandshake size={30} className="text-white" />
               </div>
               <div>
@@ -77,13 +77,13 @@ export default function About() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <span className="inline-block px-5 py-2 rounded-full bg-pink-100 text-pink-600 font-semibold">
+            <span className="inline-block px-5 py-2 rounded-full bg-pink-100 text-pink-400 font-semibold">
               आमच्याबद्दल
             </span>
 
             <h2 className="text-5xl font-black text-gray-900 mt-6 leading-tight">
               प्रेम,{" "}
-              <span className="bg-gradient-to-r from-pink-600 to-blue-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-pink-400 to-blue-600 bg-clip-text text-transparent">
                 सन्मान
               </span>
               <br />
@@ -102,7 +102,7 @@ export default function About() {
             <div className="grid grid-cols-3 gap-5 mt-12">
 
               <div className="bg-pink-50 rounded-3xl p-6">
-                <Building2 className="text-pink-600" size={36} />
+                <Building2 className="text-pink-400" size={36} />
                 <h3 className="text-3xl font-bold mt-4">20+</h3>
                 <p className="text-gray-500">वर्षांचा अनुभव</p>
               </div>
@@ -128,7 +128,7 @@ export default function About() {
                 whileHover={{ y: -8 }}
                 className="bg-white rounded-3xl p-6 shadow-xl border border-pink-100"
               >
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-r from-pink-500 to-rose-400 flex items-center justify-center text-white">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-r from-pink-400 to-rose-400 flex items-center justify-center text-white">
                   <HeartHandshake size={30} />
                 </div>
                 <h3 className="text-2xl font-bold mt-5">प्रेमळ वातावरण</h3>
@@ -159,7 +159,7 @@ export default function About() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.8 }}
-              className="mt-14 rounded-[40px] overflow-hidden bg-gradient-to-r from-pink-500 via-fuchsia-500 to-blue-500 p-10 text-white shadow-2xl"
+              className="mt-14 rounded-[40px] overflow-hidden bg-gradient-to-r from-pink-400 via-fuchsia-500 to-blue-500 p-10 text-white shadow-2xl"
             >
               <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
                 <div>
@@ -174,7 +174,7 @@ export default function About() {
                 </div>
                 <a
                   href="tel:+919370237633"
-                  className="bg-white text-pink-600 font-bold px-10 py-5 rounded-full hover:scale-105 transition shadow-xl whitespace-nowrap"
+                  className="bg-white text-pink-400 font-bold px-10 py-5 rounded-full hover:scale-105 transition shadow-xl whitespace-nowrap"
                 >
                   संपर्क साधा →
                 </a>

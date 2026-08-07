@@ -168,11 +168,11 @@ function AdminPage() {
       <div className="min-h-screen bg-slate-100 text-slate-900 flex items-center justify-center p-4">
         <div className="w-full max-w-md bg-white border border-slate-200 rounded-3xl p-8 shadow-2xl">
           <div className="text-center mb-6">
-            <div className="size-16 rounded-2xl bg-[#E60067]/10 border border-[#E60067]/30 grid place-items-center text-3xl mx-auto mb-3">
+            <div className="size-16 rounded-2xl bg-[#f472b6]/10 border border-[#f472b6]/30 grid place-items-center text-3xl mx-auto mb-3">
               🛡️
             </div>
             <h1 className="font-display text-2xl font-black text-slate-900">प्रीतम आनंदशाळा</h1>
-            <p className="text-xs uppercase tracking-widest text-[#E60067] font-extrabold mt-1">Admin Console Login</p>
+            <p className="text-xs uppercase tracking-widest text-[#f472b6] font-extrabold mt-1">Admin Console Login</p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4">
@@ -185,13 +185,13 @@ function AdminPage() {
                 placeholder="पासवर्ड टाका (उदा. admin123)"
                 value={passInput}
                 onChange={(e) => setPassInput(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-white border border-slate-300 text-slate-900 text-sm font-semibold focus:outline-none focus:border-[#E60067] focus:ring-2 focus:ring-[#E60067]/20 shadow-sm"
+                className="w-full px-4 py-3 rounded-xl bg-white border border-slate-300 text-slate-900 text-sm font-semibold focus:outline-none focus:border-[#f472b6] focus:ring-2 focus:ring-[#f472b6]/20 shadow-sm"
               />
             </div>
             {loginError && <p className="text-xs text-red-600 font-extrabold">{loginError}</p>}
             <button
               type="submit"
-              className="w-full py-3.5 rounded-xl bg-[#E60067] hover:bg-[#68092D] font-extrabold text-white hover:scale-[1.01] transition-all cursor-pointer shadow-md"
+              className="w-full py-3.5 rounded-xl bg-[#f472b6] hover:bg-[#68092D] font-extrabold text-white hover:scale-[1.01] transition-all cursor-pointer shadow-md"
             >
               लॉगिन करा (Login)
             </button>
@@ -213,14 +213,14 @@ function AdminPage() {
         <div>
           {/* BRAND HEADER */}
           <div className="flex items-center gap-3 mb-6 p-3 rounded-2xl bg-slate-50 border border-slate-200">
-            <div className="size-12 rounded-xl bg-[#E60067] text-white grid place-items-center text-xl font-bold shadow shrink-0">
+            <div className="size-12 rounded-xl bg-[#f472b6] text-white grid place-items-center text-xl font-bold shadow shrink-0">
               🏛️
             </div>
             <div>
               <h2 className="font-display text-base font-black text-slate-900 tracking-tight leading-tight">
                 प्रीतम आनंदशाळा
               </h2>
-              <span className="inline-block rounded-md bg-[#E60067]/10 px-2 py-0.5 text-[10px] font-black text-[#E60067] tracking-wider uppercase border border-[#E60067]/20 mt-0.5">
+              <span className="inline-block rounded-md bg-[#f472b6]/10 px-2 py-0.5 text-[10px] font-black text-[#f472b6] tracking-wider uppercase border border-[#f472b6]/20 mt-0.5">
                 ADMIN CONSOLE
               </span>
             </div>
@@ -247,7 +247,7 @@ function AdminPage() {
                   onClick={() => setActiveTab(tab.id as TabKey)}
                   className={`w-full flex items-center justify-between px-4 py-3.5 rounded-xl font-extrabold text-xs sm:text-sm transition-all duration-200 cursor-pointer ${
                     active
-                      ? "bg-[#E60067] text-white shadow-md scale-[1.01]"
+                      ? "bg-[#f472b6] text-white shadow-md scale-[1.01]"
                       : "bg-slate-50 border border-slate-200 text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                   }`}
                 >
@@ -265,7 +265,7 @@ function AdminPage() {
                     <span
                       className={`grid size-6 place-items-center rounded-full text-xs font-black ${
                         active
-                          ? "bg-white text-[#E60067]"
+                          ? "bg-white text-[#f472b6]"
                           : tab.highlightCount && tab.count > 0
                           ? "bg-emerald-600 text-white animate-pulse"
                           : "bg-slate-200 text-slate-700"
@@ -326,7 +326,7 @@ function AdminPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               <div className="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
                 <p className="text-xs uppercase tracking-wider font-extrabold text-slate-500">चौकशी संदेश</p>
-                <p className="font-display text-4xl font-black text-[#E60067] mt-2">{store.inquiries.length}</p>
+                <p className="font-display text-4xl font-black text-[#f472b6] mt-2">{store.inquiries.length}</p>
                 <p className="text-xs text-emerald-600 mt-1 font-bold">✓ {store.unreadInquiriesCount} नवीन अवाचित संदेश</p>
               </div>
 
@@ -357,7 +357,7 @@ function AdminPage() {
                 </h3>
                 <button
                   onClick={() => setActiveTab("inquiries")}
-                  className="text-xs font-extrabold text-[#E60067] hover:underline cursor-pointer"
+                  className="text-xs font-extrabold text-[#f472b6] hover:underline cursor-pointer"
                 >
                   सर्व संदेश पहा →
                 </button>
@@ -368,7 +368,7 @@ function AdminPage() {
                   <div key={inq.id} className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
                     <div>
                       <p className="font-bold text-sm text-slate-900">{inq.name} ({inq.phone})</p>
-                      <p className="text-xs text-[#E60067] font-extrabold mt-0.5">{inq.subject}</p>
+                      <p className="text-xs text-[#f472b6] font-extrabold mt-0.5">{inq.subject}</p>
                       <p className="text-xs text-slate-600 line-clamp-1 mt-0.5 font-medium">{inq.message}</p>
                     </div>
                     <span className="text-xs text-slate-400 font-bold shrink-0">{inq.date}</span>

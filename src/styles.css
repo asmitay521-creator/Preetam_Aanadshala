@@ -40,7 +40,7 @@
   --color-pink: var(--pink);
   --color-blue: var(--blue);
   --color-sky: var(--sky);
-  --color-[#E60067]: #E60067;
+  --color-[#f472b6]: #f472b6;
   --color-[#1A05A2]: #1A05A2;
   --color-[#1E40AF]: #1E40AF;
   --color-primary-glow: var(--primary-glow);
@@ -71,7 +71,7 @@
   --radius: 0.75rem;
 
   /* ── PINK & BLUE BRAND PALETTE ── */
-  --pink: #E60067;
+  --pink: #f472b6;
   /* Vibrant Royal Pink Accent     */
   --blue: #1A05A2;
   /* Deep Navy Royal Blue          */
@@ -97,7 +97,7 @@
   --popover-foreground: #1A05A2;
 
   /* primary = Vibrant Pink Accent */
-  --primary: #E60067;
+  --primary: #f472b6;
   --primary-foreground: #FFFFFF;
   --primary-glow: #1A05A2;
 
@@ -109,18 +109,18 @@
   --muted-foreground: #475569;
 
   /* accent = Pink & Blue */
-  --accent: #E60067;
+  --accent: #f472b6;
   --accent-foreground: #FFFFFF;
   --accent-soft: #1A05A2;
 
-  --destructive: #E60067;
+  --destructive: #f472b6;
   --destructive-foreground: #ffffff;
 
   --border: #CBD5E1;
   --input: #E2E8F0;
-  --ring: #E60067;
+  --ring: #f472b6;
 
-  --chart-1: #E60067;
+  --chart-1: #f472b6;
   --chart-2: #1A05A2;
   --chart-3: #0284C7;
   --chart-4: #E2E8F0;
@@ -131,8 +131,8 @@
 
   /* ── RICH MIXED GRADIENTS ── */
   --gradient-hero: linear-gradient(145deg, #1A05A2 0%, #1E40AF 60%, #3B82F6 100%);
-  --gradient-brand: linear-gradient(135deg, #1A05A2 0%, #E60067 100%);
-  --gradient-pink: linear-gradient(135deg, #E60067 0%, #FF2A85 100%);
+  --gradient-brand: linear-gradient(135deg, #1A05A2 0%, #f472b6 100%);
+  --gradient-pink: linear-gradient(135deg, #f472b6 0%, #FF2A85 100%);
   --gradient-blue: linear-gradient(135deg, #1A05A2 0%, #1E40AF 100%);
   --gradient-card-border: linear-gradient(135deg, rgba(230, 0, 103, 0.4) 0%, rgba(12, 35, 112, 0.4) 100%);
 
@@ -144,12 +144,12 @@
 
   --sidebar: #F0F6FF;
   --sidebar-foreground: #1A05A2;
-  --sidebar-primary: #E60067;
+  --sidebar-primary: #f472b6;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #E2E8F0;
   --sidebar-accent-foreground: #1A05A2;
   --sidebar-border: #CBD5E1;
-  --sidebar-ring: #E60067;
+  --sidebar-ring: #f472b6;
 }
 
 .dark {
@@ -159,7 +159,7 @@
   --card-foreground: #F1F5F9;
   --popover: #0C193D;
   --popover-foreground: #F1F5F9;
-  --primary: #E60067;
+  --primary: #f472b6;
   --primary-foreground: #FFFFFF;
   --secondary: #132554;
   --secondary-foreground: #F1F5F9;
@@ -167,19 +167,19 @@
   --muted-foreground: #94A3B8;
   --accent: #0284C7;
   --accent-foreground: #FFFFFF;
-  --destructive: #E60067;
+  --destructive: #f472b6;
   --destructive-foreground: #ffffff;
   --border: #1E293B;
   --input: #132554;
-  --ring: #E60067;
+  --ring: #f472b6;
   --sidebar: #050B1E;
   --sidebar-foreground: #F1F5F9;
-  --sidebar-primary: #E60067;
+  --sidebar-primary: #f472b6;
   --sidebar-primary-foreground: #FFFFFF;
   --sidebar-accent: #132554;
   --sidebar-accent-foreground: #F1F5F9;
   --sidebar-border: #1E293B;
-  --sidebar-ring: #E60067;
+  --sidebar-ring: #f472b6;
 }
 
 /* ============================================================
@@ -190,7 +190,7 @@
   * {
     border-color: var(--color-border);
     scrollbar-width: thin;
-    scrollbar-color: #E60067 #1A05A2;
+    scrollbar-color: #f472b6 #1A05A2;
   }
 
   *::-webkit-scrollbar {
@@ -203,7 +203,7 @@
   }
 
   *::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #E60067, #0284C7);
+    background: linear-gradient(180deg, #f472b6, #0284C7);
     border-radius: 99px;
   }
 
@@ -501,7 +501,7 @@
 }
 
 .shimmer-text {
-  background: linear-gradient(90deg, #E60067 0%, #1A05A2 25%, #0284C7 50%, #1A05A2 75%, #E60067 100%);
+  background: linear-gradient(90deg, #f472b6 0%, #1A05A2 25%, #0284C7 50%, #1A05A2 75%, #f472b6 100%);
   background-size: 300% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -517,4 +517,8 @@
   transform: translateY(-5px);
   box-shadow: 0 20px 40px -15px rgba(230, 0, 103, 0.25);
   border-color: rgba(230, 0, 103, 0.6);
+}
+
+.hide-footer footer {
+  display: none !important;
 }

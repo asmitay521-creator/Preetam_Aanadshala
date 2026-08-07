@@ -26,7 +26,7 @@ export function PageHero({ title, subtitle, badge, eyebrow, image }: PageHeroPro
       {/* Top brand border */}
       <div
         className="absolute top-0 left-0 right-0 h-1"
-        style={{ background: "linear-gradient(90deg, transparent, #E60067, #0284C7, #1A05A2, transparent)" }}
+        style={{ background: "linear-gradient(90deg, transparent, #f472b6, #0284C7, #1A05A2, transparent)" }}
       />
 
       {/* Subtle grid */}
@@ -45,7 +45,7 @@ export function PageHero({ title, subtitle, badge, eyebrow, image }: PageHeroPro
             style={{
               background: "rgba(230,0,103,0.08)",
               borderColor: "rgba(12,35,112,0.2)",
-              color: "#E60067",
+              color: "#f472b6",
             }}
           >
             🌿 {badgeText}
@@ -76,9 +76,9 @@ export function PageHero({ title, subtitle, badge, eyebrow, image }: PageHeroPro
 
         {/* Divider */}
         <div className="flex items-center justify-center gap-3 mt-8 animate-fade-up delay-300">
-          <div className="h-px flex-1 max-w-24" style={{ background: "linear-gradient(90deg, transparent, #E60067)" }} />
-          <div className="size-2 rounded-full" style={{ background: "#E60067", boxShadow: "0 0 8px rgba(230,0,103,0.8)" }} />
-          <div className="h-px flex-1 max-w-24" style={{ background: "linear-gradient(90deg, #E60067, transparent)" }} />
+          <div className="h-px flex-1 max-w-24" style={{ background: "linear-gradient(90deg, transparent, #f472b6)" }} />
+          <div className="size-2 rounded-full" style={{ background: "#f472b6", boxShadow: "0 0 8px rgba(230,0,103,0.8)" }} />
+          <div className="h-px flex-1 max-w-24" style={{ background: "linear-gradient(90deg, #f472b6, transparent)" }} />
         </div>
       </div>
 

@@ -9,7 +9,7 @@ const timelineData = [
     titleNormal: "श्री. अभिनव जगन्नाथ कामाजी यांची",
     titleHighlight: "प्रतिष्ठान व्यवस्था",
     description: "माझ्या जन्माची बीजे रुजली ती श्री. अभिनव जगन्नाथ कामाजी या सांगली यांच्या स्वप्नातून.",
-    color: "#E60067",
+    color: "#f472b6",
     bgColor: "#FDE8F3",
     borderColor: "#FCCEE4",
     nodeIcon: Sprout,

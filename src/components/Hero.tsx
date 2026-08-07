@@ -22,7 +22,7 @@ const features = [
   {
     icon: Heart,
     title: "प्रेम",
-    color: "from-pink-500 to-rose-400",
+    color: "from-pink-400 to-rose-400",
   },
   {
     icon: ShieldCheck,
@@ -52,14 +52,14 @@ export default function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-pink-100 text-pink-600 font-semibold mb-8">
+          <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-pink-100 text-pink-400 font-semibold mb-8">
             ❤️ प्रेम • सेवा • सन्मान
           </span>
 
           <h1 className="text-5xl lg:text-7xl font-black leading-tight text-gray-900">
             ज्येष्ठांचा
             <br />
-            <span className="bg-gradient-to-r from-pink-600 via-fuchsia-500 to-blue-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-pink-400 via-fuchsia-500 to-blue-600 bg-clip-text text-transparent">
               सन्मान,
             </span>
             <br />
@@ -73,7 +73,7 @@ export default function Hero() {
 
           {/* Buttons */}
           <div className="flex flex-wrap gap-5 mt-10">
-            <button className="group px-8 py-4 rounded-full bg-gradient-to-r from-pink-500 to-blue-500 text-white font-semibold shadow-xl hover:scale-105 transition">
+            <button className="group px-8 py-4 rounded-full bg-gradient-to-r from-pink-400 to-blue-500 text-white font-semibold shadow-xl hover:scale-105 transition">
               <span className="flex items-center gap-2">
                 अधिक जाणून घ्या
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition" />
@@ -82,7 +82,7 @@ export default function Hero() {
 
             <a
               href="tel:+919370237633"
-              className="px-8 py-4 rounded-full border-2 border-pink-500 text-pink-600 font-semibold hover:bg-pink-50 transition"
+              className="px-8 py-4 rounded-full border-2 border-pink-400 text-pink-400 font-semibold hover:bg-pink-50 transition"
             >
               <span className="flex items-center gap-2">
                 <Phone size={18} />
@@ -137,7 +137,7 @@ export default function Hero() {
               {stats.map((item, i) => (
                 <div key={i} className="flex justify-between border-b pb-3">
                   <span className="text-gray-500">{item.label}</span>
-                  <span className="font-bold text-pink-600">{item.value}</span>
+                  <span className="font-bold text-pink-400">{item.value}</span>
                 </div>
               ))}
             </div>
@@ -147,7 +147,7 @@ export default function Hero() {
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-            className="absolute -bottom-10 right-0 bg-gradient-to-r from-pink-500 to-blue-500 text-white rounded-3xl shadow-xl p-6 flex gap-4 items-center"
+            className="absolute -bottom-10 right-0 bg-gradient-to-r from-pink-400 to-blue-500 text-white rounded-3xl shadow-xl p-6 flex gap-4 items-center"
           >
             <Award size={40} />
             <div>

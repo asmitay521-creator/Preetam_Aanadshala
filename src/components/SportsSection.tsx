@@ -222,56 +222,6 @@ export const SportsSection: React.FC = () => {
             <div className="sp-exact-chip"><span className="sp-exact-chip-icon">🎾</span> स्क्वॅश</div>
           </div>
 
-          {/* CTA BUTTONS ROW */}
-          <div className="sp-exact-btns-row">
-            <a href={`tel:${sportsClub.phones[0]}`} className="sp-exact-btn-red">
-              <span> आजच प्रवेश घ्या</span>
-              <span className="sp-btn-arrow">→</span>
-            </a>
-            <a
-              href={sportsClub.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="sp-exact-btn-wa"
-            >
-              <span>💬 WhatsApp चौकशी</span>
-            </a>
-          </div>
-
-          {/* ATTRACTIVE 4-CARD ULTRA STATS ROW */}
-          <div className="sp-pro-stats-grid">
-            <div className="sp-pro-stat-card">
-              <div className="sp-pro-stat-icon-box bg-purple">🏛️</div>
-              <div className="sp-pro-stat-info">
-                <div className="sp-pro-stat-val">१.५ एकर</div>
-                <div className="sp-pro-stat-lbl">भव्य संकुल क्षेत्रफळ</div>
-              </div>
-            </div>
-
-            <div className="sp-pro-stat-card">
-              <div className="sp-pro-stat-icon-box bg-pink">🎓</div>
-              <div className="sp-pro-stat-info">
-                <div className="sp-pro-stat-val">२५+</div>
-                <div className="sp-pro-stat-lbl">प्रमाणित प्रशिक्षक</div>
-              </div>
-            </div>
-
-            <div className="sp-pro-stat-card">
-              <div className="sp-pro-stat-icon-box bg-blue">👥</div>
-              <div className="sp-pro-stat-info">
-                <div className="sp-pro-stat-val">१०००+</div>
-                <div className="sp-pro-stat-lbl">आनंदी सभासद</div>
-              </div>
-            </div>
-
-            <div className="sp-pro-stat-card">
-              <div className="sp-pro-stat-icon-box bg-green">🏋️</div>
-              <div className="sp-pro-stat-info">
-                <div className="sp-pro-stat-val">२८+</div>
-                <div className="sp-pro-stat-lbl">अत्याधुनिक सुविधा</div>
-              </div>
-            </div>
-          </div>
         </section>
 
         {/* ══════════════════════════════════════════════════════════════

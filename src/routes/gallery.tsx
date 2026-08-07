@@ -81,7 +81,7 @@ function Gallery() {
 
         {/* ===== Heading ===== */}
         <div className="text-center mb-16">
-          <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white shadow text-pink-600 font-semibold tracking-wider text-sm">
+          <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white shadow text-pink-400 font-semibold tracking-wider text-sm">
             📸 GALLERY
           </span>
 
@@ -94,7 +94,7 @@ function Gallery() {
             प्रेरणादायी क्षण.
           </p>
 
-          <div className="mt-8 w-28 h-1 rounded-full mx-auto bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500" />
+          <div className="mt-8 w-28 h-1 rounded-full mx-auto bg-gradient-to-r from-pink-400 via-purple-500 to-blue-500" />
         </div>
 
         {/* ===== Category Filter Buttons ===== */}
@@ -105,13 +105,13 @@ function Gallery() {
               onClick={() => setSelectedCategory(category)}
               className={`group relative overflow-hidden rounded-full border px-7 py-3 text-sm font-semibold transition-all duration-300 cursor-pointer ${
                 selectedCategory === category
-                  ? "bg-gradient-to-r from-pink-600 to-purple-700 text-white shadow-xl scale-105 border-transparent"
-                  : "bg-white text-[#1f2a8a] border-gray-200 hover:border-pink-400 hover:text-pink-600 hover:-translate-y-1 hover:shadow-lg"
+                  ? "bg-gradient-to-r from-pink-400 to-purple-700 text-white shadow-xl scale-105 border-transparent"
+                  : "bg-white text-[#1f2a8a] border-gray-200 hover:border-pink-400 hover:text-pink-400 hover:-translate-y-1 hover:shadow-lg"
               }`}
             >
               <span className="relative z-10">{category}</span>
               {selectedCategory !== category && (
-                <span className="absolute inset-0 translate-y-full bg-gradient-to-r from-pink-500/10 to-purple-500/10 transition-transform duration-300 group-hover:translate-y-0" />
+                <span className="absolute inset-0 translate-y-full bg-gradient-to-r from-pink-400/10 to-purple-500/10 transition-transform duration-300 group-hover:translate-y-0" />
               )}
             </button>
           ))}
@@ -146,8 +146,8 @@ function Gallery() {
                 className="group relative cursor-pointer perspective-[1000px] z-10 hover:z-20"
               >
                 {/* Animated Glowing Gradient Border */}
-                <div className="absolute inset-[-4px] rounded-[34px] bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-500 group-hover:animate-pulse" />
-                <div className="absolute inset-[-3px] rounded-[34px] bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-[-4px] rounded-[34px] bg-gradient-to-r from-pink-400 via-purple-500 to-blue-500 opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-500 group-hover:animate-pulse" />
+                <div className="absolute inset-[-3px] rounded-[34px] bg-gradient-to-r from-pink-400 via-purple-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div className="relative overflow-hidden rounded-[32px] shadow-lg bg-[#08142f] h-[340px] transition-all duration-500">
 
@@ -161,7 +161,7 @@ function Gallery() {
 
                   {/* Glow overlay on hover */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#120838] via-[#1a093399] to-transparent opacity-70 group-hover:opacity-90 duration-500" />
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-pink-500 mix-blend-overlay duration-500" />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-pink-400 mix-blend-overlay duration-500" />
 
                   {/* HD Badge */}
                   <div className="absolute top-5 right-5">
@@ -172,7 +172,7 @@ function Gallery() {
 
                   {/* Category Badge */}
                   <div className="absolute top-5 left-5">
-                    <span className="rounded-full bg-gradient-to-r from-pink-600 to-purple-600 text-white px-4 py-1.5 text-[11px] font-bold shadow-lg border border-pink-400/50">
+                    <span className="rounded-full bg-gradient-to-r from-pink-400 to-purple-600 text-white px-4 py-1.5 text-[11px] font-bold shadow-lg border border-pink-400/50">
                       {item.category}
                     </span>
                   </div>
@@ -185,7 +185,7 @@ function Gallery() {
 
                   {/* Hover Arrow Button */}
                   <div className="absolute bottom-7 right-7">
-                    <div className="h-12 w-12 rounded-full bg-gradient-to-tr from-pink-500 to-purple-500 text-white flex items-center justify-center shadow-[0_0_20px_rgba(230,0,103,0.5)] translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 duration-500 border border-white/30">
+                    <div className="h-12 w-12 rounded-full bg-gradient-to-tr from-pink-400 to-purple-500 text-white flex items-center justify-center shadow-[0_0_20px_rgba(230,0,103,0.5)] translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 duration-500 border border-white/30">
                       <ArrowUpRight size={22} strokeWidth={2.5} />
                     </div>
                   </div>

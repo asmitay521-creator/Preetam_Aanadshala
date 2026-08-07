@@ -13,7 +13,7 @@ const facilities = [
     icon: HeartPulse,
     title: "आरोग्य सेवा",
     desc: "२४x७ आरोग्य तपासणी, डॉक्टर भेट, औषध व्यवस्थापन आणि नियमित आरोग्य देखभाल.",
-    color: "from-pink-500 to-rose-400",
+    color: "from-pink-400 to-rose-400",
   },
   {
     icon: BedDouble,
@@ -31,7 +31,7 @@ const facilities = [
     icon: Flower2,
     title: "योग व ध्यान",
     desc: "मनःशांती व निरोगी आयुष्यासाठी योग, ध्यान व अध्यात्मिक उपक्रम.",
-    color: "from-orange-400 to-pink-500",
+    color: "from-orange-400 to-pink-400",
   },
   {
     icon: Activity,
@@ -65,13 +65,13 @@ export default function Facilities() {
           transition={{ duration: 0.7 }}
           className="text-center max-w-3xl mx-auto"
         >
-          <span className="inline-block px-5 py-2 rounded-full bg-pink-100 text-pink-600 font-semibold">
+          <span className="inline-block px-5 py-2 rounded-full bg-pink-100 text-pink-400 font-semibold">
             आमच्या सुविधा
           </span>
 
           <h2 className="text-5xl font-black mt-6 leading-tight">
             ज्येष्ठांसाठी
-            <span className="bg-gradient-to-r from-pink-600 to-blue-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-pink-400 to-blue-600 bg-clip-text text-transparent">
               {" "}संपूर्ण काळजी
             </span>
           </h2>
@@ -106,7 +106,7 @@ export default function Facilities() {
 
                 <p className="text-gray-600 leading-8 mt-4">{item.desc}</p>
 
-                <button className="mt-8 text-pink-600 font-semibold hover:translate-x-2 transition inline-flex items-center gap-1">
+                <button className="mt-8 text-pink-400 font-semibold hover:translate-x-2 transition inline-flex items-center gap-1">
                   अधिक माहिती →
                 </button>
               </motion.div>
@@ -133,7 +133,7 @@ export default function Facilities() {
               key={index}
               className="bg-white rounded-3xl shadow-xl p-8 text-center border border-pink-100"
             >
-              <h2 className="text-4xl font-black bg-gradient-to-r from-pink-600 to-blue-600 bg-clip-text text-transparent">
+              <h2 className="text-4xl font-black bg-gradient-to-r from-pink-400 to-blue-600 bg-clip-text text-transparent">
                 {item.number}
               </h2>
               <p className="mt-3 text-gray-600 font-medium">{item.label}</p>
@@ -150,7 +150,7 @@ export default function Facilities() {
           className="relative overflow-hidden rounded-[40px] mt-24"
         >
           {/* Background */}
-          <div className="absolute inset-0 bg-gradient-to-r from-pink-500 via-fuchsia-500 to-blue-600" />
+          <div className="absolute inset-0 bg-gradient-to-r from-pink-400 via-fuchsia-500 to-blue-600" />
           <div className="absolute -top-20 -left-20 w-64 h-64 rounded-full bg-white/10 blur-3xl" />
           <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-white/10 blur-3xl" />
 
@@ -175,12 +175,12 @@ export default function Facilities() {
             <div className="flex flex-col gap-5">
               <a
                 href="tel:+919370237633"
-                className="bg-white text-pink-600 font-bold rounded-full px-10 py-5 shadow-xl hover:scale-105 transition-all duration-300 text-center"
+                className="bg-white text-pink-400 font-bold rounded-full px-10 py-5 shadow-xl hover:scale-105 transition-all duration-300 text-center"
               >
                 संपर्क साधा →
               </a>
 
-              <button className="border-2 border-white rounded-full px-10 py-5 text-white font-semibold hover:bg-white hover:text-pink-600 transition">
+              <button className="border-2 border-white rounded-full px-10 py-5 text-white font-semibold hover:bg-white hover:text-pink-400 transition">
                 अधिक जाणून घ्या
               </button>
             </div>

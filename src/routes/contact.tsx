@@ -61,10 +61,10 @@ function Contact() {
 
         <h1 className="relative z-10 text-5xl sm:text-7xl font-black text-[#2e3192] mb-4 drop-shadow-sm">
           संपर्क
-          <div className="flex items-center justify-center mt-3 gap-2 text-pink-500">
-            <span className="block w-12 h-0.5 bg-pink-500 rounded-full"></span>
-            <span className="block w-2 h-2 rounded-full bg-pink-500"></span>
-            <span className="block w-12 h-0.5 bg-pink-500 rounded-full"></span>
+          <div className="flex items-center justify-center mt-3 gap-2 text-pink-400">
+            <span className="block w-12 h-0.5 bg-pink-400 rounded-full"></span>
+            <span className="block w-2 h-2 rounded-full bg-pink-400"></span>
+            <span className="block w-12 h-0.5 bg-pink-400 rounded-full"></span>
           </div>
         </h1>
 
@@ -83,12 +83,12 @@ function Contact() {
           
           {/* Card 1 */}
           <div className="flex items-center gap-4 bg-white rounded-[20px] p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center text-pink-500">
+            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center text-pink-400">
               <Phone size={24} />
             </div>
             <div>
               <p className="text-xs font-bold text-slate-500 mb-1">आनंदशाळा हेल्पलाईन</p>
-              <a href="tel:+919370237633" className="text-[15px] font-black text-[#e60067] tracking-wide">+91-9370237633</a>
+              <a href="tel:+919370237633" className="text-[15px] font-black text-[#f472b6] tracking-wide">+91-9370237633</a>
             </div>
           </div>
 
@@ -136,7 +136,7 @@ function Contact() {
           <Reveal>
             <div className="h-full bg-white rounded-[24px] shadow-lg border border-slate-100 overflow-hidden relative flex flex-col p-8 sm:p-10">
               {/* Left Gradient Border */}
-              <div className="absolute left-0 top-0 bottom-0 w-2 bg-gradient-to-b from-[#e60067] to-[#662d91]" />
+              <div className="absolute left-0 top-0 bottom-0 w-2 bg-gradient-to-b from-[#f472b6] to-[#662d91]" />
               
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-14 h-14 rounded-full border border-purple-100 flex items-center justify-center text-purple-600 shrink-0 shadow-sm">
@@ -228,7 +228,7 @@ function Contact() {
 
                 <button
                   type="submit"
-                  className="mt-auto w-full flex items-center justify-center gap-2 rounded-xl py-4 font-bold text-white shadow-lg transition-transform hover:-translate-y-0.5 cursor-pointer bg-gradient-to-r from-[#e60067] to-[#662d91]"
+                  className="mt-auto w-full flex items-center justify-center gap-2 rounded-xl py-4 font-bold text-white shadow-lg transition-transform hover:-translate-y-0.5 cursor-pointer bg-gradient-to-r from-[#f472b6] to-[#662d91]"
                 >
                   <Send size={18} /> चौकशी अर्ज पाठवा
                 </button>
@@ -256,7 +256,7 @@ function Contact() {
 
               <div className="bg-[#f4f7fb] rounded-xl p-4 mb-6 space-y-3 border border-blue-50/50">
                 <div className="flex items-center gap-3">
-                  <MapPin size={16} className="text-[#e60067]" />
+                  <MapPin size={16} className="text-[#f472b6]" />
                   <p className="text-sm font-bold text-slate-700">आनंदशाळेचे केंद्र : इमारती नं 1 ते सर्वे. 5</p>
                 </div>
                 <div className="flex items-center gap-3">

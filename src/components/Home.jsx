@@ -73,25 +73,25 @@ const Home = () => {
 
           <ul className="hidden lg:flex items-center gap-14 font-semibold text-[20px]">
 
-            <li className="text-pink-600 relative cursor-pointer">
+            <li className="text-pink-400 relative cursor-pointer">
               Ã Â¤Â®Ã Â¥ÂÃ Â¤â€“Ã Â¥ÂÃ Â¤Â¯Ã Â¤ÂªÃ Â¥Æ’Ã Â¤Â·Ã Â¥ÂÃ Â¤Â 
 
-              <div className="absolute left-0 -bottom-3 w-full h-1 rounded-full bg-pink-600"></div>
+              <div className="absolute left-0 -bottom-3 w-full h-1 rounded-full bg-pink-400"></div>
             </li>
 
-            <li className="hover:text-pink-600 duration-300 cursor-pointer">
+            <li className="hover:text-pink-400 duration-300 cursor-pointer">
               Ã Â¤â€ Ã Â¤Â®Ã Â¤Å¡Ã Â¥ÂÃ Â¤Â¯Ã Â¤Â¾Ã Â¤ÂµÃ Â¤Â¿Ã Â¤Â·Ã Â¤Â¯Ã Â¥â‚¬
             </li>
 
-            <li className="hover:text-pink-600 duration-300 cursor-pointer">
+            <li className="hover:text-pink-400 duration-300 cursor-pointer">
               Ã Â¤Â®Ã Â¤Â¾Ã Â¤Â¹Ã Â¤Â¿Ã Â¤Â¤Ã Â¥â‚¬ Ã Â¤ÂªÃ Â¤Â¤Ã Â¥ÂÃ Â¤Â°Ã Â¤â€¢
             </li>
 
-            <li className="hover:text-pink-600 duration-300 cursor-pointer">
+            <li className="hover:text-pink-400 duration-300 cursor-pointer">
               Ã Â¤â€”Ã Â¥â€¦Ã Â¤Â²Ã Â¤Â°Ã Â¥â‚¬
             </li>
 
-            <li className="hover:text-pink-600 duration-300 cursor-pointer">
+            <li className="hover:text-pink-400 duration-300 cursor-pointer">
               Ã Â¤Â¸Ã Â¤â€šÃ Â¤ÂªÃ Â¤Â°Ã Â¥ÂÃ Â¤â€¢
             </li>
 
@@ -105,7 +105,7 @@ const Home = () => {
 
             <button className="flex items-center gap-3 px-7 py-4 rounded-full border bg-white shadow hover:bg-gray-50 transition cursor-pointer">
 
-              <FaGlobe className="text-pink-600 text-xl" />
+              <FaGlobe className="text-pink-400 text-xl" />
 
               <span className="font-semibold text-gray-800">
                 Ã Â¤Â®Ã Â¤Â°Ã Â¤Â¾Ã Â¤Â Ã Â¥â‚¬ | ENG
@@ -117,7 +117,7 @@ const Home = () => {
 
             <a
               href="tel:9370237633"
-              className="flex items-center gap-3 px-8 py-4 rounded-full text-white font-semibold bg-gradient-to-r from-pink-600 to-purple-700 hover:scale-105 duration-300 shadow-lg cursor-pointer text-decoration-none"
+              className="flex items-center gap-3 px-8 py-4 rounded-full text-white font-semibold bg-gradient-to-r from-pink-400 to-purple-700 hover:scale-105 duration-300 shadow-lg cursor-pointer text-decoration-none"
             >
 
               <FaUniversity className="text-xl" />
@@ -151,7 +151,7 @@ const Home = () => {
 
               <span className="text-orange-500 text-xl">Ã¢Â­Â</span>
 
-              <p className="text-pink-600 font-semibold text-sm sm:text-base">
+              <p className="text-pink-400 font-semibold text-sm sm:text-base">
                 Ã Â¤ÂªÃ Â¥ÂÃ Â¤Â°Ã Â¥â‚¬Ã Â¤Â¤Ã Â¤Â® Ã¢â‚¬Â¢ Ã Â¤Â­Ã Â¤Â¾Ã Â¤Â°Ã Â¤Â¤Ã Â¤Â¾Ã Â¤Â¤Ã Â¥â‚¬Ã Â¤Â² Ã Â¤ÂªÃ Â¤Â¹Ã Â¤Â¿Ã Â¤Â²Ã Â¥â‚¬ Ã Â¤Å“Ã Â¥ÂÃ Â¤Â¯Ã Â¥â€¡Ã Â¤Â·Ã Â¥ÂÃ Â¤Â  Ã Â¤Â¨Ã Â¤Â¾Ã Â¤â€”Ã Â¤Â°Ã Â¤Â¿Ã Â¤â€¢ Ã Â¤â€ Ã Â¤Â¨Ã Â¤â€šÃ Â¤Â¦Ã Â¤Â¶Ã Â¤Â¾Ã Â¤Â³Ã Â¤Â¾ Ã¢â‚¬Â¢ Ã Â¤Â¸Ã Â¤Â¾Ã Â¤â€šÃ Â¤â€”Ã Â¤Â²Ã Â¥â‚¬
               </p>
 
@@ -184,7 +184,7 @@ const Home = () => {
 
               <div className="h-[1px] bg-gray-200"></div>
 
-              <div className="absolute left-1/2 -translate-x-1/2 -top-3 w-8 h-8 rounded-full bg-white flex items-center justify-center text-pink-600 text-xl shadow">
+              <div className="absolute left-1/2 -translate-x-1/2 -top-3 w-8 h-8 rounded-full bg-white flex items-center justify-center text-pink-400 text-xl shadow">
                 Ã¢â„¢Â¡
               </div>
 
@@ -282,7 +282,7 @@ const Home = () => {
 
               <a
                 href="tel:9370237633"
-                className="px-10 py-5 rounded-full bg-gradient-to-r from-pink-600 to-purple-700 text-white font-bold text-lg shadow-lg hover:scale-105 duration-300 text-decoration-none"
+                className="px-10 py-5 rounded-full bg-gradient-to-r from-pink-400 to-purple-700 text-white font-bold text-lg shadow-lg hover:scale-105 duration-300 text-decoration-none"
               >
                 Ã°Å¸â€œÅ¾ Ã Â¤â€ Ã Â¤Å“Ã Â¤Å¡ Ã Â¤ÂªÃ Â¥ÂÃ Â¤Â°Ã Â¤ÂµÃ Â¥â€¡Ã Â¤Â¶ Ã Â¤ËœÃ Â¥ÂÃ Â¤Â¯Ã Â¤Â¾
               </a>
@@ -491,7 +491,7 @@ const Home = () => {
         <div className="flex justify-between items-center mb-10">
 
           <div>
-            <p className="text-pink-600 font-semibold uppercase tracking-widest">
+            <p className="text-pink-400 font-semibold uppercase tracking-widest">
               OUR FACILITIES
             </p>
 
@@ -500,7 +500,7 @@ const Home = () => {
             </h2>
           </div>
 
-          <button className="px-8 py-4 rounded-full bg-[#17286E] text-white font-semibold hover:bg-pink-600 duration-300 cursor-pointer">
+          <button className="px-8 py-4 rounded-full bg-[#17286E] text-white font-semibold hover:bg-pink-400 duration-300 cursor-pointer">
             Ã Â¤Â¸Ã Â¤Â°Ã Â¥ÂÃ Â¤Âµ Ã Â¤ÂªÃ Â¤Â¹Ã Â¤Â¾ Ã¢â€ â€™
           </button>
 
@@ -652,7 +652,7 @@ const Home = () => {
 
         <div className="text-center mb-16">
 
-          <span className="bg-pink-100 text-pink-600 px-6 py-2 rounded-full font-semibold">
+          <span className="bg-pink-100 text-pink-400 px-6 py-2 rounded-full font-semibold">
             OUR ACTIVITIES
           </span>
 
@@ -686,7 +686,7 @@ const Home = () => {
 
             <div className="absolute bottom-10 left-10 text-white z-10">
 
-              <span className="bg-pink-600 px-5 py-2 rounded-full font-semibold">
+              <span className="bg-pink-400 px-5 py-2 rounded-full font-semibold">
                 Featured Event
               </span>
 
@@ -731,7 +731,7 @@ const Home = () => {
 
                   </div>
 
-                  <span className="text-pink-600 font-semibold">
+                  <span className="text-pink-400 font-semibold">
                     Health Program
                   </span>
 
@@ -766,7 +766,7 @@ const Home = () => {
 
                 <div className="flex items-center gap-3">
 
-                  <div className="bg-pink-600 text-white rounded-2xl px-5 py-3 text-center">
+                  <div className="bg-pink-400 text-white rounded-2xl px-5 py-3 text-center">
 
                     <h3 className="text-2xl font-bold">27</h3>
 
@@ -774,7 +774,7 @@ const Home = () => {
 
                   </div>
 
-                  <span className="text-pink-600 font-semibold">
+                  <span className="text-pink-400 font-semibold">
                     Entertainment
                   </span>
 
@@ -817,7 +817,7 @@ const Home = () => {
 
                   </div>
 
-                  <span className="text-pink-600 font-semibold">
+                  <span className="text-pink-400 font-semibold">
                     Fun Activity
                   </span>
 
@@ -1045,7 +1045,7 @@ const Home = () => {
 
             <div className="flex gap-4 mt-6 lg:mt-0">
 
-              <div className="w-12 h-12 rounded-full bg-pink-500 flex items-center justify-center hover:scale-110 duration-300 cursor-pointer text-white font-bold">
+              <div className="w-12 h-12 rounded-full bg-pink-400 flex items-center justify-center hover:scale-110 duration-300 cursor-pointer text-white font-bold">
                 F
               </div>
 
