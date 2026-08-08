@@ -6,7 +6,7 @@ import {
   signOut, 
   onAuthStateChanged 
 } from "firebase/auth";
-import { auth } from "../firebase.js";
+import { auth } from "../firebase";
 
 interface AuthContextType {
   user: User | null;

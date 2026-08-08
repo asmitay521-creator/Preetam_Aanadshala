@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import "./AnandshalaStory.css";
 
@@ -20,42 +21,75 @@ import {
 import buildingImage from "../assets/anandshala-building.png";
 
 const AnandshalaStory: React.FC = () => {
+  const [selectedPillar, setSelectedPillar] = useState<{
+    title: string;
+    subtitle: string;
+    badge: string;
+    image: string;
+    desc: string;
+    details: string[];
+  } | null>(null);
+
   const pillars = [
     {
       id: "establishment",
       icon: <Landmark className="as-pillar-icon-svg" />,
       title: "स्थापना",
       subtitle: "२६ जानेवारी २००० पासून",
-      image: "/images/anandashram_building_card.png",
+      image: "/images/aandshala_img.png",
       desc: "२६ जानेवारी २००० रोजी व्यवसायाची पायाभरणी झाली. दरवर्षी वाढदिवस दिन व भव्य नागरिक मेळावा आयोजनाची २६ वर्षांची परंपरा.",
-      badge: "इतिहास व परंपरा"
+      badge: "इतिहास व परंपरा",
+      color: "from-pink-500 to-rose-600",
+      details: [
+        "२६ जानेवारी २००० रोजी श्री. अभिनव काकाणी यांच्या हस्ते पायाभरणी.",
+        "गेल्या २६ वर्षांपासून अविरत सामाजिक, वैद्यकीय व सेवा कार्य.",
+        "दरवर्षी हजारो ज्येष्ठ नागरिकांचा उत्स्फूर्त सहभाग सोहळा."
+      ]
     },
     {
       id: "service",
       icon: <HeartHandshake className="as-pillar-icon-svg" />,
       title: "सेवा",
       subtitle: "समर्पण आणि आपुलकी",
-      image: "/images/founderimg.png",
+      image: "/images/aandshala sahal 1.jpeg",
       desc: "सेवा, संस्कार आणि उत्कृष्ट उपक्रमांची समृद्ध संस्कृती. ज्येष्ठ नागरिकांच्या उत्तम आरोग्यासाठी आणि आनंदासाठी अविरत कार्य.",
-      badge: "संस्कार व आपुलकी"
+      badge: "संस्कार व आपुलकी",
+      color: "from-purple-500 to-indigo-600",
+      details: [
+        "२४×७ प्रशिक्षित नर्स व केअरटेकर स्टाफ सेवा.",
+        "सकस, सेंद्रिय, घरगुती पद्धतीचा शाकाहारी आहार.",
+        "मायेचे, आपुलकीचे व कौटुंबिक विश्वासाचे वातावरण."
+      ]
     },
     {
       id: "participation",
       icon: <Users className="as-pillar-icon-svg" />,
       title: "सहभाग",
       subtitle: "एकत्र येण्याचा आनंद",
-      image: "/images/aandmelava1.jpg",
+      image: "/images/aandmelav 10.jpeg",
       desc: "दरवर्षी विविध सोहळे व मेळाव्यात हजारो ज्येष्ठ नागरिकांचा उत्स्फूर्त सहभाग. आपुलकीचे नाते जपणारी अखंड चळवळ.",
-      badge: "लोकसहभाग"
+      badge: "लोकसहभाग",
+      color: "from-blue-500 to-cyan-600",
+      details: [
+        "दररोज इनडोअर गेम्स, बुद्धिबळ, कॅरम व संगीत.",
+        "सण, उत्सव, भजने, कीर्तने व संस्कृती सोहळे.",
+        "समविचारी मित्र-मैत्रिणींसोबत आनंदी जीवन."
+      ]
     },
     {
       id: "mission",
       icon: <Target className="as-pillar-icon-svg" />,
       title: "ध्येय",
       subtitle: "सकारात्मक जीवनशैली",
-      image: "/images/sports_club_building_card.png",
+      image: "/images/anandshala_hero_bg.png",
       desc: "१.५ एकर निसर्गरम्य परिसरात भारतातील पहिला भव्य प्रकल्प. आयुष्याच्या प्रत्येक टप्प्यावर उत्साह व निरामय आनंद देणे हेच ध्येय.",
-      badge: "उद्दिष्ट"
+      badge: "उद्दिष्ट",
+      color: "from-amber-500 to-pink-600",
+      details: [
+        "१.५ एकर निसर्गरम्य हक्काचा डिजिटल प्रकल्प परिसर.",
+        "५५ फुटांची भव्य राधाकृष्ण मूर्ती व सत्संग केंद्र.",
+        "ज्येष्ठ नागरिकांचा सन्मान, स्वाभिमान व आनंद."
+      ]
     }
   ];
 
@@ -302,52 +336,156 @@ const AnandshalaStory: React.FC = () => {
         </motion.div>
 
         {/* ====================================
-            4. FOUR PILLARS GRID
+            4. FOUR PILLARS GRID (FULL-WIDTH 1600px CANVAS - ZERO WASTED WHITESPACE)
         ==================================== */}
-        <div className="as-pillars-section">
-          <div className="as-pillars-header">
-            <span className="as-sub-tag">आमची प्रमुख वैशिष्ट्ये</span>
-            <h3 className="as-pillars-title">आनंदशाळेचे चार मुख्य स्तंभ</h3>
+        <div className="as-pillars-section w-full max-w-[1600px] mx-auto bg-gradient-to-b from-slate-50/90 via-pink-50/50 to-purple-50/60 p-5 sm:p-8 lg:p-10 rounded-[3rem] border-2 border-pink-200/80 shadow-2xl my-12">
+          <div className="as-pillars-header text-center mb-8">
+            <motion.span 
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-pink-100/80 text-[#be185d] font-black text-sm mb-3 shadow-sm border border-pink-200"
+            >
+              <Sparkles size={16} className="text-pink-600 animate-pulse" />
+              <span>आमची प्रमुख वैशिष्ट्ये</span>
+            </motion.span>
+
+            <motion.h3 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="as-pillars-title font-black text-3xl sm:text-4xl lg:text-5xl text-[#0f172a]"
+            >
+              आनंदशाळेचे <span className="bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">चार मुख्य स्तंभ</span>
+            </motion.h3>
+
+            <p className="text-slate-600 text-sm sm:text-lg font-black max-w-2xl mx-auto mt-3 leading-relaxed">
+              ज्येष्ठ नागरिकांच्या सुखी, निरामय व सन्मानजनक आयुष्यासाठी उभारलेले ४ भक्कम आधारस्तंभ
+            </p>
           </div>
 
-          <div className="as-pillars-grid">
+          {/* FULL-WIDTH 4-COLUMN CARDS GRID (EXPANDS TO FILL 1600px SCREEN) */}
+          <div className="as-pillars-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 w-full">
             {pillars.map((item, index) => (
               <motion.div
                 key={item.id}
-                className="as-pillar-card"
-                initial={{ opacity: 0, y: 35 }}
+                initial={{ opacity: 0, y: 55 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.12 }}
-                whileHover={{ y: -8 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.7, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ y: -14 }}
+                className="group relative p-[3.5px] rounded-[2.6rem] bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:from-pink-400 hover:via-purple-400 hover:to-rose-500 shadow-xl hover:shadow-[0_25px_80px_rgba(219,39,119,0.45)] transition-all duration-500 cursor-pointer"
+                onClick={() => setSelectedPillar(item)}
+                title={`${item.title} - सविस्तर माहिती पाहण्यासाठी क्लीक करा`}
               >
-                <div className="as-pillar-img-box">
-                  <img 
-                    src={item.image} 
-                    alt={item.title} 
-                    className="as-pillar-img" 
-                    onError={(e) => { e.currentTarget.src = buildingImage; }}
-                  />
-                  <div className="as-pillar-img-badge">{item.badge}</div>
-                </div>
-
-                <div className="as-pillar-body">
-                  <div className="as-pillar-header-row">
-                    <div className="as-pillar-icon-badge">
-                      {item.icon}
+                {/* INNER CARD BODY */}
+                <div className="as-pillar-card bg-white rounded-[2.35rem] overflow-hidden size-full flex flex-col justify-between">
+                  <div>
+                    {/* HUGE 320px IMAGE CONTAINER WITH ZOOM HOVER */}
+                    <div className="as-pillar-img-box overflow-hidden relative h-64 sm:h-80 lg:h-[320px]">
+                      <img 
+                        src={item.image} 
+                        alt={item.title} 
+                        className="as-pillar-img w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" 
+                        onError={(e) => { e.currentTarget.src = buildingImage; }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-85 group-hover:opacity-60 transition-opacity duration-300 pointer-events-none" />
+                      
+                      <span className="as-pillar-img-badge absolute top-5 right-5 bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 text-white text-sm sm:text-base font-black px-5 py-2.5 rounded-full shadow-2xl border border-white/30 backdrop-blur-md">
+                        ✨ {item.badge}
+                      </span>
                     </div>
-                    <div>
-                      <h4 className="as-pillar-name">{item.title}</h4>
-                      <span className="as-pillar-subtitle">{item.subtitle}</span>
+
+                    {/* MASSIVE CARD CONTENT & TYPOGRAPHY */}
+                    <div className="as-pillar-body p-7 sm:p-9">
+                      <div className="as-pillar-header-row flex items-center gap-5 mb-5">
+                        <div className={`as-pillar-icon-badge bg-gradient-to-r ${item.color} size-16 sm:size-20 rounded-3xl flex items-center justify-center text-white shadow-2xl group-hover:rotate-12 group-hover:scale-110 transition-all duration-300 shrink-0`}>
+                          {item.icon}
+                        </div>
+                        <div>
+                          <h4 className="as-pillar-name text-2xl sm:text-3xl lg:text-4xl font-black text-[#0f172a] group-hover:text-pink-600 transition-colors">
+                            {item.title}
+                          </h4>
+                          <span className="as-pillar-subtitle text-sm sm:text-base font-black text-pink-600 block mt-1">
+                            {item.subtitle}
+                          </span>
+                        </div>
+                      </div>
+
+                      <p className="as-pillar-desc text-base sm:text-lg font-extrabold text-slate-700 leading-relaxed">
+                        {item.desc}
+                      </p>
+                      
+                      <div className="mt-4 text-xs sm:text-sm font-black text-pink-600 flex items-center gap-1">
+                        <span>सविस्तर माहिती पहा</span>
+                        <span>→</span>
+                      </div>
                     </div>
                   </div>
 
-                  <p className="as-pillar-desc">{item.desc}</p>
+                  {/* GLOWING ACCENT BOTTOM BAR */}
+                  <div className={`h-2.5 w-0 group-hover:w-full bg-gradient-to-r ${item.color} transition-all duration-500`} />
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
+
+        {/* ══════════════════════════════════════════════════════════════
+            PILLAR CLICK DETAILS MODAL POPUP
+           ══════════════════════════════════════════════════════════════ */}
+        {selectedPillar && typeof document !== "undefined" && createPortal(
+          <div 
+            className="fixed inset-0 z-[999999] bg-black/80 backdrop-blur-md flex items-center justify-center p-4"
+            onClick={() => setSelectedPillar(null)}
+          >
+            <div 
+              className="bg-white rounded-[2.5rem] max-w-lg w-full p-6 sm:p-8 relative shadow-2xl border-4 border-pink-200 overflow-hidden text-slate-800 animate-in fade-in zoom-in-95 duration-300"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button 
+                onClick={() => setSelectedPillar(null)}
+                className="absolute top-4 right-4 size-10 rounded-full bg-slate-100 border border-slate-300 flex items-center justify-center text-slate-700 hover:bg-slate-200 transition font-black cursor-pointer z-20 shadow-md"
+                aria-label="Close"
+              >
+                ✕
+              </button>
+
+              <div className="relative h-60 sm:h-64 rounded-2xl overflow-hidden mb-5 border-2 border-pink-100 shadow-md">
+                <img src={selectedPillar.image} alt={selectedPillar.title} className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+                <span className="absolute top-3 left-3 bg-gradient-to-r from-pink-600 to-purple-600 text-white font-black text-xs px-3.5 py-1.5 rounded-full shadow-md">
+                  ✨ {selectedPillar.badge}
+                </span>
+                <h3 className="absolute bottom-3 left-4 text-2xl sm:text-3xl font-black text-white drop-shadow-md">
+                  {selectedPillar.title}
+                </h3>
+              </div>
+
+              <p className="text-sm sm:text-base font-extrabold text-slate-700 leading-relaxed mb-5">
+                {selectedPillar.desc}
+              </p>
+
+              <div className="space-y-2.5 mb-6 bg-pink-50/60 p-4 rounded-2xl border border-pink-100">
+                <h4 className="font-black text-pink-700 text-sm">वैशिष्ट्ये व प्रमुख माहिती:</h4>
+                {selectedPillar.details.map((d, i) => (
+                  <div key={i} className="flex items-start gap-2.5 text-xs sm:text-sm font-bold text-slate-800">
+                    <span className="text-pink-600 font-black shrink-0">✓</span>
+                    <span>{d}</span>
+                  </div>
+                ))}
+              </div>
+
+              <button 
+                onClick={() => setSelectedPillar(null)}
+                className="w-full py-4 rounded-full bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 text-white font-black text-sm sm:text-base shadow-xl hover:scale-[1.02] transition cursor-pointer"
+              >
+                माहिती बंद करा
+              </button>
+            </div>
+          </div>,
+          document.body
+        )}
 
         {/* ====================================
             5. HEARTFELT VISION QUOTE BANNER

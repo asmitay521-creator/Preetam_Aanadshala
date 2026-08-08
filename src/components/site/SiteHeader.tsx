@@ -6,6 +6,7 @@ import { useLanguage } from "@/lib/use-language";
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [hideHeader, setHideHeader] = useState(false);
   const location = useLocation();
   const pathname = location.pathname;
   const { lang, isMr, toggleLanguage } = useLanguage();
@@ -19,22 +20,37 @@ export function SiteHeader() {
 
   useEffect(() => setOpen(false), [pathname]);
 
+  useEffect(() => {
+    const checkHide = () => {
+      setHideHeader(document.body.classList.contains("hide-nav-links"));
+    };
+    checkHide();
+    const observer = new MutationObserver(checkHide);
+    observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, [pathname]);
+
+  if (hideHeader && pathname === "/") {
+    return null;
+  }
+
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "shadow-[0_4px_24px_rgba(12,35,112,0.12)] border-b"
+          ? "shadow-[0_6px_28px_rgba(12,35,112,0.15)] border-b"
           : "border-b"
       }`}
       style={{
-        background: scrolled ? "rgba(255, 255, 255, 0.96)" : "rgba(240, 246, 255, 0.92)",
+        background: scrolled ? "rgba(255, 255, 255, 0.97)" : "rgba(240, 246, 255, 0.95)",
         backdropFilter: "blur(20px)",
-        borderColor: "rgba(12, 35, 112, 0.12)",
+        borderColor: "rgba(12, 35, 112, 0.15)",
       }}
     >
 
-      {/* ── MAIN NAV ROW ── */}
-      <div className="w-full max-w-[1440px] mx-auto flex items-center justify-between gap-4 px-4 sm:px-8 py-3">
+      {/* ── MAIN NAV ROW (COMPACT HEIGHT & SPACING) ── */}
+      <div className="w-full max-w-[1480px] mx-auto flex items-center justify-between gap-3 px-4 sm:px-8 py-2 sm:py-2.5">
+        
         {/* LOGO */}
         <Link
           to="/"
@@ -42,26 +58,26 @@ export function SiteHeader() {
             window.scrollTo({ top: 0, behavior: "smooth" });
             window.dispatchEvent(new CustomEvent("reset-section"));
           }}
-          className="group flex items-center gap-3 cursor-pointer shrink-0"
+          className="group flex items-center gap-2.5 cursor-pointer shrink-0"
         >
           <div className="leading-tight">
             <span
-              className="block font-display text-sm sm:text-base font-black tracking-tight"
+              className="block font-display text-xs sm:text-base lg:text-base font-black tracking-tight"
               style={{ color: "#1A05A2" }}
             >
-              {isMr ? "प्रीतम ज्येष्ठ नागरिक आनंदशाळा" : site.nameEn}
+              {isMr ? "प्रीतम ज्येष्ठ नागरिक आनंदशाळा व स्पोर्ट्स अँड फिटनेस क्लब" : "Preetam Anandshala & Sports Fitness Club"}
             </span>
             <span
-              className="block text-[9px] sm:text-[10px] uppercase tracking-[0.2em] font-extrabold"
-              style={{ color: "#f472b6" }}
+              className="block text-[9px] sm:text-[10px] uppercase tracking-[0.2em] font-black mt-0.5"
+              style={{ color: "#db2777" }}
             >
               SANGLI • MAHARASHTRA
             </span>
           </div>
         </Link>
 
-        {/* DESKTOP NAV */}
-        <nav className="hidden items-center gap-1 sm:gap-2 lg:flex">
+        {/* DESKTOP NAV LINKS */}
+        <nav className="hidden items-center gap-1 lg:flex">
           {navLinks.map((l) => {
             const isActive = l.to === "/" ? pathname === "/" : pathname.startsWith(l.to);
             return (
@@ -74,13 +90,13 @@ export function SiteHeader() {
                     window.dispatchEvent(new CustomEvent("reset-section"));
                   }
                 }}
-                className="group relative rounded-full px-4 py-2 text-sm font-bold transition-all duration-300 hover:text-[#f472b6]"
-                style={{ color: isActive ? "#f472b6" : "#1A05A2" }}
+                className="group relative rounded-full px-3.5 py-1.5 text-sm font-extrabold transition-all duration-300 hover:text-[#db2777]"
+                style={{ color: isActive ? "#db2777" : "#1A05A2" }}
               >
                 {isMr ? l.label : l.en}
                 <span
-                  className={`absolute inset-x-4 -bottom-1 h-0.5 origin-center rounded-full transition-transform duration-300 ${isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
-                  style={{ background: "#f472b6" }}
+                  className={`absolute inset-x-3 -bottom-0.5 h-0.5 origin-center rounded-full transition-transform duration-300 ${isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
+                  style={{ background: "#db2777" }}
                 />
               </Link>
             );
@@ -89,59 +105,59 @@ export function SiteHeader() {
           {/* LANGUAGE TOGGLE BUTTON */}
           <button
             onClick={toggleLanguage}
-            className="ml-3 inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-xs font-extrabold transition-all duration-300 cursor-pointer shadow-sm hover:scale-105"
+            className="ml-2 inline-flex items-center gap-1.5 rounded-full border-2 px-3.5 py-1.5 text-xs font-black transition-all duration-300 cursor-pointer shadow-sm hover:scale-105"
             style={{
-              borderColor: "rgba(12, 35, 112, 0.25)",
+              borderColor: "rgba(12, 35, 112, 0.3)",
               background: "#FFFFFF",
               color: "#1A05A2",
             }}
             title="Switch Language / भाषा बदला"
           >
-            <span>🌐</span>
+            <span className="text-sm">🌐</span>
             <span>{isMr ? "मराठी | ENG" : "ENG | मराठी"}</span>
           </button>
 
           {/* TOP RIGHT ADMISSION CTA BUTTON */}
           <a
             href="tel:+919370237633"
-            className="ml-2 inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-xs font-extrabold text-white shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg"
+            className="ml-2 inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-2 text-xs sm:text-sm font-black text-white shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg"
             style={{
-              background: "linear-gradient(135deg, #f472b6 0%, #1A05A2 100%)",
+              background: "linear-gradient(135deg, #db2777 0%, #1A05A2 100%)",
             }}
           >
-            <span>🏛️</span>
+            <span className="text-sm">🏛️</span>
             <span>{isMr ? "आजच प्रवेश घ्या" : "Book Admission"}</span>
           </a>
         </nav>
 
         {/* MOBILE ACTIONS */}
-        <div className="flex items-center gap-2 lg:hidden">
+        <div className="flex items-center gap-3 lg:hidden">
           {/* MOBILE LANGUAGE TOGGLE BUTTON */}
           <button
             onClick={toggleLanguage}
-            className="inline-flex items-center gap-1 rounded-full border px-3 py-1.5 text-xs font-extrabold cursor-pointer"
+            className="inline-flex items-center gap-1.5 rounded-full border-2 px-4 py-2 text-xs font-black cursor-pointer shadow-sm"
             style={{
-              borderColor: "rgba(12, 35, 112, 0.2)",
+              borderColor: "rgba(12, 35, 112, 0.25)",
               background: "rgba(255, 255, 255, 0.95)",
               color: "#1A05A2",
             }}
           >
             <span>🌐</span>
-            <span className="text-[#f472b6] uppercase font-black">{lang}</span>
+            <span className="text-[#db2777] uppercase font-black">{lang}</span>
           </button>
 
-          {/* MOBILE TOGGLE */}
+          {/* MOBILE TOGGLE BUTTON */}
           <button
             onClick={() => setOpen((v) => !v)}
             aria-label="Menu"
-            className="grid size-10 place-items-center rounded-xl transition-all duration-200 cursor-pointer"
+            className="grid size-11 place-items-center rounded-2xl transition-all duration-200 cursor-pointer shadow-sm"
             style={{
-              border: "1.5px solid rgba(12, 35, 112, 0.2)",
+              border: "2px solid rgba(12, 35, 112, 0.25)",
               background: "#FFFFFF",
               color: "#1A05A2",
             }}
           >
-            <span className="text-lg font-bold">{open ? "✕" : "☰"}</span>
+            <span className="text-xl font-black">{open ? "✕" : "☰"}</span>
           </button>
         </div>
       </div>
@@ -156,8 +172,8 @@ export function SiteHeader() {
             backdropFilter: "blur(20px)",
           }}
         >
-          <div className="h-0.5 w-full" style={{ background: "linear-gradient(90deg, #1A05A2, #f472b6, #0284C7)" }} />
-          <nav className="container-page flex flex-col py-4 gap-1">
+          <div className="h-1 w-full" style={{ background: "linear-gradient(90deg, #1A05A2, #db2777, #0284C7)" }} />
+          <nav className="w-full px-6 py-6 flex flex-col gap-2">
             {navLinks.map((l) => {
               const isActive = l.to === "/" ? pathname === "/" : pathname.startsWith(l.to);
               return (
@@ -171,45 +187,31 @@ export function SiteHeader() {
                       window.dispatchEvent(new CustomEvent("reset-section"));
                     }
                   }}
-                  className="rounded-xl px-4 py-3.5 text-base font-bold transition-all duration-200 flex items-center justify-between"
-                  style={{ 
-                    color: isActive ? "#f472b6" : "#1A05A2",
-                    background: isActive ? "rgba(230, 0, 103, 0.08)" : "transparent"
+                  className="rounded-2xl px-5 py-3.5 text-base font-black transition-all"
+                  style={{
+                    color: isActive ? "#db2777" : "#1A05A2",
+                    background: isActive ? "rgba(219, 39, 119, 0.08)" : "transparent",
                   }}
                 >
-                  <span>{isMr ? l.label : l.en}</span>
-                  <span style={{ color: "#475569", fontSize: "0.75rem" }}>{isMr ? l.en : l.label}</span>
+                  {isMr ? l.label : l.en}
                 </Link>
               );
             })}
 
-            {/* MOBILE LANGUAGE SWITCH OPTION */}
-            <div className="mt-2 flex items-center justify-between px-4 py-3 rounded-xl bg-slate-50 border border-slate-200">
-              <span className="text-xs font-bold text-[#1A05A2]">वेबसाईट भाषा / Website Language:</span>
-              <button
-                onClick={toggleLanguage}
-                className="rounded-full px-4 py-1.5 text-xs font-bold text-white bg-[#f472b6] shadow"
-              >
-                {isMr ? "Switch to English 🇬🇧" : "मराठी निवड करा 🇮🇳"}
-              </button>
-            </div>
-
             <a
-              href="tel:+919970079090"
-              className="mt-3 mx-1 py-3.5 text-base text-center font-bold text-white rounded-full"
-              style={{ background: "linear-gradient(135deg, #f472b6, #1A05A2)" }}
+              href="tel:+919370237633"
+              className="mt-3 flex items-center justify-center gap-2 rounded-2xl py-4 text-base font-black text-white shadow-lg"
+              style={{
+                background: "linear-gradient(135deg, #db2777 0%, #1A05A2 100%)",
+              }}
             >
-              📞 {isMr ? "आजच प्रवेश घ्या · Call Now" : "Book Admission · Call Now"}
+              <span>🏛️</span>
+              <span>{isMr ? "आजच प्रवेश घ्या (कॉल करा)" : "Book Admission (Call)"}</span>
             </a>
           </nav>
         </div>
       )}
 
-      {/* SCROLLED BOTTOM LINE */}
-      <div
-        className={`h-px transition-opacity duration-500 ${scrolled ? "opacity-100" : "opacity-0"}`}
-        style={{ background: "linear-gradient(90deg, transparent, #f472b6, #0284C7, #1A05A2, transparent)" }}
-      />
     </header>
   );
 }

@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import "@/styles/journey.css";
 import JourneyHeader from "./JourneyHeader";
 import JourneyTimeline from "./JourneyTimeline";
-import QuoteCard from "./QuoteCard";
 import BackgroundEffects from "./BackgroundEffects";
 import FloatingParticles from "./FloatingParticles";
 import FloatingGlow from "./FloatingGlow";
@@ -47,9 +46,6 @@ export default function JourneySection() {
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           {/* Timeline */}
           <JourneyTimeline />
-
-          {/* Quote */}
-          <QuoteCard />
         </div>
       </section>
     </>

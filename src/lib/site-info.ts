@@ -18,7 +18,7 @@ export const site = {
 
 export const navLinks = [
   { to: "/", label: "मुख्यपृष्ठ", en: "Home" },
-  { to: "/about", label: "आमच्याविषयी", en: "About Us" },
+  { to: "/about", label: "आमच्याविषयी", en: "About" },
   { to: "/brochure", label: "माहिती पत्रक", en: "Brochure" },
   { to: "/gallery", label: "गॅलरी", en: "Gallery" },
   { to: "/contact", label: "संपर्क", en: "Contact" },

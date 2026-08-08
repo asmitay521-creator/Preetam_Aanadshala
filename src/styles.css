@@ -187,24 +187,22 @@
    ============================================================ */
 
 @layer base {
+  html,
+  body,
+  #root,
   * {
-    border-color: var(--color-border);
-    scrollbar-width: thin;
-    scrollbar-color: #f472b6 #1A05A2;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
   }
 
-  *::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-
-  *::-webkit-scrollbar-track {
-    background: #1A05A2;
-  }
-
-  *::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #f472b6, #0284C7);
-    border-radius: 99px;
+  *::-webkit-scrollbar,
+  ::-webkit-scrollbar,
+  ::-webkit-scrollbar-thumb,
+  ::-webkit-scrollbar-track {
+    display: none !important;
+    width: 0px !important;
+    height: 0px !important;
+    background: transparent !important;
   }
 
   html,
@@ -521,6 +519,16 @@
 
 .hide-footer footer {
   display: none !important;
+}
+
+body.hide-nav-links header nav,
+body.hide-nav-links header button:not(.logo-btn),
+body.hide-nav-links header .lg\:hidden {
+  display: none !important;
+}
+
+body.hide-nav-links header .max-w-\[1440px\] {
+  justify-content: center !important;
 }
 
 /* ============================================================

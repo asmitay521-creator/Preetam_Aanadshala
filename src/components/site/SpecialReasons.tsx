@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { createPortal } from "react-dom";
 import {
   BookOpen,
   Lightbulb,
@@ -12,6 +13,10 @@ import {
   ShieldCheck,
   Star,
   Award,
+  X,
+  PhoneCall,
+  CheckCircle2,
+  ArrowRight
 } from "lucide-react";
 import { useLanguage } from "@/lib/use-language";
 import "./SpecialReasons.css";
@@ -232,11 +237,12 @@ interface Reason {
   icon: string;
 }
 
-function ReasonCard({ item }: { item: Reason }) {
+function ReasonCard({ item, onClick }: { item: Reason; onClick: () => void }) {
   const { isEn } = useLanguage();
   return (
     <div
-      className="reasonItem"
+      className="reasonItem cursor-pointer"
+      onClick={onClick}
       style={{
         "--theme": item.color,
       } as React.CSSProperties}
@@ -271,6 +277,8 @@ function ReasonCard({ item }: { item: Reason }) {
         <div className="reasonContent">
           <p>{isEn ? item.en : item.mr}</p>
         </div>
+
+
 
         {/* DOTS */}
         <div className="dotRow">
@@ -338,6 +346,7 @@ function ReasonCard({ item }: { item: Reason }) {
 
 export default function SpecialReasons() {
   const { isEn } = useLanguage();
+  const [selectedReason, setSelectedReason] = useState<Reason | null>(null);
 
   return (
     <section className="specialReasonsSection">
@@ -371,7 +380,7 @@ export default function SpecialReasons() {
         <div className="reasonsTrack">
           {extendedReasons.map((item, idx) => (
             <div className="reasonSlide" key={`${item.number}-${idx}`}>
-              <ReasonCard item={item} />
+              <ReasonCard item={item} onClick={() => setSelectedReason(item)} />
             </div>
           ))}
         </div>
@@ -389,6 +398,82 @@ export default function SpecialReasons() {
         <span className="goldStar">★</span>
         <div className="goldLeaf rightLeaf">❧</div>
       </div>
+
+      {/* PORTAL POPUP MODAL WINDOW FOR SELECTED REASON */}
+      {selectedReason && typeof document !== "undefined" && createPortal(
+        <div 
+          className="reason-modal-overlay"
+          onClick={() => setSelectedReason(null)}
+        >
+          <div 
+            className="reason-modal-card"
+            onClick={(e) => e.stopPropagation()}
+            style={{ "--theme-color": selectedReason.color } as React.CSSProperties}
+          >
+            {/* CLOSE BUTTON */}
+            <button 
+              className="reason-modal-close"
+              onClick={() => setSelectedReason(null)}
+              aria-label="Close modal"
+            >
+              <X size={22} />
+            </button>
+
+            {/* MODAL HEADER WITH BADGE */}
+            <div className="reason-modal-header">
+              <div className="reason-modal-num-badge">
+                <Sparkles size={16} />
+                <span>विशेष कारण क्रमांक {selectedReason.number}</span>
+              </div>
+            </div>
+
+            {/* MODAL BODY */}
+            <div className="reason-modal-body">
+              <div className="reason-modal-icon-wrapper">
+                <CardIcon type={selectedReason.icon} />
+              </div>
+
+              <h3 className="reason-modal-text-mr">
+                "{selectedReason.mr}"
+              </h3>
+
+              {selectedReason.en && (
+                <p className="reason-modal-text-en">
+                  {selectedReason.en}
+                </p>
+              )}
+
+              {/* HIGHLIGHTS */}
+              <div className="reason-modal-features">
+                <div className="modal-feat-row">
+                  <CheckCircle2 size={18} className="text-emerald-600 flex-shrink-0" />
+                  <span>आनंदशाळा सांगली • १.५ एकर निसर्गरम्य हक्काचे घर</span>
+                </div>
+                <div className="modal-feat-row">
+                  <CheckCircle2 size={18} className="text-emerald-600 flex-shrink-0" />
+                  <span>२४×७ डॉक्टर्स, सुरक्षा, पौष्टिक आहार व आपुलकीचे नाते</span>
+                </div>
+                <div className="modal-feat-row">
+                  <CheckCircle2 size={18} className="text-emerald-600 flex-shrink-0" />
+                  <span>आनंदी, स्वावलंबी व स्वाभिमानी जीवनशैलीचा सुंदर संगम</span>
+                </div>
+              </div>
+            </div>
+
+            {/* MODAL FOOTER ACTION BUTTONS */}
+            <div className="reason-modal-footer">
+              <button 
+                className="modal-btn-close w-full justify-center"
+                onClick={() => setSelectedReason(null)}
+              >
+                बंद करा
+              </button>
+            </div>
+
+          </div>
+        </div>,
+        document.body
+      )}
     </section>
   );
 }

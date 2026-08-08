@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Reveal } from "@/components/site/Reveal";
 import { brochurePages } from "@/lib/brochure-pages";
 import { site, sportsClub } from "@/lib/site-info";
 import { useAdminStore } from "@/lib/admin-store";
 import { useLanguage } from "@/lib/use-language";
-import { ShieldCheck, Users, Heart, Sprout, Award } from "lucide-react";
+import { ShieldCheck, Users, Heart, Sprout, Award, Sparkles } from "lucide-react";
 import SpecialReasons from "@/components/site/SpecialReasons";
 import HomeHero from "@/components/HomeHero/HomeHero";
 import SportsSection from "@/components/SportsSection";
@@ -200,23 +201,69 @@ const keyHighlights = [
 
 function IndexComponent() {
   const [selectedSection, setSelectedSection] = useState<"aanandshala" | "sports" | null>(null);
+  const [showIntroBanner, setShowIntroBanner] = useState(true);
   const [selectedGalleryCategory, setSelectedGalleryCategory] = useState("सर्व");
   const { isEn } = useLanguage();
 
+  // Clean Pure Architectural Renders & Photos (ZERO brochure/poster text)
+  const card1Images = [
+    "/images/anandashram_building_card.png",
+    "/images/aandshala_img.png",
+    "/images/Screenshot 2026-07-31 103107.png"
+  ];
+  const card2Images = [
+    "/images/sports_club_building_card.png",
+    "/images/epic_sports_gym_bg.png",
+    "/images/pickleball-court.png"
+  ];
+
+  const [card1Idx, setCard1Idx] = useState(0);
+  const [card2Idx, setCard2Idx] = useState(0);
+
+  // Auto slide images in background of section cards
   useEffect(() => {
-    const handleReset = () => setSelectedSection(null);
+    const timer = setInterval(() => {
+      setCard1Idx((prev) => (prev + 1) % card1Images.length);
+      setCard2Idx((prev) => (prev + 1) % card2Images.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleReset = () => {
+      setSelectedSection(null);
+      setShowIntroBanner(true);
+    };
     window.addEventListener("reset-section", handleReset);
     return () => window.removeEventListener("reset-section", handleReset);
   }, []);
 
+  // Lock body scroll when intro banner modal is active
+  useEffect(() => {
+    if (showIntroBanner) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    };
+  }, [showIntroBanner]);
+
   useEffect(() => {
     if (selectedSection === null) {
       document.body.classList.add("hide-footer");
+      document.body.classList.add("hide-nav-links");
     } else {
       document.body.classList.remove("hide-footer");
+      document.body.classList.remove("hide-nav-links");
     }
     return () => {
       document.body.classList.remove("hide-footer");
+      document.body.classList.remove("hide-nav-links");
     };
   }, [selectedSection]);
 
@@ -272,159 +319,271 @@ function IndexComponent() {
 
   return (
     <div className="min-h-screen bg-background animate-fade-up">
-      {/* 1. SECTION CARDS SELECTOR (SHOWN FIRST ON INITIAL ENTRY) */}
-      {selectedSection === null && (
-        <section id="sections" className="relative py-10 sm:py-14 px-4 overflow-hidden bg-gradient-to-b from-[#F4F7FB] via-[#EBF0F9] to-[#E2E8F5] dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 border-b border-[#f472b6]/15 min-h-[calc(100vh-80px)] flex flex-col justify-center">
+
+      {/* ── INTRO BANNER MODAL (100% MOBILE & DESKTOP RESPONSIVE) ── */}
+      <AnimatePresence mode="wait">
+        {showIntroBanner && (
+          <motion.div
+            key="intro-banner-modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="fixed inset-0 w-screen h-screen h-[100dvh] z-[99999999] bg-[#0c0216] flex flex-col items-center justify-between py-2 sm:py-5 px-2 sm:px-6 overflow-hidden select-none touch-none"
+          >
+            {/* 1. STABLE MAIN HEADER SECTION (RESPONSIVE TOP WELCOME TEXT) */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="relative max-w-sm sm:max-w-4xl lg:max-w-6xl w-full text-center pt-0.5 pb-1 sm:pb-2 px-1 flex-shrink-0 flex flex-col items-center justify-center gap-1 sm:gap-1.5 z-20"
+            >
+              {/* GLOWING AMBIENT LIGHT ORB */}
+              <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 size-[250px] sm:size-[450px] rounded-full bg-[#db2777]/35 blur-[100px] animate-pulse" />
+
+              {/* BADGE ROW */}
+              <div className="relative z-20 inline-flex items-center gap-1.5 px-3 py-0.5 sm:px-3.5 sm:py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-pink-300 font-extrabold text-[10px] sm:text-xs shadow-lg">
+                <Sparkles size={12} className="text-amber-300 animate-pulse sm:size-[13px]" />
+                <span>{isEn ? "Official Digital Hub • Sangli" : "सांगलीतील भव्य मानचिन्ह प्रकल्प"}</span>
+              </div>
+
+              {/* BOLD LARGE 3-LINE WELCOME HEADING */}
+              <div className="relative z-20 font-display text-center tracking-tight px-1 space-y-0.5">
+                {/* LINE 1: Welcome to the */}
+                <span className="block text-[10px] sm:text-base lg:text-lg font-extrabold uppercase tracking-[0.2em] sm:tracking-[0.25em] text-pink-300 drop-shadow-[0_2px_10px_rgba(219,39,119,0.8)]">
+                  {isEn ? "Welcome to the" : "आपले सहर्ष स्वागत आहे"}
+                </span>
+
+                {/* LINE 2: Preetam Anandshala & Fitness Club */}
+                <h1 className="block text-xs sm:text-2xl lg:text-4xl font-black bg-gradient-to-r from-amber-300 via-pink-400 to-amber-200 bg-clip-text text-transparent leading-tight drop-shadow-[0_4px_25px_rgba(236,72,153,0.9)]">
+                  {isEn ? "Preetam Anandshala & Fitness Club" : "प्रीतम आनंदशाळा व स्पोर्ट्स अँड फिटनेस क्लब"}
+                </h1>
+
+                {/* LINE 3: Sangli */}
+                <span className="block text-[11px] sm:text-xl lg:text-2xl font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] bg-gradient-to-r from-amber-200 via-pink-300 to-amber-400 bg-clip-text text-transparent drop-shadow-[0_3px_15px_rgba(251,191,36,0.8)]">
+                  {isEn ? "Sangli" : "सांगली"}
+                </span>
+              </div>
+            </motion.div>
+
+            {/* 2. RESPONSIVE SLIDING BANNER IMAGE CARD (SNUG ON MOBILE, ENLARGED ON DESKTOP) */}
+            <motion.div
+              key="intro-modal-card-banner-responsive"
+              initial={{ y: "100vh", opacity: 0, scale: 0.95 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: "100vh", opacity: 0, scale: 0.95 }}
+              transition={{
+                duration: 1.8,
+                delay: 0.15,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="relative w-[96vw] sm:w-[98vw] lg:w-[99vw] max-w-[1600px] h-auto sm:h-[74vh] lg:h-[78vh] rounded-[1.2rem] sm:rounded-[2.4rem] border-2 sm:border-4 border-white/40 shadow-[0_35px_110px_rgba(219,39,119,0.95)] overflow-hidden bg-black flex flex-col items-center justify-center text-center my-auto p-0 z-10"
+            >
+              {/* IMAGE WRAPPER - SNUG FIT WITH ZERO BLACK GAPS ABOVE/BELOW ON MOBILE */}
+              <div className="relative z-10 w-full h-auto sm:h-full overflow-hidden rounded-[1.1rem] sm:rounded-[2.3rem] bg-black flex items-center justify-center">
+                <motion.img
+                  src="/images/homebanner.png"
+                  alt="Preetam Anandshala Official Home Banner"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="w-full h-auto sm:h-full object-cover object-top block max-h-[68vh] sm:max-h-none"
+                />
+
+                {/* FLOATING "VISIT NOW" BUTTON OVERLAY AT THE BOTTOM EDGE (MOVED UP FOR MOBILE & COMPACT) */}
+                <div className="absolute bottom-2.5 sm:bottom-6 left-1/2 -translate-x-1/2 z-30 w-full px-2 sm:px-3 text-center">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.96 }}
+                    onClick={() => setShowIntroBanner(false)}
+                    className="group inline-flex items-center gap-2 sm:gap-2.5 rounded-full bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 px-4 py-2 sm:px-8 sm:py-2.5 text-xs sm:text-sm lg:text-base font-black text-white shadow-[0_15px_45px_rgba(219,39,119,0.85)] border-2 border-white/60 cursor-pointer transition-all duration-300 backdrop-blur-md"
+                  >
+                    <Sparkles size={14} className="text-amber-300 animate-pulse sm:size-5" />
+                    <span>{isEn ? "Visit Now (Enter Website)" : "Visit Now (वेबसाईटवर प्रवेश करा)"}</span>
+                    <span className="grid size-4 sm:size-6 place-items-center rounded-full bg-white text-pink-600 font-black text-[11px] sm:text-sm group-hover:translate-x-0.5 transition-transform">
+                      →
+                    </span>
+                  </motion.button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      {/* ============================================================== */}
+      {selectedSection === null && !showIntroBanner && (
+        <section id="sections" className="relative py-3 sm:py-5 px-4 overflow-hidden bg-gradient-to-br from-[#1a0429] via-[#2d0739] to-[#0c0216] border-b border-pink-500/20 min-h-[calc(100vh-70px)] lg:min-h-0 flex flex-col justify-center items-center">
           {/* DOT GRID BACKGROUND DECORATION */}
-          <div className="pointer-events-none absolute top-6 left-10 opacity-20 hidden md:block">
+          <div className="pointer-events-none absolute top-6 left-10 opacity-15 hidden md:block">
             <div className="grid grid-cols-6 gap-2.5">
               {Array.from({ length: 24 }).map((_, i) => (
-                <span key={i} className="size-1.5 rounded-full bg-[#f472b6]" />
+                <span key={i} className="size-1.5 rounded-full bg-pink-400" />
               ))}
             </div>
           </div>
-          <div className="pointer-events-none absolute top-6 right-10 opacity-20 hidden md:block">
+          <div className="pointer-events-none absolute top-6 right-10 opacity-15 hidden md:block">
             <div className="grid grid-cols-6 gap-2.5">
               {Array.from({ length: 24 }).map((_, i) => (
-                <span key={i} className="size-1.5 rounded-full bg-[#f472b6]" />
+                <span key={i} className="size-1.5 rounded-full bg-pink-400" />
               ))}
             </div>
           </div>
 
-          {/* FLOATING AMBIENT LIGHT BLOBS */}
-          <div className="pointer-events-none absolute top-1/4 left-1/12 size-96 rounded-full bg-[#f472b6]/10 blur-3xl animate-float opacity-70" />
-          <div className="pointer-events-none absolute bottom-1/4 right-1/12 size-96 rounded-full bg-[#316728]/20 blur-3xl animate-float-reverse opacity-70" />
+          {/* FLOATING RICH AMBIENT LIGHT ORBS */}
+          <div className="pointer-events-none absolute top-10 left-10 size-[450px] rounded-full bg-[#db2777]/25 blur-[120px] animate-pulse" />
+          <div className="pointer-events-none absolute bottom-10 right-10 size-[450px] rounded-full bg-[#7c3aed]/25 blur-[120px] animate-float" />
+          <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[600px] rounded-full bg-[#f472b6]/15 blur-[140px]" />
 
           {/* BRAND HEADER */}
-          <div className="animate-fade-up text-center max-w-3xl mx-auto mb-8 relative z-10">
-            <h2 className="font-display text-xl sm:text-2xl lg:text-3xl font-black text-[#1A05A2] tracking-tight drop-shadow-sm mb-4">
+          <div className="animate-fade-up text-center max-w-4xl mx-auto mb-2 sm:mb-4 relative z-10 px-2">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-pink-300 font-extrabold text-[11px] sm:text-xs mb-1.5 shadow-lg">
+              <span className="inline-block size-2 rounded-full bg-pink-400 animate-ping" />
+              ✨ सांगलीतील भव्य मानचिन्ह प्रकल्प
+            </div>
+            <h1 className="font-display text-xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight drop-shadow-[0_5px_15px_rgba(0,0,0,0.6)] mb-1">
+              {isEn 
+                ? "Preetam Senior Citizen Anandshala & Sports Fitness Club" 
+                : "प्रीतम ज्येष्ठ नागरिक आनंदशाळा व स्पोर्ट्स अँड फिटनेस क्लब"}
+            </h1>
+            <p className="font-display text-[11px] sm:text-xs lg:text-sm font-black text-pink-300 drop-shadow-sm">
               {isEn 
                 ? "Please select one of our premier projects below for complete details" 
                 : "संपूर्ण माहिती व सुविधा पाहण्यासाठी खालीलपैकी एका प्रकल्पावर क्लिक करा"}
-            </h2>
+            </p>
           </div>
 
-          {/* 2 MAIN LUXURY FEATURE CARDS - ANIMATED */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl w-full mx-auto relative z-10">
+          {/* 2 MAIN LUXURY FEATURE CARDS - PERFECTLY PROPORTIONED TO WINDOW */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 items-stretch gap-4 lg:gap-7 max-w-7xl w-full mx-auto relative z-10 py-1 px-2 my-auto">
+            
             {/* SECTION 1 CARD: PREETAM AANANDASHRAM */}
-            <div
+            <motion.div
+              initial={{ opacity: 0, x: -80 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
               onClick={() => handleSectionSelect("aanandshala")}
-              style={{ animationDelay: "150ms" }}
-              className={`glow-card animate-fade-up group relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#FFFDF9] via-[#FDF7EE] to-[#FAF1E4] dark:from-slate-900 dark:to-slate-950 cursor-pointer flex flex-col justify-between transition-all duration-500 hover:-translate-y-3 hover:scale-[1.015] hover:shadow-[0_30px_80px_rgba(129,11,56,0.35)] shadow-[0_15px_40px_rgba(129,11,56,0.1)] ${selectedSection === "aanandshala" ? "ring-4 ring-[#f472b6] scale-[1.02]" : ""
-                }`}
+              className={`group relative overflow-hidden rounded-[1.8rem] sm:rounded-[2.2rem] h-[300px] sm:h-[360px] lg:h-[395px] bg-slate-950 cursor-pointer transition-all duration-500 hover:shadow-2xl border-2 border-white/30 hover:border-pink-400 flex flex-col justify-between p-4 sm:p-6 ${
+                selectedSection === "aanandshala" ? "ring-4 ring-pink-500 scale-[1.02]" : ""
+              }`}
             >
-              <div className="grid grid-cols-1 md:grid-cols-12 items-stretch min-h-[380px] size-full">
-                {/* LEFT CONTENT */}
-                <div className="md:col-span-6 p-5 lg:p-6 xl:p-8 flex flex-col justify-between space-y-4 relative z-10">
-                  <div className="space-y-3">
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#f472b6] px-3 py-1.5 xl:px-4 text-[10px] xl:text-xs font-extrabold text-white shadow-md group-hover:bg-[#541A1A] group-hover:scale-105 transition-all duration-300">
-                      🏠 {isEn ? "Section 1" : "विभाग १"}
-                    </span>
+              {/* ANIMATED IMAGE SLIDER BACKGROUND */}
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={card1Images[card1Idx]}
+                  src={card1Images[card1Idx]}
+                  alt={isEn ? site.nameEn : site.nameMr}
+                  initial={{ opacity: 0, scale: 1.08 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1, ease: "easeInOut" }}
+                  className="absolute inset-0 w-full h-full object-cover object-top sm:object-center group-hover:scale-105 transition-transform duration-700"
+                />
+              </AnimatePresence>
 
-                    <h3 className="font-display text-xl lg:text-2xl xl:text-3xl font-black text-[#541A1A] group-hover:text-[#f472b6] transition-colors leading-tight">
-                      {isEn ? site.nameEn : site.nameMr}
-                    </h3>
+              {/* RICH DARK GRADIENT OVERLAY FOR READABILITY */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#2a0410]/95 via-[#2a0410]/40 to-black/30 pointer-events-none transition-opacity duration-500 group-hover:opacity-90" />
 
-                    <div className="flex items-center gap-2 my-1">
-                      <div className="h-[1px] w-6 xl:w-8 bg-[#f472b6]/40 group-hover:w-10 xl:group-hover:w-12 transition-all duration-300" />
-                      <span className="text-[#f472b6] text-[10px] xl:text-xs group-hover:rotate-45 transition-transform duration-500">❦</span>
-                      <div className="h-[1px] w-6 xl:w-8 bg-[#f472b6]/40 group-hover:w-10 xl:group-hover:w-12 transition-all duration-300" />
-                    </div>
-
-                    <p className="text-[11px] lg:text-xs xl:text-sm text-foreground/85 leading-relaxed font-medium">
-                      {isEn
-                        ? "India's first senior citizen Anandashram! Residence, healthy meals, 24x7 care, 55ft Radha Krishna statue, temple, gaushala, 15 activity halls & full amenities."
-                        : "भारतातील पहिले ज्येष्ठ नागरिक आनंदआश्रम! निवास, सकस जेवण, 24x7 देखभाल, 55 फुटांची राधाकृष्ण मूर्ती, मंदिर, गोशाळा, 15 उपक्रम हॉल व सर्व सोयी सुविधा."}
-                    </p>
-                  </div>
-
-                  {/* BOTTOM BAR */}
-                  <div className="pt-3 xl:pt-4 border-t border-[#f472b6]/15 flex items-center justify-between gap-2">
-                    <div className="grid size-9 xl:size-11 shrink-0 place-items-center rounded-[14px] xl:rounded-2xl bg-[#f472b6]/10 text-[#f472b6] text-lg xl:text-xl font-bold shadow-inner group-hover:scale-110 group-hover:bg-[#f472b6]/20 transition-all duration-300">
-                      👥
-                    </div>
-                    <span className="inline-flex items-center gap-2 rounded-full bg-[#f472b6] px-4 py-2.5 xl:px-5 xl:py-3 text-[11px] xl:text-sm font-extrabold text-white shadow-lg group-hover:bg-[#541A1A] transition-all duration-300 group-hover:shadow-xl">
-                      {isEn ? "Open Anandashram Details" : "आनंदआश्रम माहिती उघडा"}
-                      <span className="grid size-5 xl:size-6 place-items-center rounded-full bg-white text-[#f472b6] text-[10px] xl:text-xs font-black group-hover:translate-x-1.5 group-hover:bg-amber-300 group-hover:text-[#541A1A] transition-all duration-300">
-                        →
-                      </span>
-                    </span>
-                  </div>
-                </div>
-
-                {/* RIGHT FULL-HEIGHT BUILDING IMAGE */}
-                <div className="md:col-span-6 relative w-full h-64 sm:h-80 md:h-full min-h-[250px] overflow-hidden rounded-b-[2.5rem] md:rounded-b-none md:rounded-r-[2.5rem] border-t md:border-t-0 md:border-l-2 border-[#E6D2BF] bg-[#F5EBE0]">
-                  <img
-                    src="/images/aandshala_img.png"
-                    alt={isEn ? site.nameEn : site.nameMr}
-                    className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#FAF1E4]/30 via-transparent to-transparent pointer-events-none" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#541A1A]/30 via-transparent to-transparent pointer-events-none" />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/25 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+              {/* TOP BADGES & SLIDER DOTS */}
+              <div className="relative z-10 flex items-center justify-between gap-2 flex-wrap">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/95 backdrop-blur-md px-3.5 py-1.5 text-xs sm:text-sm font-black text-[#541A1A] shadow-lg group-hover:bg-pink-600 group-hover:text-white transition-all duration-300">
+                  🏠 {isEn ? "Section 1" : "विभाग १"}
+                </span>
+                <div className="flex items-center gap-2">
+                  {card1Images.map((_, i) => (
+                    <span 
+                      key={i} 
+                      className={`h-2 rounded-full transition-all duration-300 ${i === card1Idx ? "w-6 bg-pink-400" : "w-2 bg-white/40"}`}
+                    />
+                  ))}
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-black/50 backdrop-blur-md px-3 py-1 text-[11px] sm:text-xs font-black text-white border border-white/20 ml-1">
+                    ✨ {isEn ? "1.5 Acre Anandshala" : "१.५ एकर आनंदधाम"}
+                  </span>
                 </div>
               </div>
-            </div>
+
+              {/* BOTTOM TITLE & BUTTON */}
+              <div className="relative z-10 space-y-2 pt-2">
+                <h3 className="font-display text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight leading-tight drop-shadow-lg">
+                  {isEn ? site.nameEn : site.nameMr}
+                </h3>
+
+                <div className="pt-0.5 flex items-center justify-between gap-4">
+                  <span className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-black text-white shadow-xl group-hover:shadow-pink-500/60 group-hover:scale-105 transition-all duration-300 border border-white/30">
+                    <span>{isEn ? "Open Anandashram Details" : "आनंदआश्रम माहिती उघडा"}</span>
+                    <span className="grid size-5 place-items-center rounded-full bg-white text-pink-600 text-xs font-black group-hover:translate-x-1 transition-transform">
+                      →
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </motion.div>
 
             {/* SECTION 2 CARD: PREETAM SPORTS & FITNESS CLUB */}
-            <div
+            <motion.div
+              initial={{ opacity: 0, x: 80 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               onClick={() => handleSectionSelect("sports")}
-              style={{ animationDelay: "300ms" }}
-              className={`glow-card animate-fade-up group relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#FFFDF9] via-[#FDF7EE] to-[#FAF1E4] dark:from-slate-900 dark:to-slate-950 cursor-pointer flex flex-col justify-between transition-all duration-500 hover:-translate-y-3 hover:scale-[1.015] hover:shadow-[0_30px_80px_rgba(129,11,56,0.35)] shadow-[0_15px_40px_rgba(129,11,56,0.1)] ${selectedSection === "sports" ? "ring-4 ring-[#f472b6] scale-[1.02]" : ""
-                }`}
+              className={`group relative overflow-hidden rounded-[1.8rem] sm:rounded-[2.2rem] h-[300px] sm:h-[360px] lg:h-[395px] bg-slate-950 cursor-pointer transition-all duration-500 hover:shadow-2xl border-2 border-white/30 hover:border-purple-400 flex flex-col justify-between p-4 sm:p-6 ${
+                selectedSection === "sports" ? "ring-4 ring-purple-500 scale-[1.02]" : ""
+              }`}
             >
-              <div className="grid grid-cols-1 md:grid-cols-12 items-stretch min-h-[380px] size-full">
-                {/* LEFT CONTENT */}
-                <div className="md:col-span-6 p-5 lg:p-6 xl:p-8 flex flex-col justify-between space-y-4 relative z-10">
-                  <div className="space-y-3">
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#f472b6] px-3 py-1.5 xl:px-4 text-[10px] xl:text-xs font-extrabold text-white shadow-md group-hover:bg-[#541A1A] group-hover:scale-105 transition-all duration-300">
-                      🏋️‍♂️ {isEn ? "Section 2" : "विभाग २"}
-                    </span>
+              {/* ANIMATED IMAGE SLIDER BACKGROUND */}
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={card2Images[card2Idx]}
+                  src={card2Images[card2Idx]}
+                  alt={isEn ? sportsClub.nameEn : sportsClub.nameMr}
+                  initial={{ opacity: 0, scale: 1.08 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1, ease: "easeInOut" }}
+                  className="absolute inset-0 w-full h-full object-cover object-top sm:object-center group-hover:scale-105 transition-transform duration-700"
+                />
+              </AnimatePresence>
 
-                    <h3 className="font-display text-xl lg:text-2xl xl:text-3xl font-black text-[#541A1A] group-hover:text-[#f472b6] transition-colors leading-tight">
-                      {isEn ? sportsClub.nameEn : sportsClub.nameMr}
-                    </h3>
+              {/* RICH DARK GRADIENT OVERLAY FOR READABILITY */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#12042b]/95 via-[#12042b]/40 to-black/30 pointer-events-none transition-opacity duration-500 group-hover:opacity-90" />
 
-                    <div className="flex items-center gap-2 my-1">
-                      <div className="h-[1px] w-6 xl:w-8 bg-[#f472b6]/40 group-hover:w-10 xl:group-hover:w-12 transition-all duration-300" />
-                      <span className="text-[#f472b6] text-[10px] xl:text-xs group-hover:rotate-45 transition-transform duration-500">❦</span>
-                      <div className="h-[1px] w-6 xl:w-8 bg-[#f472b6]/40 group-hover:w-10 xl:group-hover:w-12 transition-all duration-300" />
-                    </div>
-
-                    <p className="text-[11px] lg:text-xs xl:text-sm text-foreground/85 leading-relaxed font-medium">
-                      {isEn
-                        ? "Sangli's premier 1.5 acre modern sports complex! Olympic standard swimming pool, indoor badminton, table tennis court, AC gym & restaurant."
-                        : "सांगलीतील 1.5 एकर भव्य आधुनिक क्रीडा संकूल! ऑलिंपिक स्टँडर्ड स्विमिंग पूल, इनडोअर बॅडमिंटन, टेबल टेनिस कोर्ट, वातानुकूलित जिम व रेस्टॉरंट."}
-                    </p>
-                  </div>
-
-                  {/* BOTTOM BAR */}
-                  <div className="pt-3 xl:pt-4 border-t border-[#f472b6]/15 flex items-center justify-between gap-2">
-                    <div className="grid size-9 xl:size-11 shrink-0 place-items-center rounded-[14px] xl:rounded-2xl bg-[#f472b6]/10 text-[#f472b6] text-lg xl:text-xl font-bold shadow-inner group-hover:scale-110 group-hover:bg-[#f472b6]/20 transition-all duration-300">
-                      🏋️‍♂️
-                    </div>
-                    <span className="inline-flex items-center gap-2 rounded-full bg-[#f472b6] px-4 py-2.5 xl:px-5 xl:py-3 text-[11px] xl:text-sm font-extrabold text-white shadow-lg group-hover:bg-[#541A1A] transition-all duration-300 group-hover:shadow-xl">
-                      {isEn ? "Open Sports Club Details" : "क्रीडा संकूल माहिती उघडा"}
-                      <span className="grid size-5 xl:size-6 place-items-center rounded-full bg-white text-[#f472b6] text-[10px] xl:text-xs font-black group-hover:translate-x-1.5 group-hover:bg-amber-300 group-hover:text-[#541A1A] transition-all duration-300">
-                        →
-                      </span>
-                    </span>
-                  </div>
-                </div>
-
-                {/* RIGHT FULL-HEIGHT SPORTS IMAGE */}
-                <div className="md:col-span-6 relative w-full h-64 sm:h-80 md:h-full min-h-[250px] overflow-hidden rounded-b-[2.5rem] md:rounded-b-none md:rounded-r-[2.5rem] border-t md:border-t-0 md:border-l-2 border-[#E6D2BF] bg-[#F5EBE0]">
-                  <img
-                    src="/images/sports_hero_bg.png"
-                    alt={isEn ? sportsClub.nameEn : sportsClub.nameMr}
-                    className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#FAF1E4]/30 via-transparent to-transparent pointer-events-none" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#541A1A]/30 via-transparent to-transparent pointer-events-none" />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/25 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+              {/* TOP BADGES & SLIDER DOTS */}
+              <div className="relative z-10 flex items-center justify-between gap-2 flex-wrap">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/95 backdrop-blur-md px-3.5 py-1.5 text-xs sm:text-sm font-black text-[#541A1A] shadow-lg group-hover:bg-purple-600 group-hover:text-white transition-all duration-300">
+                  🏋️‍♂️ {isEn ? "Section 2" : "विभाग २"}
+                </span>
+                <div className="flex items-center gap-2">
+                  {card2Images.map((_, i) => (
+                    <span 
+                      key={i} 
+                      className={`h-2 rounded-full transition-all duration-300 ${i === card2Idx ? "w-6 bg-purple-400" : "w-2 bg-white/40"}`}
+                    />
+                  ))}
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-black/50 backdrop-blur-md px-3 py-1 text-[11px] sm:text-xs font-black text-white border border-white/20 ml-1">
+                    🏊‍♂️ {isEn ? "Sports & Fitness Club" : "ऑलिंपिक स्पोर्ट्स क्लब"}
+                  </span>
                 </div>
               </div>
-            </div>
+
+              {/* BOTTOM TITLE & BUTTON */}
+              <div className="relative z-10 space-y-2 pt-2">
+                <h3 className="font-display text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight leading-tight drop-shadow-lg">
+                  {isEn ? sportsClub.nameEn : sportsClub.nameMr}
+                </h3>
+
+                <div className="pt-0.5 flex items-center justify-between gap-4">
+                  <span className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-black text-white shadow-xl group-hover:shadow-purple-500/60 group-hover:scale-105 transition-all duration-300 border border-white/30">
+                    <span>{isEn ? "Open Sports Club Details" : "क्रीडा संकुल माहिती उघडा"}</span>
+                    <span className="grid size-5 place-items-center rounded-full bg-white text-purple-600 text-xs font-black group-hover:translate-x-1 transition-transform">
+                      →
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+
           </div>
         </section>
       )}
